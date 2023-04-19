@@ -26,4 +26,4 @@ connect-to-vps:
 	ssh -i ${SSH_KEY_PATH} root@${SERVER_IP}
 
 copy-id:
-	pbcopy < ~/.ssh/id_rsa.pub
+	pbcopy < ~/.ssh/id_rsa
