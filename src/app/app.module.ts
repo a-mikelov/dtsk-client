@@ -10,6 +10,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store'
 import {AuthModule} from './auth/auth.module'
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptor} from './shared/services/auth-interceptor.service'
+import {HeroModule} from "./hero/hero.module"
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,10 +23,11 @@ import {AuthInterceptor} from './shared/services/auth-interceptor.service'
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({
-          maxAge: 25,
-          logOnly: environment.production,
-        }),
+        maxAge: 25,
+        logOnly: environment.production,
+      }),
     StoreRouterConnectingModule.forRoot(),
+    HeroModule,
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { register } from 'swiper/element/bundle';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,6 @@ export class AppComponent {
   title = 'dtsk-client'
 
   constructor() {
-    console.log('hello')
+    register();
   }
 }

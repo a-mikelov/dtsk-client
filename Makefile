@@ -23,7 +23,7 @@ copy-to-vps:
 	scp -i ${SSH_KEY_PATH} #any-file root@${SERVER_IP}:/root/${PROJECT_NAME}
 
 connect-to-vps:
-	ssh -i ${SSH_KEY_PATH} root@${SERVER_IP}
+	ssh root@${SERVER_IP}
 
 copy-id:
 	pbcopy < ~/.ssh/id_rsa
