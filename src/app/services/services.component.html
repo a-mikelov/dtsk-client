@@ -1,36 +1,36 @@
-<div class="services" v-loading="!state.services.length">
-  <div class="services__nav">
-    <h2 class="text text_type_title.level_2">Наши <span>услуги</span></h2>
-    <ul class="services__list">
-<!--      <li-->
-<!--        class="services__list-item"-->
-<!--        :class="{ active: service.id === state.currentContentId }"-->
-<!--        v-for="service of state.services"-->
-<!--        :key="service"-->
-<!--        @click="setContent(service.id)"-->
-<!--      >-->
-<!--        <span>{{ service.title }}</span>-->
-<!--      </li>-->
-    </ul>
-    <small> * Безналичный расчет с НДС, без НДС </small>
-  </div>
-  <div class="services__main" :class="{ active: state.currentContentId }">
-    <button type="button" class="services__back">
-<!--      <BaseIcon name="arrow-left" width="48px" height="38px" />-->
-      <tui-svg src="icons::arrow-left"></tui-svg>
-      <span>Назад</span>
-    </button>
-<!--    <div v-for="service of state.services" :key="service" class="services__content">-->
-<!--      <div v-if="service.id === state.currentContentId">-->
-<!--        <h3>{{ service.title }}</h3>-->
-<!--        <div v-html="service.description"></div>-->
-<!--      </div>-->
-<!--    </div>-->
-    <div class="services__button">
-<!--      <el-button @click="showModal(state.currentContentId)" class="el-button&#45;&#45;large" type="primary" plain>-->
-<!--        Оформить заказ</el-button-->
-<!--      >-->
-      <button type="button" tuiButton>Оформить заказ</button>
+<tui-loader [showLoader]="isLoading$ | async">
+  <div class="services" [class.services--loaded]="services$ | async">
+    <div class="services__nav">
+      <h2 class="text text_type_title.level_2">Наши <span>услуги</span></h2>
+      <ul class="services__list">
+        <li
+          *ngFor="let service of services$ | async"
+          class="services__list-item"
+          [class.active]="service.id === currentContentId"
+          v-for="service of state.services"
+          :key="service"
+          (click)="setContent(service.id)"
+        >
+          <span>{{ service.attributes.title }}</span>
+        </li>
+      </ul>
+      <small> * Безналичный расчет с НДС, без НДС </small>
+    </div>
+    <div class="services__main" [class.active]="currentContentId">
+      <button type="button" class="services__back">
+        <!--      <BaseIcon name="arrow-left" width="48px" height="38px" />-->
+        <tui-svg src="icons::arrow-left"></tui-svg>
+        <span>Назад</span>
+      </button>
+      <div *ngFor="let service of services$ | async" class="services__content">
+        <div v-if="service.id === state.currentContentId">
+          <h3>{{ service.attributes.title }}</h3>
+          <div v-html="service.description"></div>
+        </div>
+      </div>
+      <div class="services__button">
+        <button type="button" tuiButton appearance="primary">Оформить заказ</button>
+      </div>
     </div>
   </div>
-</div>
+</tui-loader>

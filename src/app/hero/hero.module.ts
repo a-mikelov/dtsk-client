@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HeroComponent } from './hero.component';
 import {ServicesService} from "../shared/services/services.service";
 import {StoreModule} from "@ngrx/store";
-import {HERO_FEATURE} from "./store/state";
+import {HERO_FEATURE} from "../store/state";
 import {EffectsModule} from "@ngrx/effects";
-import {GetServicesEffect} from "./store/effects/get-services.effect";
-import {reducers} from "./store/reducers";
+import {GetServicesEffect} from "../store/effects/get-services.effect";
+import {reducers} from "../store/reducers";
 import {TuiButtonModule, TuiLoaderModule, TuiSvgModule} from "@taiga-ui/core";
 
 @NgModule({

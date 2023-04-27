@@ -3,6 +3,11 @@
 .services {
   position: relative;
   min-height: 540px;
+  opacity: 0;
+
+  &--loaded {
+    opacity: 1;
+  }
 
   @include mq(lg) {
     display: grid;

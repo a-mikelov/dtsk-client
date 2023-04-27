@@ -13,8 +13,8 @@ import {concatAll, delay, filter, map, Observable, of, switchMap, tap, toArray} 
 import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
 import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
 import {Store} from "@ngrx/store";
-import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "./store/selectors";
-import {getServicesAction} from "./store/actions/get-services.action";
+import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../store/selectors";
+import {getServicesAction} from "../store/actions/get-services.action";
 import {ServiceInterface} from "../shared/services/service.interface";
 import {environment} from "../../environments/environment";
 
