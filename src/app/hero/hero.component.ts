@@ -1,6 +1,21 @@
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import Swiper, {SwiperOptions} from "swiper";
 import {ServicesService} from "../shared/services/services.service";
+import {delay, filter, map, Observable, tap} from "rxjs";
+import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
+import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
+import {Store} from "@ngrx/store";
+import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "./store/selectors";
+import {getServicesAction} from "./store/actions/get-services.action";
+import {ServiceInterface} from "../shared/services/service.interface";
 
 @Component({
   selector: 'app-hero',
@@ -8,27 +23,39 @@ import {ServicesService} from "../shared/services/services.service";
   styleUrls: ['./hero.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeroComponent {
-  @ViewChild('swiperRef', { static: true })
+export class HeroComponent implements OnInit {
+  @ViewChild('swiperRef', { read: ElementRef, static: false })
   protected _swiperRef: ElementRef | undefined
   swiper?: Swiper
 
-  constructor(private servicesService: ServicesService) {
-  }
+  isLoading$: Observable<boolean>
+  services$: Observable<ServiceInterface[]>
+  backendErrors$: Observable<BackendErrorsInterface>
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this._initSwiper()
-    this.servicesService.getServices()
-      .subscribe((response) => {
-        console.log('response', response)
-      })
+    this.isLoading$ = this.store.select(isLoadingSelector)
+    this.backendErrors$ = this.store.select(backendErrorsSelector)
+
+    this.services$ = this.store.select(servicesSelector)
+      .pipe(
+        filter(Boolean),
+        map(({data}: GetServicesResponseInterface) => {
+          return data
+        }),
+        tap(() => {
+          this._initSwiper()
+        }),
+      )
+
+    this.store.dispatch(getServicesAction())
   }
 
   private _initSwiper() {
     const options: SwiperOptions = {
       pagination: { clickable: true },
       slidesPerView: 1,
-      // breakpoints: this._getBreakpoints(), // In case you wish to calculate base on the `items` length
     }
 
     const swiperEl = this._swiperRef.nativeElement

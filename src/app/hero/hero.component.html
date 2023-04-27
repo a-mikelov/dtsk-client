@@ -1,14 +1,10 @@
-<swiper-container
-  #swiperRef
-  init="false"
->
-  <swiper-slide>
-    slide 1
-  </swiper-slide>
-  <swiper-slide>
-    slide 2
-  </swiper-slide>
-  <swiper-slide>
-    slide 3
-  </swiper-slide>
-</swiper-container>
+<ng-container>
+  <swiper-container
+    #swiperRef
+    init="false"
+  >
+    <swiper-slide *ngFor="let service of services$ | async">
+      <b>{{service.id}}</b>
+    </swiper-slide>
+  </swiper-container>
+</ng-container>
