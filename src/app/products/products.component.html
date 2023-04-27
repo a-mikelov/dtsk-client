@@ -1,0 +1,22 @@
+<tui-loader [showLoader]="isLoading$ | async">
+  <swiper-container
+    #swiperRef
+    init="false"
+    class="hero"
+    [class.hero--loaded]="products$ | async"
+  >
+    <swiper-slide *ngFor="let product of products$ | async">
+      <div class="hero__wrapper">
+        <div class="hero__image">
+<!--          <img *ngIf="product.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />-->
+        </div>
+        <div class="hero__content container">
+          <h2>{{product.attributes.title}}</h2>
+          <p>{{product.attributes.description}}</p>
+          <button type="button" tuiButton appearance="accent">Оформить заявку</button>
+          <tui-svg src="icons::clock"></tui-svg>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</tui-loader>

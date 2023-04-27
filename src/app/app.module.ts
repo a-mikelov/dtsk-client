@@ -17,6 +17,7 @@ import {HeroModule} from "./hero/hero.module"
 import {of} from "rxjs"
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n'
 import {ServicesModule} from "./services/services.module";
+import {ProductsModule} from "./products/products.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,8 @@ import {ServicesModule} from "./services/services.module";
         TuiRootModule,
         TuiDialogModule,
         TuiAlertModule,
-        ServicesModule
+        ServicesModule,
+        ProductsModule
     ],
   providers: [
     {
