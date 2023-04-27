@@ -2,6 +2,7 @@
   <swiper-container
     #swiperRef
     init="false"
+    class="swiper"
     [class.swiper--loaded]="products$ | async"
   >
     <swiper-slide *ngFor="let product of products$ | async">

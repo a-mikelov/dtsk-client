@@ -1,7 +1,7 @@
 <tui-loader [showLoader]="isLoading$ | async">
   <div class="services" [class.services--loaded]="services$ | async">
     <div class="services__nav">
-      <h2 class="text text_type_title.level_2">Наши <span>услуги</span></h2>
+      <h3>Наши <span>услуги</span></h3>
       <ul class="services__list">
         <li
           *ngFor="let service of services$ | async"
