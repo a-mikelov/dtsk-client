@@ -4,7 +4,9 @@
     init="false"
   >
     <swiper-slide *ngFor="let service of services$ | async">
-      <b>{{service.id}}</b>
+      <h2>{{service.attributes.title}}</h2>
+      <p>{{service.attributes.description}}</p>
+      <button class="bg-red-50">Оформить заявку</button>
     </swiper-slide>
   </swiper-container>
 </ng-container>

@@ -4,7 +4,7 @@ export interface ServiceInterface {
     title: string,
     description: string,
     price: string,
-    banner: string,
+    banner: boolean,
     slug: string
   }
 }

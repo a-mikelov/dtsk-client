@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import Swiper, {SwiperOptions} from "swiper";
 import {ServicesService} from "../shared/services/services.service";
-import {delay, filter, map, Observable, tap} from "rxjs";
+import {concatAll, delay, filter, map, Observable, of, switchMap, tap, toArray} from "rxjs";
 import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
 import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
 import {Store} from "@ngrx/store";
@@ -44,7 +44,17 @@ export class HeroComponent implements OnInit {
         map(({data}: GetServicesResponseInterface) => {
           return data
         }),
-        tap(() => {
+        switchMap((services: ServiceInterface[]) => {
+           return of(services)
+             .pipe(
+               concatAll(),
+               filter((service: ServiceInterface) => {
+                 return service.attributes.banner
+               }),
+               toArray()
+             )
+        }),
+        tap((services) => {
           this._initSwiper()
         }),
       )
