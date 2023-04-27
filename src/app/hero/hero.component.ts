@@ -20,7 +20,7 @@ import {ServiceInterface} from "../shared/services/service.interface";
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.css'],
+  styleUrls: ['./hero.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent implements OnInit {
