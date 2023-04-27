@@ -1,7 +1,7 @@
 <tui-loader [showLoader]="isLoading$ | async">
   <div class="services" [class.services--loaded]="services$ | async">
     <div class="services__nav">
-      <h3>Наши <span>услуги</span></h3>
+      <h3 class="title title--lvl-3">Наши <span>услуги</span></h3>
       <ul class="services__list">
         <li
           *ngFor="let service of services$ | async"
@@ -24,7 +24,7 @@
       </button>
       <div *ngFor="let service of services$ | async" class="services__content">
         <div v-if="service.id === state.currentContentId">
-          <h3>{{ service.attributes.title }}</h3>
+          <h4 class="title title--lvl-4">{{ service.attributes.title }}</h4>
           <div v-html="service.description"></div>
         </div>
       </div>
