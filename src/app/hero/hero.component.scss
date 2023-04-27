@@ -1,4 +1,9 @@
 .hero {
+  opacity: 0;
+
+  &--loaded {
+    opacity: 1;
+  }
 
   &__wrapper {
     position: relative;
