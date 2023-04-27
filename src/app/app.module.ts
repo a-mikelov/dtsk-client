@@ -1,5 +1,5 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
-import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER } from "@taiga-ui/core";
+import {TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER, TUI_SVG_SRC_PROCESSOR} from "@taiga-ui/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
@@ -14,6 +14,8 @@ import {AuthModule} from './auth/auth.module'
 import {HTTP_INTERCEPTORS} from '@angular/common/http'
 import {AuthInterceptor} from './shared/services/auth-interceptor.service'
 import {HeroModule} from "./hero/hero.module"
+import {of} from "rxjs"
+import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n'
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +44,23 @@ import {HeroModule} from "./hero/hero.module"
       useClass: AuthInterceptor,
       multi: true,
     },
-      {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}
+    {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},
+    {
+      provide: TUI_LANGUAGE,
+      useValue: of(TUI_RUSSIAN_LANGUAGE),
+    },
+    {
+      provide: TUI_SVG_SRC_PROCESSOR,
+      useFactory: () => {
+        return (src: string): string => {
+          const myCustomPrefix = `icons::`
+
+          return src.startsWith(myCustomPrefix)
+            ? `assets/icons/${src.replace(myCustomPrefix, ``)}.svg`
+            : src
+        }
+      },
+    },
 ],
   bootstrap: [AppComponent],
 })

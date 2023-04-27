@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="38px" viewBox="0 0 48 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icon/input/arrow-back-center</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon/input/arrow-back-center" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle" fill-opacity="0" fill="currentColor" x="0" y="0" width="48" height="38"></rect>
+            <path d="M23.363961,12.6357866 C23.7544853,13.0263109 23.7544853,13.6594759 23.363961,14.0500002 L18.4142136,18.9997477 L23.363961,23.9494951 C23.7544853,24.3400194 23.7544853,24.9731844 23.363961,25.3637087 C22.9734367,25.754233 22.3402718,25.754233 21.9497475,25.3637087 L15.5857864,18.9997477 L21.9497475,12.6357866 C22.3402718,12.2452623 22.9734367,12.2452623 23.363961,12.6357866 Z M32,18 C32.5522847,18 33,18.4477153 33,19 C33,19.5522847 32.5522847,20 32,20 L23,20 C22.4477153,20 22,19.5522847 22,19 C22,18.4477153 22.4477153,18 23,18 L32,18 Z" id="Combined-Shape" fill="currentColor"></path>
+        </g>
+    </g>
+</svg>

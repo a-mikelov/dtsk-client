@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="38px" viewBox="0 0 48 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>icon-arrow-new-window</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M14.6526405,6.99974766 L9.70289307,2.05000019 C9.31236877,1.6594759 9.31236877,1.02631092 9.70289307,0.635786628 C10.0934174,0.245262337 10.7265823,0.245262337 11.1171066,0.635786628 L17.4810677,6.99974766 L11.1171066,13.3637087 C10.7265823,13.754233 10.0934174,13.754233 9.70289307,13.3637087 C9.31236877,12.9731844 9.31236877,12.3400194 9.70289307,11.9494951 L14.6526405,6.99974766 Z M10,6 C10.5522847,6 11,6.44771525 11,7 C11,7.55228475 10.5522847,8 10,8 L1,8 C0.44771525,8 0,7.55228475 0,7 C0,6.44771525 0.44771525,6 1,6 L10,6 Z" id="path-1"></path>
+    </defs>
+    <g id="icon-arrow-new-window" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill-opacity="0" fill="currentColor" x="0" y="0" width="48" height="38"></rect>
+        <g transform="translate(15.000000, 12.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="arrow" fill="rgba(70, 130, 255, 1)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -7,7 +7,7 @@ import {HERO_FEATURE} from "./store/state";
 import {EffectsModule} from "@ngrx/effects";
 import {GetServicesEffect} from "./store/effects/get-services.effect";
 import {reducers} from "./store/reducers";
-import {TuiButtonModule, TuiLoaderModule} from "@taiga-ui/core";
+import {TuiButtonModule, TuiLoaderModule, TuiSvgModule} from "@taiga-ui/core";
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import {TuiButtonModule, TuiLoaderModule} from "@taiga-ui/core";
     StoreModule.forFeature(HERO_FEATURE, reducers),
     EffectsModule.forFeature([GetServicesEffect]),
     TuiLoaderModule,
-    TuiButtonModule
+    TuiButtonModule,
+    TuiSvgModule
   ],
   exports: [
     HeroComponent
