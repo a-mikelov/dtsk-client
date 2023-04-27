@@ -89,6 +89,14 @@
   --skew-angle: 5deg;
 }
 
+// swiper
+:root {
+  --swiper-pagination-bullet-width: 20px;
+  --swiper-pagination-bullet-height: 20px;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  --swiper-pagination-color: rgba(255, 192, 6, 1);
+}
+
 // :root {
 //   --section-spacing: 3.5rem;
 //   @include mq(medium) {

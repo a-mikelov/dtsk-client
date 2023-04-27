@@ -8,6 +8,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {GetProductsEffect} from "./store/effects/get-products.effect";
 import {ProductsService} from "../shared/services/products.service";
 import {TuiLoaderModule, TuiSvgModule} from "@taiga-ui/core";
+import {ProductCardModule} from "../shared/components/product-card/product-card.module";
 
 
 
@@ -15,13 +16,14 @@ import {TuiLoaderModule, TuiSvgModule} from "@taiga-ui/core";
   declarations: [
     ProductsComponent
   ],
-  imports: [
-    CommonModule,
-    StoreModule.forFeature(PRODUCTS_FEATURE, reducers),
-    EffectsModule.forFeature([GetProductsEffect]),
-    TuiLoaderModule,
-    TuiSvgModule
-  ],
+    imports: [
+        CommonModule,
+        StoreModule.forFeature(PRODUCTS_FEATURE, reducers),
+        EffectsModule.forFeature([GetProductsEffect]),
+        TuiLoaderModule,
+        TuiSvgModule,
+        ProductCardModule
+    ],
   exports: [
     ProductsComponent
   ],

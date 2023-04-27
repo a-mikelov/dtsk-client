@@ -1,5 +1,12 @@
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
-import {TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER, TUI_SVG_SRC_PROCESSOR} from "@taiga-ui/core";
+import {
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TUI_SANITIZER,
+    TUI_SVG_SRC_PROCESSOR,
+    TuiButtonModule
+} from "@taiga-ui/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
@@ -35,32 +42,33 @@ registerLocaleData(ruLocale, 'ru')
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthModule.forRoot(),
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-        maxAge: 25,
-        logOnly: environment.production,
-      }),
-    StoreRouterConnectingModule.forRoot(),
-    HeroModule,
-    BrowserAnimationsModule,
-    TuiRootModule,
-    TuiDialogModule,
-    TuiAlertModule,
-    ServicesModule,
-    ProductsModule,
-    AngularYandexMapsModule.forRoot(mapConfig),
-    SupportModule,
-    ContactsModule,
-    PageFooterModule,
-    PageHeaderModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AuthModule.forRoot(),
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
+        environment.production
+            ? []
+            : StoreDevtoolsModule.instrument({
+                maxAge: 25,
+                logOnly: environment.production,
+            }),
+        StoreRouterConnectingModule.forRoot(),
+        HeroModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
+        TuiAlertModule,
+        ServicesModule,
+        ProductsModule,
+        AngularYandexMapsModule.forRoot(mapConfig),
+        SupportModule,
+        ContactsModule,
+        PageFooterModule,
+        PageHeaderModule,
+        TuiButtonModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,0 +1,26 @@
+<article class="product-card">
+  <div class="product-card__icon">
+    <tui-svg src="icons::clock"></tui-svg>
+<!--    <BaseIcon :name="Icon[data.id]" width="120" height="120" />-->
+  </div>
+<!--  <template v-if="typeof data.price !== 'object'">-->
+<!--    <h3 class="product-card__title">{{product.attributes.title}}</h3>-->
+<!--    <b class="product-card__price"> {{ product.attributes.price }}</b>-->
+<!--  </template>-->
+  <h3 class="product-card__title">{{product.attributes.title}}</h3>
+  <b class="product-card__price"> {{ product.attributes.price }} {{ 'RUB' | tuiCurrency }}</b>
+  <dl v-else class="product-card__list">
+<!--    <template v-for="{ id, price } of data.price" :key="price">-->
+<!--      <dt>{{ Price[id] }}</dt>-->
+<!--      <dd>-->
+<!--        <b>{{ price }}₽</b>-->
+<!--      </dd>-->
+<!--    </template>-->
+  </dl>
+  <div class="product-card__button">
+    <button type="button" tuiButton appearance="primary">Оформить заказ</button>
+<!--    <el-button @click="$emit('onOrder', data.id)" type="primary" class="el-button&#45;&#45;large" plain-->
+<!--    >Оформить заказ-->
+<!--    </el-button>-->
+  </div>
+</article>

@@ -1,3 +1,19 @@
 :host {
-  @apply block h-full;
+  display: block;
+  height: 100%;
+}
+
+.loader {
+  height: inherit;
+}
+
+::ng-deep ymaps[class*='copyright'] {
+  @apply hidden;
+}
+::ng-deep ymaps[class*='map-copyrights-promo'] {
+  @apply hidden;
+}
+
+::ng-deep [class*='ymaps-2'][class*='-ground-pane'] {
+  filter: grayscale(1) brightness(0.9);
 }

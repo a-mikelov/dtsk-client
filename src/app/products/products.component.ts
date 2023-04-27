@@ -48,6 +48,20 @@ export class ProductsComponent implements OnInit {
     const options: SwiperOptions = {
       pagination: { clickable: true },
       slidesPerView: 1,
+      breakpoints: {
+        360: {
+          slidesPerView: 1,
+          spaceBetween: 50
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40
+        },
+        1160: {
+          slidesPerView: 3,
+          spaceBetween: 40
+        },
+      }
     }
 
     const swiperEl = this._swiperRef.nativeElement

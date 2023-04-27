@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {MapPointInterface} from "../shared/types/map-point.interface";
 
 @Component({
   selector: 'app-support',
@@ -7,5 +8,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SupportComponent {
-
+  public mapPoints: MapPointInterface[] = [
+    {
+      geo_x: 48.508918,
+      geo_y: 135.169770
+    }
+  ]
 }

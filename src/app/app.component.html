@@ -1,14 +1,56 @@
 <tui-root>
-<!--<h1 class="text-3xl font-bold underline">-->
-<!--  DTSK project-->
-<!--</h1>-->
-<app-page-header></app-page-header>
-<app-hero></app-hero>
-<app-services></app-services>
-<app-products></app-products>
-<app-support></app-support>
-<app-contacts></app-contacts>
-<app-page-footer></app-page-footer>
-<router-outlet></router-outlet>
-
+  <app-page-header></app-page-header>
+  <app-hero></app-hero>
+  <section class="page-section page-section_type_about">
+    <div class="page-section__container container">
+      <div class="page-section__row">
+        <div class="page-section__col">
+          <h2 class="text text_type_title.level_1">
+            Работаем с <span>1997</span> года в <br class="br br--show-xs" />
+            Дальневосточном регионе.
+          </h2>
+          <!--					<small class="text text_level_4">Хабаровский край, ЕАО, Амурская область, Приморский край</small>-->
+        </div>
+        <div class="page-section__col">
+          <i class="text text_level_3"
+          >Хорошая репутация, поставка качественных нефтепродуктов,<br />
+            обширная база надежных поставщиков и клиентов.</i
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="services" class="page-section page-section_type_services">
+    <div class="page-section__container container">
+      <app-services></app-services>
+    </div>
+  </section>
+  <section id="products" class="page-section page-section_type_products">
+    <div class="page-section__container container">
+      <h2 class="text text_type_title.level_1">Наши <span>товары</span></h2>
+      <p class="text text_level_3 text_align_center">
+        Вы можете приобрести у нас товары отптом и в розницу. Мы реализуем продукцию на собственных АЗС.<br
+        class="br br--show-xs"
+      />
+        Отпускаем товар по топливным картам и ведомостям.
+      </p>
+      <app-products></app-products>
+    </div>
+  </section>
+  <div
+    class="page-section page-section_type_promo"
+    :style="{ backgroundImage: `url(${require('@/assets/images/bg-promo.jpg')})` }"
+  >
+    <div class="page-section__container container">
+      <h2 class="text text_type_title.level_1 text_color_white">Ищете надежного исполнителя?</h2>
+      <p class="text text_level_3 text_color_white text_mgb_50">
+        У нас большой опыт и мы готовы<br />
+        выполнить работу качественно и в срок.
+      </p>
+      <button type="button" tuiButton>Свяжитесь с нами</button>
+    </div>
+  </div>
+  <app-support></app-support>
+  <app-contacts></app-contacts>
+  <app-page-footer></app-page-footer>
 </tui-root>
