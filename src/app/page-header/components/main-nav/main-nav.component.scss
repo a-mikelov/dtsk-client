@@ -1,0 +1,21 @@
+@use '../../../../scss/abstracts' as *;
+
+.main-nav {
+  @include list-clear();
+
+  position: relative;
+  top: -1px;
+  display: none;
+
+  @include mq(lg) {
+    display: flex;
+  }
+
+  &__item {
+    position: relative;
+    margin-right: 22px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+}

@@ -1,0 +1,54 @@
+@use '../../scss/abstracts' as *;
+
+.page-footer {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: rgba(#000000, 0.8);
+
+  &__top {
+    @include mq(md) {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-column-gap: 70px;
+      align-items: center;
+    }
+  }
+
+  &__nav {
+    margin-top: 20px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 10px;
+    list-style: none;
+
+    @include mq(md) {
+      margin-top: 0;
+      justify-self: end;
+    }
+  }
+
+  &__link {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-inverse);
+    text-decoration: none;
+
+    &--active {
+      color: var(--color-text-accent);
+    }
+
+    @include hover {
+      opacity: 0.8;
+    }
+  }
+
+  small {
+    margin: 0;
+    align-self: start;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--color-text-inverse);
+  }
+}

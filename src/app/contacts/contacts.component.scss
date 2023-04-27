@@ -1,0 +1,78 @@
+@use '../../scss/abstracts' as *;
+
+.contacts {
+  background-color: rgba(#000000, 0.8);
+
+  @include mq(xl) {
+    border-bottom: 1px solid rgba(#ffffff, 0.2);
+  }
+
+  &__container {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+
+    @include mq(md) {
+      column-gap: 25px;
+    }
+
+    @include mq(xl) {
+      padding-top: 0;
+      padding-bottom: 0;
+      display: grid;
+      grid-template-columns: 400px repeat(3, 1fr);
+      column-gap: 0;
+    }
+  }
+
+  &__item {
+    //padding: 15px 0;
+    display: grid;
+    grid-template-columns: 30px auto;
+    grid-template-areas:
+			"icon title"
+			"icon text";
+    column-gap: 10px;
+    row-gap: 5px;
+    align-content: start;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-inverse);
+
+    @include mq(xl) {
+      padding: 45px 0;
+      justify-content: center;
+      border-right: 1px solid rgba(#ffffff, 0.2);
+    }
+
+    &:first-child {
+      padding-left: 0;
+      justify-content: start;
+      flex-basis: 100%;
+
+      @include mq(md) {
+        flex-basis: 340px;
+      }
+    }
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &__item b {
+    grid-area: title;
+  }
+
+  &__item span,
+  &__item app-link {
+    grid-area: text;
+  }
+
+  &__icon {
+    grid-area: icon;
+  }
+}
