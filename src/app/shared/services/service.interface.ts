@@ -1,3 +1,5 @@
+import {ImageInterface} from "../types/image.interface";
+
 export interface ServiceInterface {
   id: number,
   attributes: {
@@ -5,6 +7,7 @@ export interface ServiceInterface {
     description: string,
     price: string,
     banner: boolean,
-    slug: string
+    slug: string,
+    image: ImageInterface | null
   }
 }

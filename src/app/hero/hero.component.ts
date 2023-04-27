@@ -16,6 +16,7 @@ import {Store} from "@ngrx/store";
 import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "./store/selectors";
 import {getServicesAction} from "./store/actions/get-services.action";
 import {ServiceInterface} from "../shared/services/service.interface";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-hero',
@@ -55,6 +56,7 @@ export class HeroComponent implements OnInit {
              )
         }),
         tap((services) => {
+          console.log('services', services)
           this._initSwiper()
         }),
       )
@@ -81,5 +83,9 @@ export class HeroComponent implements OnInit {
     this.swiper.on('slideChange', () => { // Any change subscription you wish
       // this.infinitLoad?.triggerOnScroll()
     })
+  }
+
+  setImageUrl(src) {
+    return environment.uploadsUrl + src
   }
 }

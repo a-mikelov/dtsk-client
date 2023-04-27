@@ -4,7 +4,7 @@ import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class ServicesService {
-  private url = `${environment.apiUrl}/services`
+  private url = `${environment.apiUrl}/services?populate=*`
 
   constructor(private http: HttpClient) {
   }

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:1337/api',
+  uploadsUrl: 'http://localhost:1337',
   apiMapKey: '',
   limit: 10,
 }
