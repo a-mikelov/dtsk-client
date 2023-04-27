@@ -1,0 +1,175 @@
+@use '../../scss/abstracts' as *;
+
+.services {
+  position: relative;
+  min-height: 540px;
+
+  @include mq(lg) {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    // overflow: hidden;
+  }
+
+  &__nav {
+    padding: 25px 20px 30px;
+    background-color: var(--color-bg-white);
+    box-shadow: var(--box-shadow-md);
+    box-sizing: border-box;
+
+    @include mq(md) {
+      padding: 45px 40px 30px 50px;
+    }
+  }
+
+  &__nav ul {
+    @include list-clear();
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    // @include mq(lg) {
+    // 	margin-top: 50px;
+    // }
+  }
+
+  &__nav li {
+    position: relative;
+    //margin-bottom: 17px;
+    padding: 5px 0;
+    min-height: 55px;
+    box-sizing: border-box;
+    border-top: 1px dotted #cccccc;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    line-height: 21px;
+    color: var(--color-text-primary);
+    cursor: pointer;
+
+    &:last-child {
+      border-bottom: 1px dotted #cccccc;
+    }
+
+    @include mq(md) {
+      font-size: 15px;
+      line-height: 18px;
+    }
+
+    &::before {
+      content: "\279D";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all var(--transition-time) ease-in;
+      opacity: 0;
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      transition: all var(--transition-time) ease-in;
+    }
+
+    @include hover() {
+      color: var(--color-text-accent);
+
+      @include mq(sm) {
+        span {
+          margin-left: 20px;
+        }
+
+        &::before {
+          opacity: 1;
+          color: var(--color-text-accent);
+        }
+      }
+    }
+
+    &.active {
+      color: var(--color-text-accent);
+
+      @include mq(sm) {
+        span {
+          margin-left: 20px;
+        }
+
+        &::before {
+          opacity: 1;
+          color: var(--color-text-accent);
+        }
+      }
+    }
+  }
+
+  &__main {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    transform: translate3d(110%, 0, 0);
+    z-index: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-white);
+    box-shadow: var(--box-shadow-md);
+    box-sizing: border-box;
+    transition: all 0.25s ease-in;
+
+    @include mq(lg) {
+      position: static;
+      transform: translate3d(0, 0, 0);
+      padding: 50px;
+    }
+
+    &.active {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &__main h3 {
+    margin-top: 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  &__main p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+  }
+
+  &__content > div {
+    margin-bottom: 50px;
+  }
+
+  &__button {
+    margin-top: auto;
+  }
+
+  &__back {
+    @include btn-default();
+
+    position: relative;
+    left: -15px;
+    margin-bottom: 20px;
+    max-width: 150px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--color-text-accent);
+
+    @include hover {
+      opacity: 0.7;
+    }
+
+    @include mq(lg) {
+      display: none;
+    }
+  }
+}

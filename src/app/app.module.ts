@@ -16,28 +16,30 @@ import {AuthInterceptor} from './shared/services/auth-interceptor.service'
 import {HeroModule} from "./hero/hero.module"
 import {of} from "rxjs"
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n'
+import {ServicesModule} from "./services/services.module";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AuthModule.forRoot(),
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-        maxAge: 25,
-        logOnly: environment.production,
-      }),
-    StoreRouterConnectingModule.forRoot(),
-    HeroModule,
-      BrowserAnimationsModule,
-      TuiRootModule,
-      TuiDialogModule,
-      TuiAlertModule
-],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AuthModule.forRoot(),
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
+        environment.production
+            ? []
+            : StoreDevtoolsModule.instrument({
+                maxAge: 25,
+                logOnly: environment.production,
+            }),
+        StoreRouterConnectingModule.forRoot(),
+        HeroModule,
+        BrowserAnimationsModule,
+        TuiRootModule,
+        TuiDialogModule,
+        TuiAlertModule,
+        ServicesModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
