@@ -1,0 +1,7 @@
+button {
+  width: 100%;
+
+  &[size='m'] {
+    max-width: 15rem;
+  }
+}

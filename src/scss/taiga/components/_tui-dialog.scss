@@ -1,0 +1,7 @@
+tui-dialog {
+  border-radius: 0 !important;
+
+  &[data-size='m'] {
+    width: 37.5rem !important;
+  }
+}
