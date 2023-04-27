@@ -1,0 +1,19 @@
+.support {
+  background-color: #f9f9f9;
+
+  &__map {
+    height: 600px;
+  }
+
+  &__form {
+    position: relative;
+    margin-top: -105px;
+    min-height: 550px;
+    padding-top: 50px;
+    padding-bottom: 15px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background: var(--color-bg-white);
+    box-shadow: var(--box-shadow-md);
+  }
+}

@@ -1,0 +1,34 @@
+<tui-loader [showLoader]="isLoading" class="h-full">
+  <ya-map
+    [center]="[
+      latitude || (points && points.length && points[0].geo_x) || 0,
+      longitude || (points && points.length && points[0].geo_y) || 0
+    ]"
+    [zoom]="zoom"
+    [options]="{
+      avoidFractionalZoom: true,
+      copyrightLogoVisible: false,
+      copyrightProvidersVisible: false,
+      copyrightUaVisible: false
+    }"
+    [state]="{controls: []}"
+    (yawheel)="zoomScroll($event)"
+    (ready)="ready()"
+  >
+    <ya-control
+      type="ZoomControl"
+      [parameters]="zoomControlParameters"
+    ></ya-control>
+    <ya-placemark
+      *ngFor="let point of points"
+      [geometry]="[point.geo_x, point.geo_y]"
+      [properties]="{
+        hintContent: showHint ? 'point?.address' : null,
+        balloonContent: showBalloon ? ' point?.address' : null
+      }"
+      [options]="placemarkOptions"
+      (yaclick)="selectPoint(point)"
+    ></ya-placemark>
+  </ya-map>
+</tui-loader>
+<!--<div class="absolute inset-0"></div>-->

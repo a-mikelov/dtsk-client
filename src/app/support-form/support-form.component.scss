@@ -1,0 +1,59 @@
+@use '../../scss/abstracts' as *;
+
+.form {
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+
+  @include mq(sm) {
+    padding: 0;
+  }
+
+  @include mq(lg) {
+    padding: 50px;
+  }
+
+  &__row {
+    margin-bottom: 20px;
+    display: grid;
+    grid-gap: 20px;
+    align-items: start;
+
+    @include mq(sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mq(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__field {
+    margin-bottom: 50px;
+
+    .form__row & {
+      margin-bottom: 0;
+    }
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    background-color: var(--color-bg-white);
+    z-index: 10;
+
+    p {
+      margin: 40px;
+    }
+  }
+}
