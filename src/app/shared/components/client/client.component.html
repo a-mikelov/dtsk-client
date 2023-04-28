@@ -1,0 +1,88 @@
+<div [formGroup]="form" class="space-y-3">
+  <label class="block">
+    <span class="mb-1 inline-block text-xs">
+      Ваше имя
+      <sup class="text-red" *ngIf="name.errors && name.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-input
+      tuiTextfieldSize="m"
+      [formControl]="name"
+      [tuiTextfieldLabelOutside]="true"
+      [pseudoInvalid]="!!(name.invalid && form.touched)"
+    >
+      <input tuiTextfield type="text" />
+    </tui-input>
+        <tui-error
+          [formControl]="name"
+          [error]="[] | tuiFieldError | async"
+        ></tui-error>
+  </label>
+  <div class="flex space-x-7">
+    <label class="mb-3 block flex-grow">
+      <span class="mb-1 inline-block text-xs">
+        Компания
+        <sup
+          class="text-red"
+          *ngIf="company.errors && company.hasError('required')"
+        >*</sup
+        >
+      </span>
+      <tui-input
+        tuiTextfieldSize="m"
+        [formControl]="company"
+        [tuiTextfieldLabelOutside]="true"
+        [pseudoInvalid]="!!(company.invalid && form.touched)"
+      >
+        <input tuiTextfield type="text" />
+      </tui-input>
+      <tui-error
+        [formControl]="company"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </label>
+    <label class="block">
+      <span class="mb-1 inline-block text-xs">
+        Email
+        <sup
+          class="text-red"
+          *ngIf="email.errors && email.hasError('required')"
+        >*</sup
+        >
+      </span>
+      <tui-input
+        tuiTextfieldSize="m"
+        [formControl]="email"
+        [tuiTextfieldLabelOutside]="true"
+        [pseudoInvalid]="!!(email.invalid && form.touched)"
+      >
+        <input tuiTextfield type="text" />
+      </tui-input>
+      <tui-error
+        [formControl]="email"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </label>
+  </div>
+  <label class="mt-4 block">
+    <span class="mb-1.5 inline-block text-xs text-gray-500">
+      Телефон
+      <sup class="text-red" *ngIf="phone.errors && phone.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-input
+      tuiTextfieldSize="m"
+      [formControl]="phone"
+      [tuiTextfieldLabelOutside]="true"
+      [pseudoInvalid]="!!(phone.invalid && form.touched)"
+    >
+      <input tuiTextfield type="text" />
+    </tui-input>
+    <tui-error
+      [formControl]="phone"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+</div>

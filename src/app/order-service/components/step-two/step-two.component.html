@@ -1,1 +1,16 @@
-<p>step-two works!</p>
+<form [formGroup]="form">
+  <app-client formControlName="client"></app-client>
+  <label class="block">
+    <span class="mb-1 inline-block text-xs">
+      Есть вопрос?
+      <sup class="text-red" *ngIf="note.errors && note.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-text-area formControlName="note"></tui-text-area>
+    <tui-error
+      formControlName="note"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+</form>

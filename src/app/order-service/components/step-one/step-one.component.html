@@ -1,1 +1,36 @@
-<p>step-one works!</p>
+<form [formGroup]="form">
+  <label class="block">
+    <span class="mb-1 inline-block text-xs">
+      Название услуги
+      <sup class="text-red" *ngIf="service.errors && service.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-input
+      tuiTextfieldSize="m"
+      [formControl]="service"
+      [tuiTextfieldLabelOutside]="true"
+      [pseudoInvalid]="!!(service.invalid && form.touched)"
+    >
+      <input tuiTextfield type="text" />
+    </tui-input>
+    <tui-error
+      [formControl]="service"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+  <div class="">
+    <tui-checkbox-labeled
+      formControlName="showDetails"
+      class="mb-7"
+      appearance="accent"
+    >
+    <span class="text-2xs">
+      Указать детали?
+    </span>
+    </tui-checkbox-labeled>
+  </div>
+  <div class="">
+    <app-order-details formControlName="details"></app-order-details>
+  </div>
+</form>

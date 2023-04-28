@@ -78,4 +78,9 @@ export class OrderServiceComponent {
 
     // this.store.dispatch()
   }
+
+  submit(stepOne, stepTwo) {
+    console.log('stepOne', stepOne)
+    console.log('stepTwo', stepTwo)
+  }
 }
