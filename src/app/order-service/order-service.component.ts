@@ -31,6 +31,7 @@ export class OrderServiceComponent {
   isSubmitting$: Observable<boolean>
   backendErrors: Observable<BackendErrorsInterface>
 
+  currentStep = 1
   form: FormGroup
 
   constructor(
@@ -82,5 +83,9 @@ export class OrderServiceComponent {
   submit(stepOne, stepTwo) {
     console.log('stepOne', stepOne)
     console.log('stepTwo', stepTwo)
+  }
+
+  setStep(number: number) {
+    this.currentStep = number
   }
 }

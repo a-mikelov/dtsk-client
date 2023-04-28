@@ -1,8 +1,8 @@
-<div [formGroup]="form" class="space-y-3">
-  <label class="mt-4 block">
-        <span class="mb-1 inline-block text-xs">
+<div [formGroup]="form" class="form__group">
+  <label class="form__field">
+        <span class="form__label">
           Дата оправления
-          <sup class="text-red" *ngIf="date.errors && date.hasError('required')"
+          <sup *ngIf="date.errors && date.hasError('required')"
           >*</sup
           >
         </span>
@@ -19,56 +19,52 @@
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>
-  <div class="flex space-x-7">
-    <label class="mb-3 block flex-grow">
-      <span class="mb-1 inline-block text-xs">
+  <label class="form__field">
+      <span class="form__label">
         Мин. время
         <sup
-          class="text-red"
           *ngIf="minTime.errors && minTime.hasError('required')"
         >*</sup
         >
       </span>
-      <tui-input-time
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-        formControlName="minTime"
-        [items]="minTimePeriod"
-      >
-        мин. время
-      </tui-input-time>
-      <tui-error
-        [formControl]="minTime"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
-    </label>
-    <label class="block">
-      <span class="mb-1 inline-block text-xs">
+    <tui-input-time
+      tuiTextfieldSize="m"
+      [tuiTextfieldLabelOutside]="true"
+      formControlName="minTime"
+      [items]="minTimePeriod"
+    >
+      мин. время
+    </tui-input-time>
+    <tui-error
+      [formControl]="minTime"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+  <label class="form__field">
+      <span class="form__label">
         Макс. время
         <sup
-          class="text-red"
           *ngIf="maxTime.errors && maxTime.hasError('required')"
         >*</sup
         >
       </span>
-      <tui-input-time
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-        formControlName="maxTime"
-        [items]="maxTimePeriod"
-      >
-        мин. время
-      </tui-input-time>
-      <tui-error
-        [formControl]="maxTime"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
-    </label>
-  </div>
-  <label class="mt-4 block">
-    <span class="mb-1.5 inline-block text-xs text-gray-500">
+    <tui-input-time
+      tuiTextfieldSize="m"
+      [tuiTextfieldLabelOutside]="true"
+      formControlName="maxTime"
+      [items]="maxTimePeriod"
+    >
+      мин. время
+    </tui-input-time>
+    <tui-error
+      [formControl]="maxTime"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+  <label class="form__field">
+    <span class="form__label">
       Адрес проведения работы
-      <sup class="text-red" *ngIf="address.errors && address.hasError('required')"
+      <sup *ngIf="address.errors && address.hasError('required')"
       >*</sup>
     </span>
     <tui-text-area formControlName="address"></tui-text-area>

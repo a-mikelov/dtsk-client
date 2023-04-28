@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input, OnInit, Self} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {TUI_VALIDATION_ERRORS} from "@taiga-ui/kit";
 import {TuiDestroyService} from "@taiga-ui/cdk";
+import {takeUntil, tap} from "rxjs";
+import {ServiceInterface} from "../../../shared/services/service.interface";
 
 @Component({
   selector: 'app-step-one',
@@ -18,11 +20,13 @@ import {TuiDestroyService} from "@taiga-ui/cdk";
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepOneComponent {
+export class StepOneComponent implements OnInit {
+  @Input('service') serviceProps: ServiceInterface
+
   form: FormGroup = this.fb.group({
     service: '',
     showDetails: false,
-    details: ''
+    details: [{value: null, disabled: true}]
   });
 
   get service() {
@@ -33,5 +37,27 @@ export class StepOneComponent {
     return this.form.get('showDetails') as FormControl
   }
 
-  constructor(private fb: FormBuilder) {}
+  get details() {
+    return this.form.get('details') as FormControl
+  }
+
+  constructor(private fb: FormBuilder,
+              @Self() @Inject(TuiDestroyService) private destroy$: TuiDestroyService) {}
+
+  ngOnInit(): void {
+    this.service.setValue(this.serviceProps.attributes.title)
+
+    this.showDetails.valueChanges
+      .pipe(
+          tap((showDetails) => {
+            if(showDetails) {
+              this.details.enable()
+            } else {
+              this.details.disable()
+            }
+          }),
+        takeUntil(this.destroy$)
+       )
+      .subscribe()
+  }
 }

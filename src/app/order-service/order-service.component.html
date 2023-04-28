@@ -1,8 +1,18 @@
-<div class="order">
-  <app-step-one #stepOne></app-step-one>
-  <app-step-two #stepTwo></app-step-two>
-  <div class="actions">
-    <button type="button" tuiButton appearance="primary">Вперед</button>
-    <button type="submit" tuiButton appearance="primary" (click)="submit(stepOne.form.value, stepTwo.form.value)">Оформить заказ</button>
+<div class="form">
+  <div class="form__step" [class.form__step--active]="currentStep === 1">
+    <app-step-one #stepOne [service]="service"></app-step-one>
+  </div>
+  <div class="form__step" [class.form__step--active]="currentStep === 2">
+    <app-step-two #stepTwo></app-step-two>
+  </div>
+  <div class="form__actions">
+    <button *ngIf="currentStep === 1; else next"
+          type="button" size="m" tuiButton appearance="primary"
+            [disabled]="stepOne.form.invalid" (click)=setStep(2) style="margin-left: auto">Вперед</button>
+    <ng-template #next>
+      <button type="button" size="m" tuiButton appearance="secondary" (click)=setStep(1)>Назад</button>
+      <button type="button" size="m" tuiButton appearance="primary" [disabled]="stepOne.form.invalid || stepTwo.form.invalid"
+              (click)="submit(stepOne.form.value, stepTwo.form.value)">Оформить заказ</button>
+    </ng-template>
   </div>
 </div>

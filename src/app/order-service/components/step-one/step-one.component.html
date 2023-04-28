@@ -1,13 +1,14 @@
 <form [formGroup]="form">
-  <label class="block">
-    <span class="mb-1 inline-block text-xs">
+  <label class="form__field">
+    <span class="form__label">
       Название услуги
-      <sup class="text-red" *ngIf="service.errors && service.hasError('required')"
+      <sup *ngIf="service.errors && service.hasError('required')"
       >*</sup
       >
     </span>
     <tui-input
       tuiTextfieldSize="m"
+      [readOnly]="true"
       [formControl]="service"
       [tuiTextfieldLabelOutside]="true"
       [pseudoInvalid]="!!(service.invalid && form.touched)"
@@ -19,18 +20,15 @@
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>
-  <div class="">
+  <div class="form__field">
     <tui-checkbox-labeled
       formControlName="showDetails"
-      class="mb-7"
       appearance="accent"
     >
-    <span class="text-2xs">
-      Указать детали?
-    </span>
+    <b>Указать детали?</b>
     </tui-checkbox-labeled>
   </div>
-  <div class="">
+  <div class="form__field">
     <app-order-details formControlName="details"></app-order-details>
   </div>
 </form>

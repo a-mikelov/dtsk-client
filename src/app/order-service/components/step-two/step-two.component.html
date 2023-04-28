@@ -1,9 +1,11 @@
 <form [formGroup]="form">
-  <app-client formControlName="client"></app-client>
-  <label class="block">
-    <span class="mb-1 inline-block text-xs">
+  <div class="form__field">
+    <app-client formControlName="client"></app-client>
+  </div>
+  <label class="form__field">
+    <span class="form__label">
       Есть вопрос?
-      <sup class="text-red" *ngIf="note.errors && note.hasError('required')"
+      <sup *ngIf="note.errors && note.hasError('required')"
       >*</sup
       >
     </span>
