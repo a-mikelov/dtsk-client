@@ -10,6 +10,9 @@ RUN npm ci
 
 COPY . .
 
+ARG API_URL_PROD
+ENV API_URL_PROD=${API_URL_PROD}
+
 RUN npm run build --prod
 
 FROM nginx:alpine
