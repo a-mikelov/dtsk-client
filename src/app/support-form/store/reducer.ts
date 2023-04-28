@@ -8,7 +8,6 @@ import {
 import {SupportFormStateInterface} from '../types/support-form-state.interface'
 import {initialState} from './state'
 
-
 const sendMessageReducer = createReducer(
   initialState,
   on(

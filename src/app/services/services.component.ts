@@ -1,20 +1,39 @@
-import {ChangeDetectionStrategy, Component, Inject, Injector, OnInit} from '@angular/core';
-import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../store/services/selectors";
-import {concatAll, filter, map, Observable, of, switchMap, tap, toArray} from "rxjs";
-import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
-import {ServiceInterface} from "../shared/services/service.interface";
-import {getServicesAction} from "../store/services/actions/get-services.action";
-import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
-import {Store} from "@ngrx/store";
-import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
-import {OrderServiceComponent} from "../order-service/order-service.component";
-import {TuiDialogService} from "@taiga-ui/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+  OnInit,
+} from '@angular/core'
+import {
+  backendErrorsSelector,
+  isLoadingSelector,
+  servicesSelector,
+} from '../store/services/selectors'
+import {
+  concatAll,
+  filter,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+  toArray,
+} from 'rxjs'
+import {GetServicesResponseInterface} from '../shared/services/get-services-response.interface'
+import {ServiceInterface} from '../shared/services/service.interface'
+import {getServicesAction} from '../store/services/actions/get-services.action'
+import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
+import {Store} from '@ngrx/store'
+import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
+import {OrderServiceComponent} from '../order-service/order-service.component'
+import {TuiDialogService} from '@taiga-ui/core'
 
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesComponent implements OnInit {
   isLoading$: Observable<boolean>
@@ -26,22 +45,22 @@ export class ServicesComponent implements OnInit {
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
-    private store: Store) {}
+    private store: Store
+  ) {}
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.isLoading$ = this.store.select(isLoadingSelector)
     this.backendErrors$ = this.store.select(backendErrorsSelector)
 
-    this.services$ = this.store.select(servicesSelector)
-      .pipe(
-        filter(Boolean),
-        map(({data}: GetServicesResponseInterface) => {
-          return data
-        }),
-        tap((services: ServiceInterface[]) => {
-          this.currentService = services[0]
-        })
-      )
+    this.services$ = this.store.select(servicesSelector).pipe(
+      filter(Boolean),
+      map(({data}: GetServicesResponseInterface) => {
+        return data
+      }),
+      tap((services: ServiceInterface[]) => {
+        this.currentService = services[0]
+      })
+    )
 
     this.store.dispatch(getServicesAction())
   }
@@ -52,14 +71,17 @@ export class ServicesComponent implements OnInit {
 
   order(service: ServiceInterface) {
     this.dialogService
-      .open<any>(new PolymorpheusComponent(OrderServiceComponent, this.injector), {
-        data: {
-          service,
-        },
-        dismissible: true,
-        closeable: true,
-        size: 'm',
-      })
+      .open<any>(
+        new PolymorpheusComponent(OrderServiceComponent, this.injector),
+        {
+          data: {
+            service,
+          },
+          dismissible: true,
+          closeable: true,
+          size: 'm',
+        }
+      )
       .subscribe()
   }
 }

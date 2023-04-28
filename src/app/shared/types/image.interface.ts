@@ -29,7 +29,7 @@ export interface ImageInterface {
       updatedAt: string
       url: string
       width: number
-    },
+    }
     id: number
   }
 }

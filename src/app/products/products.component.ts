@@ -1,22 +1,31 @@
-import {filter, map, Observable, tap} from "rxjs";
-import Swiper, {SwiperOptions} from "swiper";
-import {ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild} from "@angular/core";
-import {Store} from "@ngrx/store";
-import {getProductsAction} from "./store/actions/get-products.action";
-import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
-import {GetProductsResponseInterface} from "./types/get-products-response.interface";
-import {ProductInterface} from "./types/product.interface";
-import {backendErrorsSelector, isLoadingSelector, productsSelector} from "./store/selectors";
-
+import {filter, map, Observable, tap} from 'rxjs'
+import Swiper, {SwiperOptions} from 'swiper'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
+import {Store} from '@ngrx/store'
+import {getProductsAction} from './store/actions/get-products.action'
+import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
+import {GetProductsResponseInterface} from './types/get-products-response.interface'
+import {ProductInterface} from './types/product.interface'
+import {
+  backendErrorsSelector,
+  isLoadingSelector,
+  productsSelector,
+} from './store/selectors'
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit {
-  @ViewChild('swiperRef', { read: ElementRef, static: false })
+  @ViewChild('swiperRef', {read: ElementRef, static: false})
   protected _swiperRef: ElementRef | undefined
   swiper?: Swiper
 
@@ -30,58 +39,61 @@ export class ProductsComponent implements OnInit {
     this.isLoading$ = this.store.select(isLoadingSelector)
     this.backendErrors$ = this.store.select(backendErrorsSelector)
 
-    this.products$ = this.store.select(productsSelector)
-      .pipe(
-        filter(Boolean),
-        map(({data}: GetProductsResponseInterface) => {
-          return data
-        }),
-        map((products: ProductInterface[]) => {
-          return products.reduce((acc, current: ProductInterface) => {
-            if (current.attributes.type === 'gasoline') {
-              const group = acc.find((item) => {
-                return item.type === 'gasoline'
-              });
+    this.products$ = this.store.select(productsSelector).pipe(
+      filter(Boolean),
+      map(({data}: GetProductsResponseInterface) => {
+        return data
+      }),
+      map((products: ProductInterface[]) => {
+        return products.reduce((acc, current: ProductInterface) => {
+          if (current.attributes.type === 'gasoline') {
+            const group = acc.find((item) => {
+              return item.type === 'gasoline'
+            })
 
-              if (group) {
-                group.attributes.push(current.attributes);
-              } else {
-                acc.push({id: 1, type: 'gasoline', attributes: [current.attributes] });
-              }
+            if (group) {
+              group.attributes.push(current.attributes)
             } else {
-              acc.push(current);
+              acc.push({
+                id: 1,
+                type: 'gasoline',
+                attributes: [current.attributes],
+              })
             }
-            return acc;
-          }, []);
-        }),
-        tap((arr) => {
-          console.log('data', arr)
+          } else {
+            acc.push(current)
+          }
+          return acc
+        }, [])
+      }),
+      tap((arr) => {
+        console.log('data', arr)
 
-          this._initSwiper()
-        }),
-      )
+        this._initSwiper()
+      })
+    )
 
     this.store.dispatch(getProductsAction())
   }
 
   private _initSwiper() {
     const options: SwiperOptions = {
-      pagination: { clickable: true },
+      pagination: {clickable: true},
       slidesPerView: 1,
       breakpoints: {
         360: {
           slidesPerView: 1,
-          spaceBetween: 50
+          spaceBetween: 50,
         },
         768: {
           slidesPerView: 2,
-          spaceBetween: 40
+          spaceBetween: 40,
         },
         1160: {
           slidesPerView: 3,
-          spaceBetween: 40
+          spaceBetween: 40,
         },
-      }
+      },
     }
 
     const swiperEl = this._swiperRef.nativeElement
@@ -94,7 +106,8 @@ export class ProductsComponent implements OnInit {
 
     this.swiper.off('slideChange') // Avoid multiple subscription, in case you wish to call the `_initSwiper()` multiple time
 
-    this.swiper.on('slideChange', () => { // Any change subscription you wish
+    this.swiper.on('slideChange', () => {
+      // Any change subscription you wish
       // this.infinitLoad?.triggerOnScroll()
     })
   }

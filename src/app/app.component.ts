@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core'
-import { register } from 'swiper/element/bundle';
-import {changeScreenSizeAction} from "./store/global/actions/change-screen-size.action";
-import {Store} from "@ngrx/store";
+import {register} from 'swiper/element/bundle'
+import {changeScreenSizeAction} from './store/global/actions/change-screen-size.action'
+import {Store} from '@ngrx/store'
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'dtsk-client'
 
   constructor(private store: Store) {
-    register();
+    register()
   }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     const xxl = window.matchMedia(`(min-width: 1536px)`).matches
 
     if (xs) {
-      this.store.dispatch(changeScreenSizeAction({screenSize: 'xs'}));
+      this.store.dispatch(changeScreenSizeAction({screenSize: 'xs'}))
     } else if (sm) {
       this.store.dispatch(changeScreenSizeAction({screenSize: 'sm'}))
     } else if (md) {

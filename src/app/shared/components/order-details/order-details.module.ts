@@ -1,21 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OrderDetailsComponent } from './order-details.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {TuiErrorModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {OrderDetailsComponent} from './order-details.component'
+import {ReactiveFormsModule} from '@angular/forms'
+import {TuiErrorModule, TuiTextfieldControllerModule} from '@taiga-ui/core'
 import {
   TuiFieldErrorPipeModule,
   TuiInputDateModule,
   TuiInputModule,
   TuiInputTimeModule,
-  TuiTextAreaModule
-} from "@taiga-ui/kit";
-import {UtilsService} from "../../services/utils.service";
+  TuiTextAreaModule,
+} from '@taiga-ui/kit'
+import {UtilsService} from '../../services/utils.service'
 
 @NgModule({
-  declarations: [
-    OrderDetailsComponent,
-  ],
+  declarations: [OrderDetailsComponent],
   imports: [
     CommonModule,
     TuiTextfieldControllerModule,
@@ -25,11 +23,9 @@ import {UtilsService} from "../../services/utils.service";
     TuiErrorModule,
     TuiFieldErrorPipeModule,
     TuiInputTimeModule,
-    TuiTextAreaModule
+    TuiTextAreaModule,
   ],
-  exports: [
-    OrderDetailsComponent
-  ],
-  providers: [UtilsService]
+  exports: [OrderDetailsComponent],
+  providers: [UtilsService],
 })
-export class OrderDetailsModule { }
+export class OrderDetailsModule {}

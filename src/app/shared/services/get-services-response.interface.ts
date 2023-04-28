@@ -1,9 +1,9 @@
-import {ServiceInterface} from "./service.interface";
+import {ServiceInterface} from './service.interface'
 
 export interface GetServicesResponseInterface {
-  data: ServiceInterface[],
+  data: ServiceInterface[]
   meta: {
-    pages: string,
+    pages: string
     count: number
   }
 }

@@ -48,7 +48,6 @@
   }
 }
 
-
 @mixin hover-lift() {
   transition: transform 350ms ease-in-out;
   box-shadow: 0 0.25em 0.5em 0 rgba(black, 0.2);
@@ -69,7 +68,6 @@
   }
 }
 
-
 @mixin optional-at-root($sel) {
   @at-root #{if(not &, $sel, selector-append(&, $sel))} {
     @content;
@@ -77,19 +75,19 @@
 }
 
 @mixin placeholder {
-  @include optional-at-root("::-webkit-input-placeholder") {
+  @include optional-at-root('::-webkit-input-placeholder') {
     @content;
   }
 
-  @include optional-at-root(":-moz-placeholder") {
+  @include optional-at-root(':-moz-placeholder') {
     @content;
   }
 
-  @include optional-at-root("::-moz-placeholder") {
+  @include optional-at-root('::-moz-placeholder') {
     @content;
   }
 
-  @include optional-at-root(":-ms-input-placeholder") {
+  @include optional-at-root(':-ms-input-placeholder') {
     @content;
   }
 }
@@ -241,4 +239,3 @@
     background-image: $img-3x;
   }
 }
-

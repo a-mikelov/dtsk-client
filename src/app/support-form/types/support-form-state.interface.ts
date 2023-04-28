@@ -1,5 +1,5 @@
 import {ResponseInterface} from './response.interface'
-import {BackendErrorsInterface} from "../../shared/types/backend-errors.interface";
+import {BackendErrorsInterface} from '../../shared/types/backend-errors.interface'
 
 export interface SupportFormStateInterface {
   isSubmitting: boolean

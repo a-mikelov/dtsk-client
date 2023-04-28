@@ -12,7 +12,7 @@
     <ng-template #next>
       <button type="button" size="m" tuiButton appearance="secondary" (click)=setStep(1)>Назад</button>
       <button type="button" size="m" tuiButton appearance="primary" [disabled]="stepOne.form.invalid || stepTwo.form.invalid"
-              (click)="submit(stepOne.form.value, stepTwo.form.value)">Оформить заказ</button>
+              (click)="submit(stepOne.form.value, stepTwo.form.value)" [showLoader]="isSubmitting$ | async">Оформить заказ</button>
     </ng-template>
   </div>
 </div>

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {TUI_VALIDATION_ERRORS} from "@taiga-ui/kit";
-import {TuiDestroyService} from "@taiga-ui/cdk";
+import {ChangeDetectionStrategy, Component} from '@angular/core'
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {TuiDestroyService} from '@taiga-ui/cdk'
 
 @Component({
   selector: 'app-step-two',
@@ -16,13 +16,13 @@ import {TuiDestroyService} from "@taiga-ui/cdk";
     },
     TuiDestroyService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepTwoComponent {
   form: FormGroup = this.fb.group({
     client: '',
-    note: ''
-  });
+    note: '',
+  })
 
   get client() {
     return this.form.get('client') as FormControl

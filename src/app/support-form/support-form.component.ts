@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core';
-import {TUI_VALIDATION_ERRORS} from "@taiga-ui/kit";
-import {TuiDestroyService} from "@taiga-ui/cdk";
-import {FormBuilder, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {Router} from "@angular/router";
-import {sendMessageAction} from "./store/actions/send-message.action";
-import {Observable} from "rxjs";
-import {Pattern} from "../shared/pattern/pattern";
-import {phoneLengthValidator} from "../shared/validators/phone-length.validator";
+import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core'
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {TuiDestroyService} from '@taiga-ui/cdk'
+import {FormBuilder, Validators} from '@angular/forms'
+import {Store} from '@ngrx/store'
+import {Router} from '@angular/router'
+import {sendMessageAction} from './store/actions/send-message.action'
+import {Observable} from 'rxjs'
+import {Pattern} from '../shared/pattern/pattern'
+import {phoneLengthValidator} from '../shared/validators/phone-length.validator'
 
 @Component({
   selector: 'app-support-form',
@@ -32,7 +32,7 @@ import {phoneLengthValidator} from "../shared/validators/phone-length.validator"
     },
     TuiDestroyService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupportFormComponent {
   isSubmitting$: Observable<boolean>

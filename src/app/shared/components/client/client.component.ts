@@ -1,8 +1,15 @@
-import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core';
-import {FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators} from "@angular/forms";
-import {TUI_VALIDATION_ERRORS} from "@taiga-ui/kit";
-import {TuiDestroyService} from "@taiga-ui/cdk";
-import {takeUntil} from "rxjs";
+import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core'
+import {
+  FormBuilder,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms'
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {TuiDestroyService} from '@taiga-ui/cdk'
+import {takeUntil} from 'rxjs'
 
 @Component({
   selector: 'app-client',
@@ -27,7 +34,7 @@ import {takeUntil} from "rxjs";
     },
     TuiDestroyService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientComponent {
   onTouched = () => {}
@@ -57,7 +64,7 @@ export class ClientComponent {
 
   constructor(
     private fb: FormBuilder,
-    @Self() @Inject(TuiDestroyService) private destroy$: TuiDestroyService,
+    @Self() @Inject(TuiDestroyService) private destroy$: TuiDestroyService
   ) {}
 
   requiredError(): ValidationErrors | null {

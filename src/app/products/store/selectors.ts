@@ -1,8 +1,9 @@
-import {PRODUCTS_FEATURE} from "./state";
-import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {ProductsStateInterface} from "../types/products-state.interface";
+import {PRODUCTS_FEATURE} from './state'
+import {createFeatureSelector, createSelector} from '@ngrx/store'
+import {ProductsStateInterface} from '../types/products-state.interface'
 
-export const productsFeatureSelector = createFeatureSelector<ProductsStateInterface>(PRODUCTS_FEATURE)
+export const productsFeatureSelector =
+  createFeatureSelector<ProductsStateInterface>(PRODUCTS_FEATURE)
 
 export const isLoadingSelector = createSelector(
   productsFeatureSelector,

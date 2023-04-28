@@ -56,7 +56,7 @@
 
       &::before,
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         width: var(--line-width);

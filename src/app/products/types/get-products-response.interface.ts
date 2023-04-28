@@ -1,9 +1,9 @@
-import {ProductInterface} from "./product.interface";
+import {ProductInterface} from './product.interface'
 
 export interface GetProductsResponseInterface {
-  data: ProductInterface[],
+  data: ProductInterface[]
   meta: {
-    pages: string,
+    pages: string
     count: number
   }
 }

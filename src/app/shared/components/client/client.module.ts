@@ -1,22 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ClientComponent } from './client.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {TuiErrorModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {ClientComponent} from './client.component'
+import {ReactiveFormsModule} from '@angular/forms'
+import {TuiErrorModule, TuiTextfieldControllerModule} from '@taiga-ui/core'
 import {
   TuiFieldErrorPipeModule,
   TuiInputDateModule,
   TuiInputModule,
   TuiInputTimeModule,
-  TuiTextAreaModule
-} from "@taiga-ui/kit";
-
-
+  TuiTextAreaModule,
+} from '@taiga-ui/kit'
 
 @NgModule({
-  declarations: [
-    ClientComponent
-  ],
+  declarations: [ClientComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -26,10 +22,8 @@ import {
     TuiErrorModule,
     TuiFieldErrorPipeModule,
     TuiInputTimeModule,
-    TuiTextAreaModule
+    TuiTextAreaModule,
   ],
-  exports: [
-    ClientComponent
-  ]
+  exports: [ClientComponent],
 })
-export class ClientModule { }
+export class ClientModule {}

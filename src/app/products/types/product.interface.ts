@@ -1,13 +1,12 @@
 interface AttributesInterface {
-  title: string,
-  description: string,
-  price: string,
-  type: string,
-  slug: string,
+  title: string
+  description: string
+  price: string
+  type: string
+  slug: string
 }
 
-
 export interface ProductInterface {
-  id: number,
+  id: number
   attributes: AttributesInterface
 }

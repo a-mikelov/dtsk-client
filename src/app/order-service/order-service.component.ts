@@ -1,15 +1,20 @@
-import {ChangeDetectionStrategy, Component, Inject, Injector} from '@angular/core';
-import {TUI_VALIDATION_ERRORS} from "@taiga-ui/kit";
 import {
-  POLYMORPHEUS_CONTEXT,
-} from '@tinkoff/ng-polymorpheus'
-import {TuiDestroyService} from "@taiga-ui/cdk";
-import {Observable} from "rxjs";
-import {TuiDialogContext, TuiDialogService} from "@taiga-ui/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
-import {ServiceInterface} from "../shared/services/service.interface";
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Injector,
+} from '@angular/core'
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus'
+import {TuiDestroyService} from '@taiga-ui/cdk'
+import {Observable} from 'rxjs'
+import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core'
+import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {Store} from '@ngrx/store'
+import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
+import {ServiceInterface} from '../shared/services/service.interface'
+import {backendErrorsSelector, isSubmittingSelector} from './store/selectors'
+import {sendOrderAction} from './store/actions/send-order.action'
 
 @Component({
   selector: 'app-order-service',
@@ -25,7 +30,7 @@ import {ServiceInterface} from "../shared/services/service.interface";
     },
     TuiDestroyService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderServiceComponent {
   isSubmitting$: Observable<boolean>
@@ -45,44 +50,46 @@ export class OrderServiceComponent {
   ) {}
 
   ngOnInit(): void {
-    this.initForm()
+    this.isSubmitting$ = this.store.select(isSubmittingSelector)
+    // this.backendErrors$ = this.store.select(backendErrorsSelector)
   }
 
   get service(): ServiceInterface {
     return this.context.data.service
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      identifier: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    })
-  }
-
-  initValues(): void {
-    // this.isSubmitting$ = this.store.select(isSubmittingSelector)
-
-    //
-  }
-
   onClose() {
     this.context.completeWith(false)
   }
 
-
-  onSubmit() {
-    if (this.form.invalid) {
+  submit(stepOne, stepTwo) {
+    if (stepOne.invalid || stepTwo.invalid) {
       return
     }
 
-    const {identifier, password}: any = this.form.value
+    const order = {...stepOne, ...stepTwo}
 
-    // this.store.dispatch()
-  }
-
-  submit(stepOne, stepTwo) {
-    console.log('stepOne', stepOne)
-    console.log('stepTwo', stepTwo)
+    this.store.dispatch(
+      sendOrderAction({
+        order: {
+          name: order.service,
+          setDetails: order.showDetails,
+          details: {
+            date: order.details.date,
+            min: order.details.minTime,
+            max: order.details.maxTime,
+            address: order.details.address,
+          },
+          user: {
+            name: order.client.name,
+            company: order.client.company,
+            email: order.client.email,
+            phone: order.client.phone,
+          },
+          note: order.note,
+        },
+      })
+    )
   }
 
   setStep(number: number) {

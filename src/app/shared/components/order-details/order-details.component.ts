@@ -1,9 +1,16 @@
-import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core';
-import {TUI_VALIDATION_ERRORS, tuiCreateTimePeriods} from "@taiga-ui/kit";
-import {FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators} from "@angular/forms";
-import {TuiDay, TuiDestroyService} from "@taiga-ui/cdk";
-import {UtilsService} from "../../services/utils.service";
-import {takeUntil} from "rxjs";
+import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core'
+import {TUI_VALIDATION_ERRORS, tuiCreateTimePeriods} from '@taiga-ui/kit'
+import {
+  FormBuilder,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms'
+import {TuiDay, TuiDestroyService} from '@taiga-ui/cdk'
+import {UtilsService} from '../../services/utils.service'
+import {takeUntil} from 'rxjs'
 
 @Component({
   selector: 'app-order-details',
@@ -28,13 +35,13 @@ import {takeUntil} from "rxjs";
     },
     TuiDestroyService,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderDetailsComponent {
   onTouched = () => {}
 
-  minTimePeriod = tuiCreateTimePeriods();
-  maxTimePeriod = tuiCreateTimePeriods(10, 20, [0, 15, 30, 45]);
+  minTimePeriod = tuiCreateTimePeriods()
+  maxTimePeriod = tuiCreateTimePeriods(10, 20, [0, 15, 30, 45])
 
   form = this.fb.group({
     date: [null, [Validators.required]],
@@ -108,5 +115,4 @@ export class OrderDetailsComponent {
     const date = new Date()
     return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate())
   }
-
 }

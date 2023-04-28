@@ -54,7 +54,7 @@
 //effects
 :root {
   --box-shadow-sm: -2px 25px 33px 1px rgba(0, 0, 0, 0.08),
-  0 1px 7px 0 rgba(0, 0, 0, 0.09);
+    0 1px 7px 0 rgba(0, 0, 0, 0.09);
   --box-shadow-md: -2px 25px 33px 1px rgba(0, 0, 0, 0.12);
 }
 
@@ -80,8 +80,8 @@
 
 //font
 :root {
-  --font-family: Montserrat, "Open Sans", FranklinGothic, "Helvetica Neue",
-  Helvetica, Arial, sans-serif;
+  --font-family: Montserrat, 'Open Sans', FranklinGothic, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
 }
 
 //other

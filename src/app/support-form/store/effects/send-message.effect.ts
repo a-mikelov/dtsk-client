@@ -1,11 +1,15 @@
-import {Inject, Injectable, Injector} from "@angular/core";
-import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, delay, map, of, switchMap} from "rxjs";
-import {ResponseInterface} from "../../types/response.interface";
-import {sendMessageAction, sendMessageFailureAction, sendMessageSuccessAction} from "../actions/send-message.action";
-import {TuiDialogService} from "@taiga-ui/core";
-import {HttpErrorResponse} from "@angular/common/http";
-import {SupportService} from "../../services/support.service";
+import {Inject, Injectable, Injector} from '@angular/core'
+import {Actions, createEffect, ofType} from '@ngrx/effects'
+import {catchError, delay, map, of, switchMap} from 'rxjs'
+import {ResponseInterface} from '../../types/response.interface'
+import {
+  sendMessageAction,
+  sendMessageFailureAction,
+  sendMessageSuccessAction,
+} from '../actions/send-message.action'
+import {TuiDialogService} from '@taiga-ui/core'
+import {HttpErrorResponse} from '@angular/common/http'
+import {SupportService} from '../../services/support.service'
 
 @Injectable()
 export class SendMessageEffect {
@@ -19,7 +23,7 @@ export class SendMessageEffect {
   sendMessage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(sendMessageAction),
-      delay(1000),
+      delay(1000)
       // switchMap(({payload}) =>
       //   this.supportService.sendMessage(payload).pipe(
       //     map((response: ResponseInterface) => {

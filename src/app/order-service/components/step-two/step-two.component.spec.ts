@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing'
 
-import { StepTwoComponent } from './step-two.component';
+import {StepTwoComponent} from './step-two.component'
 
 describe('StepTwoComponent', () => {
-  let component: StepTwoComponent;
-  let fixture: ComponentFixture<StepTwoComponent>;
+  let component: StepTwoComponent
+  let fixture: ComponentFixture<StepTwoComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StepTwoComponent ]
-    })
-    .compileComponents();
+      declarations: [StepTwoComponent],
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(StepTwoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(StepTwoComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
