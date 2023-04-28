@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Injector, OnInit} from '@angular/core';
 import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../store/services/selectors";
 import {concatAll, filter, map, Observable, of, switchMap, tap, toArray} from "rxjs";
 import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
@@ -6,6 +6,9 @@ import {ServiceInterface} from "../shared/services/service.interface";
 import {getServicesAction} from "../store/services/actions/get-services.action";
 import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
 import {Store} from "@ngrx/store";
+import {PolymorpheusComponent} from "@tinkoff/ng-polymorpheus";
+import {OrderServiceComponent} from "../order-service/order-service.component";
+import {TuiDialogService} from "@taiga-ui/core";
 
 @Component({
   selector: 'app-services',
@@ -18,9 +21,12 @@ export class ServicesComponent implements OnInit {
   services$: Observable<ServiceInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
 
-  currentContentId: number = 0
+  currentService: ServiceInterface
 
-  constructor(private store: Store) {}
+  constructor(
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector,
+    private store: Store) {}
 
   ngOnInit():void {
     this.isLoading$ = this.store.select(isLoadingSelector)
@@ -31,13 +37,29 @@ export class ServicesComponent implements OnInit {
         filter(Boolean),
         map(({data}: GetServicesResponseInterface) => {
           return data
+        }),
+        tap((services: ServiceInterface[]) => {
+          this.currentService = services[0]
         })
       )
 
     this.store.dispatch(getServicesAction())
   }
 
-  setContent(id: number) {
-    this.currentContentId = id
+  setContent(service: ServiceInterface) {
+    this.currentService = service
+  }
+
+  order(service: ServiceInterface) {
+    this.dialogService
+      .open<any>(new PolymorpheusComponent(OrderServiceComponent, this.injector), {
+        data: {
+          service,
+        },
+        dismissible: true,
+        closeable: true,
+        size: 'm',
+      })
+      .subscribe()
   }
 }

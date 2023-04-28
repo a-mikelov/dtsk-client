@@ -6,17 +6,17 @@
         <li
           *ngFor="let service of services$ | async"
           class="services__list-item"
-          [class.active]="service.id === currentContentId"
+          [class.active]="service === currentService"
           v-for="service of state.services"
           :key="service"
-          (click)="setContent(service.id)"
+          (click)="setContent(service)"
         >
           <span>{{ service.attributes.title }}</span>
         </li>
       </ul>
       <small>* Безналичный расчет с НДС, без НДС</small>
     </div>
-    <div class="services__main" [class.active]="currentContentId">
+    <div class="services__main" [class.active]="currentService">
       <button type="button" class="services__back">
         <!--      <BaseIcon name="arrow-left" width="48px" height="38px" />-->
         <tui-svg src="icons::arrow-left"></tui-svg>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="services__button">
-        <button type="button" tuiButton appearance="primary">Оформить заказ</button>
+        <button type="button" tuiButton appearance="primary" (click)="order(currentService)">Оформить заказ</button>
       </div>
     </div>
   </div>
