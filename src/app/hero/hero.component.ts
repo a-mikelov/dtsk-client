@@ -1,12 +1,12 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
+  ElementRef, Inject, Injector,
   OnInit,
   ViewChild
 } from '@angular/core';
+import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import Swiper, {SwiperOptions} from "swiper";
 import {ServicesService} from "../shared/services/services.service";
 import {concatAll, delay, filter, map, Observable, of, switchMap, tap, toArray} from "rxjs";
@@ -17,6 +17,8 @@ import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../sto
 import {getServicesAction} from "../store/services/actions/get-services.action";
 import {ServiceInterface} from "../shared/services/service.interface";
 import {environment} from "../../environments/environment";
+import {OrderServiceComponent} from "../order-service/order-service.component";
+import {TuiDialogService} from "@taiga-ui/core";
 
 @Component({
   selector: 'app-hero',
@@ -33,7 +35,10 @@ export class HeroComponent implements OnInit {
   services$: Observable<ServiceInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
 
-  constructor(private store: Store) {}
+  constructor(
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector,
+    private store: Store) {}
 
   ngOnInit() {
     this.isLoading$ = this.store.select(isLoadingSelector)
@@ -87,5 +92,18 @@ export class HeroComponent implements OnInit {
 
   setImageUrl(src) {
     return environment.uploadsUrl + src
+  }
+
+  order(service: ServiceInterface) {
+    this.dialogService
+      .open<any>(new PolymorpheusComponent(OrderServiceComponent, this.injector), {
+        data: {
+          service,
+        },
+        dismissible: true,
+        closeable: true,
+        size: 'm',
+      })
+      .subscribe()
   }
 }
