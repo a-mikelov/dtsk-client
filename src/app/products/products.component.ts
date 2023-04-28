@@ -36,7 +36,27 @@ export class ProductsComponent implements OnInit {
         map(({data}: GetProductsResponseInterface) => {
           return data
         }),
-        tap(() => {
+        map((products: ProductInterface[]) => {
+          return products.reduce((acc, current: ProductInterface) => {
+            if (current.attributes.type === 'gasoline') {
+              const group = acc.find((item) => {
+                return item.type === 'gasoline'
+              });
+
+              if (group) {
+                group.attributes.push(current.attributes);
+              } else {
+                acc.push({id: 1, type: 'gasoline', attributes: [current.attributes] });
+              }
+            } else {
+              acc.push(current);
+            }
+            return acc;
+          }, []);
+        }),
+        tap((arr) => {
+          console.log('data', arr)
+
           this._initSwiper()
         }),
       )

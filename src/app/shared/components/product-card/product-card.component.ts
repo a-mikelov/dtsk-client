@@ -6,10 +6,10 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./product-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
   @Input() product: any
 
-  ngOnInit():void {
-    console.log('this.product', this.product)
-  }
+  // ngOnInit():void {
+  //   console.log('this.product', this.product)
+  // }
 }
