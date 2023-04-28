@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../store/selectors";
+import {backendErrorsSelector, isLoadingSelector, servicesSelector} from "../store/services/selectors";
 import {concatAll, filter, map, Observable, of, switchMap, tap, toArray} from "rxjs";
 import {GetServicesResponseInterface} from "../shared/services/get-services-response.interface";
 import {ServiceInterface} from "../shared/services/service.interface";
-import {getServicesAction} from "../store/actions/get-services.action";
+import {getServicesAction} from "../store/services/actions/get-services.action";
 import {BackendErrorsInterface} from "../shared/types/backend-errors.interface";
 import {Store} from "@ngrx/store";
 

@@ -32,6 +32,7 @@ import {SupportModule} from "./support/support.module";
 import {ContactsModule} from "./contacts/contacts.module";
 import {PageFooterModule} from "./page-footer/page-footer.module";
 import {PageHeaderModule} from "./page-header/page-header.module";
+import {reducers} from "./store/reducers";
 
 const mapConfig: YaConfig = {
   apikey: 'be640658-9c20-46d8-ab54-555efd7fc3ee',
@@ -46,7 +47,7 @@ registerLocaleData(ruLocale, 'ru')
         BrowserModule,
         AppRoutingModule,
         AuthModule.forRoot(),
-        StoreModule.forRoot({}, {}),
+        StoreModule.forRoot(reducers),
         EffectsModule.forRoot([]),
         environment.production
             ? []

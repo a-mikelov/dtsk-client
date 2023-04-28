@@ -1,8 +1,8 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {ServicesService} from "../../shared/services/services.service";
+import {ServicesService} from "../../../shared/services/services.service";
 import {catchError, map, of, switchMap} from "rxjs";
 import {getServicesAction, getServicesFailureAction, getServiceSuccessAction} from "../actions/get-services.action";
-import {GetServicesResponseInterface} from "../../shared/services/get-services-response.interface";
+import {GetServicesResponseInterface} from "../../../shared/services/get-services-response.interface";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 
