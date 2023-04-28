@@ -9,6 +9,7 @@ export class ServicesService {
   constructor(private http: HttpClient) {}
 
   getServices() {
+    console.log('this.url', this.url)
     return this.http.get(this.url)
   }
 
