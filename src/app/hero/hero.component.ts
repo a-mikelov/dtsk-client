@@ -107,7 +107,7 @@ export class HeroComponent implements OnInit {
   }
 
   setImageUrl(src) {
-    return environment.apiUrlUpload + src
+    return environment.uploadUrl + src
   }
 
   order(service: ServiceInterface) {
