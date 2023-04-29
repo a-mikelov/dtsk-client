@@ -7,13 +7,17 @@ import {
 import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus'
 import {TuiDestroyService} from '@taiga-ui/cdk'
-import {Observable} from 'rxjs'
+import {filter, Observable, takeUntil, tap} from 'rxjs'
 import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core'
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import {Store} from '@ngrx/store'
 import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
 import {ServiceInterface} from '../shared/services/service.interface'
-import {backendErrorsSelector, isSubmittingSelector} from './store/selectors'
+import {
+  backendErrorsSelector,
+  dataSelector,
+  isSubmittingSelector,
+} from './store/selectors'
 import {sendOrderAction} from './store/actions/send-order.action'
 
 @Component({
@@ -34,7 +38,7 @@ import {sendOrderAction} from './store/actions/send-order.action'
 })
 export class OrderServiceComponent {
   isSubmitting$: Observable<boolean>
-  backendErrors: Observable<BackendErrorsInterface>
+  backendErrors$: Observable<BackendErrorsInterface>
 
   currentStep = 1
   form: FormGroup
@@ -52,6 +56,15 @@ export class OrderServiceComponent {
   ngOnInit(): void {
     this.isSubmitting$ = this.store.select(isSubmittingSelector)
     // this.backendErrors$ = this.store.select(backendErrorsSelector)
+
+    this.store
+      .select(dataSelector)
+      .pipe(
+        filter(Boolean),
+        tap(() => this.close()),
+        takeUntil(this.destroy$)
+      )
+      .subscribe()
   }
 
   get service(): ServiceInterface {
