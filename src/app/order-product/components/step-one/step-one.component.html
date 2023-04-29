@@ -6,49 +6,49 @@
       >*</sup
       >
     </span>
-    <tui-combo-box
+    <tui-select
       tuiTextfieldSize="m"
       [formControl]="item"
       [tuiTextfieldLabelOutside]="true"
-      [tuiTextfieldCleaner]="true"
       [readOnly]="products.length < 2"
     >
       <tui-data-list-wrapper
         *tuiDataList
         [items]="products"
       ></tui-data-list-wrapper>
-    </tui-combo-box>
+    </tui-select>
     <tui-error
       [formControl]="item"
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>
-  <label [formGroup]="form" class="form__field">
-    <span class="form__label">Сколько литров?</span>
-    <tui-input-count
-      [formControl]="count"
-      [tuiTextfieldLabelOutside]="true"
-      tuiTextfieldSize="m"
-      [min]="1"
-      [max]="20"
-      [pseudoInvalid]="!!(form.touched && form.errors && form.errors['min'])"
-      class="w-36"
-    >
-      <input tuiTextfield />
-    </tui-input-count>
-    <tui-error
-      [formControl]="count"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
-  </label>
-
-  <div class="form__field form__field--end">
-    <tui-checkbox-labeled
-      formControlName="setDetails"
-      appearance="accent"
-    >
-      <b>Указать детали по доствке</b>
-    </tui-checkbox-labeled>
+  <div class="form__row">
+    <label [formGroup]="form" class="form__field">
+      <span class="form__label">Сколько литров?</span>
+      <tui-input-count
+        [formControl]="count"
+        [tuiTextfieldLabelOutside]="true"
+        tuiTextfieldSize="m"
+        [min]="1"
+        [max]="20"
+        [pseudoInvalid]="!!(form.touched && form.errors && form.errors['min'])"
+        class="w-36"
+      >
+        <input tuiTextfield />
+      </tui-input-count>
+      <tui-error
+        [formControl]="count"
+        [error]="[] | tuiFieldError | async"
+      ></tui-error>
+    </label>
+    <div class="form__field form__field--end">
+      <tui-checkbox-labeled
+        formControlName="setDetails"
+        appearance="accent"
+      >
+        <b>Указать детали по доствке</b>
+      </tui-checkbox-labeled>
+    </div>
   </div>
   <app-order-details type="product" formControlName="details"></app-order-details>
 </form>

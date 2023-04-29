@@ -6,18 +6,17 @@
       >*</sup
       >
     </span>
-    <tui-combo-box
+    <tui-select
       tuiTextfieldSize="m"
       [formControl]="item"
       [tuiTextfieldLabelOutside]="true"
-      [tuiTextfieldCleaner]="true"
       [readOnly]="services.length < 2"
     >
       <tui-data-list-wrapper
         *tuiDataList
         [items]="services"
       ></tui-data-list-wrapper>
-    </tui-combo-box>
+    </tui-select>
     <tui-error
       [formControl]="item"
       [error]="[] | tuiFieldError | async"

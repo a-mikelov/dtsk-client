@@ -1,4 +1,4 @@
-interface AttributesInterface {
+export interface ProductAttributesInterface {
   name: string
   description: string
   price: string
@@ -8,5 +8,5 @@ interface AttributesInterface {
 
 export interface ProductInterface {
   id: number
-  attributes: AttributesInterface
+  attributes: ProductAttributesInterface
 }

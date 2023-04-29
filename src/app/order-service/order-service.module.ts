@@ -13,6 +13,7 @@ import {
   TuiFieldErrorPipeModule,
   TuiInputModule,
   TuiInputPasswordModule,
+  TuiSelectModule,
   TuiTextAreaModule,
 } from '@taiga-ui/kit'
 import {ReactiveFormsModule} from '@angular/forms'
@@ -54,6 +55,7 @@ import {OrderReportModule} from '../shared/components/order-report/order-report.
     OrderReportModule,
     TuiComboBoxModule,
     TuiDataListWrapperModule,
+    TuiSelectModule,
   ],
   providers: [ServicesService],
 })

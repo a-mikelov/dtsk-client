@@ -57,8 +57,13 @@
   &__row {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 16px;
+    grid-template-columns: 1fr;
+
+    @include mq(sm) {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      column-gap: 16px;
+    }
 
     .form__label {
       grid-column: 1 / -1;

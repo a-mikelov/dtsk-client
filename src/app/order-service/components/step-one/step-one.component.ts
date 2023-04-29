@@ -10,10 +10,14 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
 import {TUI_VALIDATION_ERRORS, tuiItemsHandlersProvider} from '@taiga-ui/kit'
 import {TuiDestroyService, TuiStringHandler} from '@taiga-ui/cdk'
 import {takeUntil, tap} from 'rxjs'
-import {ServiceInterface} from '../../../shared/services/service.interface'
+import {
+  ServiceInterface,
+  ServicesAttributesInterface,
+} from '../../../shared/services/service.interface'
 
-const STRINGIFY_SERVICES: TuiStringHandler<any> = (item: any) =>
-  item ? `${item.name}` : ``
+const STRINGIFY_SERVICES: TuiStringHandler<ServicesAttributesInterface> = (
+  item: ServicesAttributesInterface
+) => (item ? `${item.name}` : ``)
 
 @Component({
   selector: 'app-step-one',

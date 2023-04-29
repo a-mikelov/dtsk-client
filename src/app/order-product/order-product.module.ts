@@ -11,6 +11,7 @@ import {
   TuiFieldErrorPipeModule,
   TuiInputCountModule,
   TuiInputModule,
+  TuiSelectModule,
   TuiTextAreaModule,
 } from '@taiga-ui/kit'
 import {OrderDetailsModule} from '../shared/components/order-details/order-details.module'
@@ -54,6 +55,7 @@ import {SendOrderEffect} from './store/effects/send-order.effect'
     EffectsModule.forFeature([SendOrderEffect]),
     TuiDataListWrapperModule,
     TuiComboBoxModule,
+    TuiSelectModule,
   ],
   providers: [ProductsService],
 })
