@@ -6,7 +6,7 @@ import {BackendErrorsInterface} from '../../../shared/types/backend-errors.inter
 
 export const sendMessageAction = createAction(
   ActionTypes.SEND_MESSAGE,
-  props<{payload: SupportFormInterface}>()
+  props<{payload: any}>()
 )
 
 export const sendMessageSuccessAction = createAction(

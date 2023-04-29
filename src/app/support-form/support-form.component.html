@@ -1,10 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="mb-3 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-    <label class="block">
-      <span class="mb-1 inline-block text-xs">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <div class="form__row">
+    <label class="form__field">
+      <span class="form__label">
         Имя
         <sup
-          class="text-red"
           *ngIf="
             form.get('name').errors && form.get('name').hasError('required')
           "
@@ -23,11 +22,10 @@
         [error]="[] | tuiFieldError | async"
       ></tui-error>
     </label>
-    <label class="block">
-      <span class="mb-1 inline-block text-xs">
+    <label class="form__field">
+      <span class="form__label">
         Телефон
         <sup
-          class="text-red"
           *ngIf="
             form.get('phone').errors && form.get('phone').hasError('required')
           "
@@ -46,11 +44,10 @@
         [error]="[] | tuiFieldError | async"
       ></tui-error>
     </label>
-    <label class="block sm:col-span-2 sm:col-span-full md:col-span-1">
-      <span class="mb-1 inline-block text-xs">
+    <label class="form__field">
+      <span class="form__label">
         Email
         <sup
-          class="text-red"
           *ngIf="
             form.get('email').errors && form.get('email').hasError('required')
           "
@@ -69,11 +66,11 @@
         [error]="[] | tuiFieldError | async"
       ></tui-error>
     </label>
-    <label class="block sm:col-span-2 sm:col-span-full">
-      <span class="mb-1 inline-block text-xs">
+  </div>
+  <label class="form__field">
+      <span class="form__label">
         Ваш вопрос
         <sup
-          class="text-red"
           *ngIf="
             form.get('message').errors &&
             form.get('message').hasError('required')
@@ -81,25 +78,25 @@
         >*</sup
         >
       </span>
-      <tui-text-area formControlName="message"></tui-text-area>
-      <tui-error
-        formControlName="message"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
-    </label>
-  </div>
-  <tui-checkbox-labeled
-    formControlName="agree"
-    class="mb-7"
-    appearance="accent"
-  >
-    <span class="text-2xs">
-      Нажимая кнопку «Отправить», я даю свое согласие на
-      <a class="link-black text-black"
-      >обработку моих персональных данных</a
-      >
-    </span>
-  </tui-checkbox-labeled>
+    <tui-text-area formControlName="message" [rows]="8" class="form__message"></tui-text-area>
+    <tui-error
+      formControlName="message"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+
+  <!--  <tui-checkbox-labeled-->
+<!--    formControlName="agree"-->
+<!--    class="mb-7"-->
+<!--    appearance="accent"-->
+<!--  >-->
+<!--    <span class="text-2xs">-->
+<!--      Нажимая кнопку «Отправить», я даю свое согласие на-->
+<!--      <a class="link-black text-black"-->
+<!--      >обработку моих персональных данных</a-->
+<!--      >-->
+<!--    </span>-->
+<!--  </tui-checkbox-labeled>-->
   <button
     type="submit"
     tuiButton

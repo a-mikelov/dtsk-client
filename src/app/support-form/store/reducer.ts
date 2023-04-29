@@ -22,6 +22,7 @@ const sendMessageReducer = createReducer(
     sendMessageSuccessAction,
     (state, {response}): SupportFormStateInterface => ({
       ...state,
+      isSubmitting: false,
       response,
     })
   ),
