@@ -10,9 +10,11 @@
         <div class="hero__image">
           <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
         </div>
-        <div class="hero__content container">
-          <h2>{{service.attributes.name}}</h2>
-          <p>{{service.attributes.description}}</p>
+        <div class="hero__content container"
+             [class.hero__content--right]="service.attributes.slug === 'optovo-roznichnaya-realizacziiya-nefteproduktov'"
+        >
+          <h2 class="hero__title">{{service.attributes.name}}</h2>
+          <p class="hero__text">{{service.attributes.description}}</p>
           <div class="hero__button">
             <button type="button" tuiButton appearance="primary" (click)="order(service)">Оформить заявку</button>
           </div>
