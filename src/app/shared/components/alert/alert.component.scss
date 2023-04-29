@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.alert {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-bg-white);
+
+  &__close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    z-index: var(--layer-1);
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-family: var(--font-family);
+    font-size: 22px;
+    line-height: 26px;
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+
+  &__logo {
+    margin: 8px 0 12px 0;
+  }
+}

@@ -78,7 +78,7 @@ export class ServicesComponent implements OnInit {
             service,
           },
           dismissible: true,
-          closeable: true,
+          closeable: false,
           size: 'm',
         }
       )

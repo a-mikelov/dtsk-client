@@ -69,17 +69,21 @@ export class OrderServiceComponent {
 
     const order = {...stepOne, ...stepTwo}
 
+    const details = order.details
+      ? {
+          date: order.details.date,
+          min: order.details.minTime,
+          max: order.details.maxTime,
+          address: order.details.address,
+        }
+      : null
+
     this.store.dispatch(
       sendOrderAction({
         order: {
           name: order.service,
           setDetails: order.showDetails,
-          details: {
-            date: order.details.date,
-            min: order.details.minTime,
-            max: order.details.maxTime,
-            address: order.details.address,
-          },
+          details,
           user: {
             name: order.client.name,
             company: order.client.company,
@@ -94,5 +98,13 @@ export class OrderServiceComponent {
 
   setStep(number: number) {
     this.currentStep = number
+  }
+
+  getReportData(service: ServiceInterface, stepOne, stepTwo) {
+    return {service, form: {...stepOne, ...stepTwo}}
+  }
+
+  close() {
+    this.context.completeWith(1)
   }
 }

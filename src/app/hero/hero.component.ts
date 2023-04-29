@@ -119,7 +119,7 @@ export class HeroComponent implements OnInit {
             service,
           },
           dismissible: true,
-          closeable: true,
+          closeable: false,
           size: 'm',
         }
       )

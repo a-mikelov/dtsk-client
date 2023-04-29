@@ -1,4 +1,18 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+.close {
+  position: absolute;
+  top: -28px;
+  right: -20px;
+  z-index: var(--layer-1);
+}
+
 .form {
+  margin-top: 10px;
+
   &__step {
     display: none;
 

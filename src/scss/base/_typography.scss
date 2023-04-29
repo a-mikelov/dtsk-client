@@ -95,6 +95,18 @@
   }
 }
 
+.title--lvl-4 {
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: -0.69px;
+
+  @include mq(md) {
+    font-size: 20px;
+  }
+}
+
 .text {
   font-family: var(--font-family);
 
@@ -114,6 +126,28 @@
     font-size: 17.2px;
     line-height: 26px;
     letter-spacing: -0.59px;
+  }
+
+  &--sm {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    letter-spacing: 0;
+  }
+
+  &--xs {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 0;
+  }
+
+  &--semi-bold {
+    font-weight: 500;
+  }
+
+  &--primary {
+    color: var(--color-text-accent);
   }
 }
 //

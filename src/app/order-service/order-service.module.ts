@@ -24,9 +24,16 @@ import {reducers} from './store/reducers'
 import {EffectsModule} from '@ngrx/effects'
 import {SendOrderEffect} from './store/effects/send-order.effect'
 import {ServicesService} from '../shared/services/services.service'
+import {StepThreeComponent} from './components/step-three/step-three.component'
+import {OrderReportModule} from '../shared/components/order-report/order-report.module'
 
 @NgModule({
-  declarations: [OrderServiceComponent, StepOneComponent, StepTwoComponent],
+  declarations: [
+    OrderServiceComponent,
+    StepOneComponent,
+    StepTwoComponent,
+    StepThreeComponent,
+  ],
   imports: [
     CommonModule,
     TuiErrorModule,
@@ -42,6 +49,7 @@ import {ServicesService} from '../shared/services/services.service'
     TuiTextAreaModule,
     StoreModule.forFeature(ORDER_SERVICE_FEATURE, reducers),
     EffectsModule.forFeature([SendOrderEffect]),
+    OrderReportModule,
   ],
   providers: [ServicesService],
 })

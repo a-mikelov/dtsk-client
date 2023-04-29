@@ -1,0 +1,44 @@
+<h3 class="title title--lvl-4">{{dataProps.form.service}}</h3>
+
+<ul class="list">
+  <li>
+    <span>Ваше имя</span>
+    <b>{{dataProps.form.client.name || 'не указано'}}</b>
+  </li>
+  <li>
+    <span>Название компании</span>
+    <b>{{dataProps.form.client.company || 'не указано'}}</b>
+  </li>
+  <li>
+    <span>Email</span>
+    <b>{{dataProps.form.client.email || 'не указано'}}</b>
+  </li>
+  <li>
+    <span>Телефон</span>
+    <b>{{dataProps.form.client.phone || 'не указано'}}</b>
+  </li>
+</ul>
+
+<ul class="list">
+  <li>
+    <span>Дата проведения работ</span>
+    <b>{{dataProps.form.details?.date || 'не указано'}}</b>
+  </li>
+  <li *ngIf="dataProps.form.details">
+    <span>Время начала работ</span>
+    <b>{{dataProps.form.details?.minTime}} - {{dataProps.form.details?.maxTime}}</b>
+  </li>
+  <li>
+    <span>Место проведения работ</span>
+    <b>{{dataProps.form.details?.address || 'не указано'}}</b>
+  </li>
+  <li>
+    <span>Предворителная сумма</span>
+    <b class="list__total">{{dataProps.service.attributes.price}} {{ 'RUB' | tuiCurrency }}</b>
+  </li>
+</ul>
+
+<ng-container *ngIf="dataProps.form.note">
+  <b class="text text--xs">Дополнительная информация:</b>
+  <p class="text text--xs text--semi-bold">{{dataProps.form.note}}</p>
+</ng-container>
