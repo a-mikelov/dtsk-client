@@ -31,13 +31,13 @@ export class StepOneComponent implements OnInit {
   @Input('service') serviceProps: ServiceInterface
 
   form: FormGroup = this.fb.group({
-    service: '',
+    name: '',
     setDetails: false,
     details: [{value: null, disabled: true}],
   })
 
-  get service() {
-    return this.form.get('service') as FormControl
+  get name() {
+    return this.form.get('name') as FormControl
   }
 
   get setDetails() {
@@ -54,7 +54,7 @@ export class StepOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.setValue(this.serviceProps.attributes.title)
+    this.name.setValue(this.serviceProps.attributes.title)
 
     this.setDetails.valueChanges
       .pipe(

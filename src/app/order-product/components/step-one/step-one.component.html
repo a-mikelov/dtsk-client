@@ -2,21 +2,21 @@
   <label class="form__field">
     <span class="form__label">
       Название товара
-      <sup *ngIf="product.errors && product.hasError('required')"
+      <sup *ngIf="name.errors && name.hasError('required')"
       >*</sup
       >
     </span>
     <tui-input
       tuiTextfieldSize="m"
       [readOnly]="true"
-      [formControl]="product"
+      [formControl]="name"
       [tuiTextfieldLabelOutside]="true"
-      [pseudoInvalid]="!!(product.invalid && form.touched)"
+      [pseudoInvalid]="!!(name.invalid && form.touched)"
     >
       <input tuiTextfield type="text" />
     </tui-input>
     <tui-error
-      [formControl]="product"
+      [formControl]="name"
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>

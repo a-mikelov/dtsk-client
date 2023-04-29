@@ -2,21 +2,21 @@
   <label class="form__field">
     <span class="form__label">
       Название услуги
-      <sup *ngIf="service.errors && service.hasError('required')"
+      <sup *ngIf="name.errors && name.hasError('required')"
       >*</sup
       >
     </span>
     <tui-input
       tuiTextfieldSize="m"
       [readOnly]="true"
-      [formControl]="service"
+      [formControl]="name"
       [tuiTextfieldLabelOutside]="true"
-      [pseudoInvalid]="!!(service.invalid && form.touched)"
+      [pseudoInvalid]="!!(name.invalid && form.touched)"
     >
       <input tuiTextfield type="text" />
     </tui-input>
     <tui-error
-      [formControl]="service"
+      [formControl]="name"
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>

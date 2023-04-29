@@ -81,7 +81,7 @@ export class OrderServiceComponent {
     }
 
     const order = {...stepOne, ...stepTwo}
-    const {service, setDetails, client, note} = order
+    const {name, setDetails, client, note} = order
 
     const details = order.details
       ? {
@@ -95,7 +95,7 @@ export class OrderServiceComponent {
     this.store.dispatch(
       sendOrderAction({
         order: {
-          service,
+          name,
           setDetails,
           details,
           client,

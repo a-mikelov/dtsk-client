@@ -30,14 +30,14 @@ export class StepOneComponent {
   @Input('product') productProps: ProductInterface
 
   form: FormGroup = this.fb.group({
-    product: '',
+    name: '',
     count: '',
     setDetails: false,
     details: [{value: null, disabled: true}],
   })
 
-  get product() {
-    return this.form.get('product') as FormControl
+  get name() {
+    return this.form.get('name') as FormControl
   }
 
   get count() {
@@ -58,7 +58,7 @@ export class StepOneComponent {
   ) {}
 
   ngOnInit(): void {
-    this.product.setValue(this.productProps.attributes.title)
+    this.name.setValue(this.productProps.attributes.title)
 
     this.setDetails.valueChanges
       .pipe(
