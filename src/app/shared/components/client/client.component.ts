@@ -10,6 +10,8 @@ import {
 import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
 import {TuiDestroyService} from '@taiga-ui/cdk'
 import {takeUntil} from 'rxjs'
+import {Pattern} from '../../pattern/pattern'
+import {phoneLengthValidator} from '../../validators/phone-length.validator'
 
 @Component({
   selector: 'app-client',
@@ -29,7 +31,12 @@ import {takeUntil} from 'rxjs'
     {
       provide: TUI_VALIDATION_ERRORS,
       useValue: {
-        required: `Все поля обязательны для заполнения`,
+        required: `Поле обязательно для заполнения`,
+        phoneLength: (error) => {
+          return `Номер указан неверно`
+        },
+        pattern: `Email указан неверно`,
+        email: `Email указан неверно`,
       },
     },
     TuiDestroyService,
@@ -42,8 +49,15 @@ export class ClientComponent {
   form = this.fb.group({
     name: [null, [Validators.required]],
     company: null,
-    email: [null, [Validators.required]],
-    phone: [null, [Validators.required]],
+    email: [
+      null,
+      [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(Pattern.email),
+      ],
+    ],
+    phone: [null, [Validators.required, phoneLengthValidator]],
   })
 
   get name() {

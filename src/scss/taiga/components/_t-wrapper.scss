@@ -1,3 +1,5 @@
-_disabled {
-  background-color: red;
+._disabled,
+._readonly,
+readonly {
+  background-color: var(--color-bg-gray-super-light);
 }

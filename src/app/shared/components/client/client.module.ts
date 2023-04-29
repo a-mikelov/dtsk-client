@@ -7,6 +7,7 @@ import {
   TuiFieldErrorPipeModule,
   TuiInputDateModule,
   TuiInputModule,
+  TuiInputPhoneModule,
   TuiInputTimeModule,
   TuiTextAreaModule,
 } from '@taiga-ui/kit'
@@ -23,6 +24,7 @@ import {
     TuiFieldErrorPipeModule,
     TuiInputTimeModule,
     TuiTextAreaModule,
+    TuiInputPhoneModule,
   ],
   exports: [ClientComponent],
 })

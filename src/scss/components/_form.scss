@@ -25,12 +25,20 @@
 //}
 
 .form {
+  display: flex;
+  flex-direction: column;
+
   &__field {
     display: block;
     margin-bottom: space(4);
+
+    &--end {
+      margin-left: auto;
+    }
   }
 
   &__label {
+    position: relative;
     margin-bottom: space(1);
     display: block;
     font-size: 14px;
@@ -39,7 +47,21 @@
     letter-spacing: 0;
 
     sup {
+      position: absolute;
+      margin-top: -4px;
+      margin-left: 2px;
       color: var(--color-text-invalid);
+    }
+  }
+
+  &__row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+
+    .form__label {
+      grid-column: 1 / -1;
     }
   }
 

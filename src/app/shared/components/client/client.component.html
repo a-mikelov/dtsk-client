@@ -68,14 +68,14 @@
       >*</sup
       >
     </span>
-    <tui-input
+    <tui-input-phone
       tuiTextfieldSize="m"
       [formControl]="phone"
       [tuiTextfieldLabelOutside]="true"
       [pseudoInvalid]="!!(phone.invalid && form.touched)"
     >
-      <input tuiTextfield type="text" />
-    </tui-input>
+      <input tuiTextfield autocomplete="tel" />
+    </tui-input-phone>
     <tui-error
       [formControl]="phone"
       [error]="[] | tuiFieldError | async"

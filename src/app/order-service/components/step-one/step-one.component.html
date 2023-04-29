@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="form">
   <label class="form__field">
     <span class="form__label">
       Название услуги
@@ -20,12 +20,12 @@
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>
-  <div class="form__field">
+  <div class="form__field form__field--end">
     <tui-checkbox-labeled
       formControlName="showDetails"
       appearance="accent"
     >
-    <b>Указать детали?</b>
+    <b>Указать детали по работе</b>
     </tui-checkbox-labeled>
   </div>
   <div class="form__field">

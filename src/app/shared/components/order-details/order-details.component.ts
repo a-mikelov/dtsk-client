@@ -30,7 +30,7 @@ import {takeUntil} from 'rxjs'
     {
       provide: TUI_VALIDATION_ERRORS,
       useValue: {
-        required: `Все поля обязательны для заполнения`,
+        required: `Поле обязательно для заполнения`,
       },
     },
     TuiDestroyService,
