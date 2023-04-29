@@ -1,0 +1,33 @@
+<button
+  tuiIconButton
+  type="button"
+  appearance="icon"
+  icon="icons::close"
+  size="xs"
+  class="close"
+  (click)="close()"
+></button>
+
+<div class="form">
+  <div class="form__step" [class.form__step--active]="currentStep === 1">
+    <app-step-one #stepOne [product]="product"></app-step-one>
+  </div>
+  <div class="form__step" [class.form__step--active]="currentStep === 2">
+    <app-step-two #stepTwo></app-step-two>
+  </div>
+  <div class="form__step" [class.form__step--active]="currentStep === 3">
+    <app-step-three *ngIf="stepOne.form.valid && stepTwo.form.valid"
+                    [data]="getReportData(product, stepOne.form.value, stepTwo.form.value)"></app-step-three>
+  </div>
+  <div class="form__actions">
+    <button *ngIf="currentStep > 1" type="button" size="m" tuiButton appearance="secondary" (click)=setStep(currentStep-1)>Назад</button>
+    <button *ngIf="currentStep < 3; else order"
+            type="button" size="m" tuiButton appearance="primary"
+            [disabled]="(stepOne.form.invalid && currentStep === 1)
+        || (stepTwo.form.invalid && currentStep === 2)" (click)=setStep(currentStep+1) style="margin-left: auto">Вперед</button>
+    <ng-template #order>
+      <button type="button" size="m" tuiButton appearance="primary" [disabled]="stepOne.form.invalid || stepTwo.form.invalid"
+              (click)="submit(stepOne.form.value, stepTwo.form.value)" [showLoader]="isSubmitting$ | async">Оформить заказ</button>
+    </ng-template>
+  </div>
+</div>

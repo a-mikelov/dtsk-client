@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+  <div class="form__field">
+    <app-client formControlName="client"></app-client>
+  </div>
+  <label class="form__field">
+    <span class="form__label">
+      Есть вопрос?
+      <sup *ngIf="note.errors && note.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-text-area formControlName="note"></tui-text-area>
+    <tui-error
+      formControlName="note"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+</form>

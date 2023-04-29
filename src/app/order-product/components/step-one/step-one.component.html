@@ -1,0 +1,51 @@
+<form [formGroup]="form" class="form">
+  <label class="form__field">
+    <span class="form__label">
+      Название товара
+      <sup *ngIf="product.errors && product.hasError('required')"
+      >*</sup
+      >
+    </span>
+    <tui-input
+      tuiTextfieldSize="m"
+      [readOnly]="true"
+      [formControl]="product"
+      [tuiTextfieldLabelOutside]="true"
+      [pseudoInvalid]="!!(product.invalid && form.touched)"
+    >
+      <input tuiTextfield type="text" />
+    </tui-input>
+    <tui-error
+      [formControl]="product"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+  <label [formGroup]="form" class="form__field">
+    <span class="form__label">Сколько литров?</span>
+    <tui-input-count
+      [formControl]="count"
+      [tuiTextfieldLabelOutside]="true"
+      tuiTextfieldSize="m"
+      [min]="1"
+      [max]="20"
+      [pseudoInvalid]="!!(form.touched && form.errors && form.errors['min'])"
+      class="w-36"
+    >
+      <input tuiTextfield />
+    </tui-input-count>
+    <tui-error
+      [formControl]="count"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </label>
+
+  <div class="form__field form__field--end">
+    <tui-checkbox-labeled
+      formControlName="setDetails"
+      appearance="accent"
+    >
+      <b>Указать детали по доствке</b>
+    </tui-checkbox-labeled>
+  </div>
+  <app-order-details formControlName="details"></app-order-details>
+</form>

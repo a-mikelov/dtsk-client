@@ -21,9 +21,6 @@
 
   </ng-template>
   <div class="product-card__button">
-    <button type="button" tuiButton appearance="primary">Оформить заказ</button>
-<!--    <el-button @click="$emit('onOrder', data.id)" type="primary" class="el-button&#45;&#45;large" plain-->
-<!--    >Оформить заказ-->
-<!--    </el-button>-->
+    <button type="button" tuiButton appearance="primary" (click)="order(product)">Оформить заказ</button>
   </div>
 </article>

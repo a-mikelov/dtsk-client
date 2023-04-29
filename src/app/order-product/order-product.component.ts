@@ -4,26 +4,20 @@ import {
   Inject,
   Injector,
 } from '@angular/core'
-import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {FormBuilder, FormGroup} from '@angular/forms'
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus'
-import {TuiDestroyService} from '@taiga-ui/cdk'
-import {filter, Observable, takeUntil, tap} from 'rxjs'
 import {TuiDialogContext, TuiDialogService} from '@taiga-ui/core'
-import {FormBuilder, FormGroup, Validators} from '@angular/forms'
+import {TuiDestroyService} from '@taiga-ui/cdk'
 import {Store} from '@ngrx/store'
+import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {filter, Observable, takeUntil, tap} from 'rxjs'
 import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
-import {ServiceInterface} from '../shared/services/service.interface'
-import {
-  backendErrorsSelector,
-  dataSelector,
-  isSubmittingSelector,
-} from './store/selectors'
-import {sendOrderAction} from './store/actions/send-order.action'
+import {ProductInterface} from '../products/types/product.interface'
 
 @Component({
-  selector: 'app-order-service',
-  templateUrl: './order-service.component.html',
-  styleUrls: ['./order-service.component.scss'],
+  selector: 'app-order-product',
+  templateUrl: './order-product.component.html',
+  styleUrls: ['./order-product.component.scss'],
   providers: [
     {
       provide: TUI_VALIDATION_ERRORS,
@@ -36,7 +30,7 @@ import {sendOrderAction} from './store/actions/send-order.action'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderServiceComponent {
+export class OrderProductComponent {
   isSubmitting$: Observable<boolean>
   backendErrors$: Observable<BackendErrorsInterface>
 
@@ -54,21 +48,21 @@ export class OrderServiceComponent {
   ) {}
 
   ngOnInit(): void {
-    this.isSubmitting$ = this.store.select(isSubmittingSelector)
+    console.log('ok')
+    // this.isSubmitting$ = this.store.select(isSubmittingSelector)
     // this.backendErrors$ = this.store.select(backendErrorsSelector)
-
-    this.store
-      .select(dataSelector)
-      .pipe(
-        filter(Boolean),
-        tap(() => this.close()),
-        takeUntil(this.destroy$)
-      )
-      .subscribe()
+    // this.store
+    //   .select(dataSelector)
+    //   .pipe(
+    //     filter(Boolean),
+    //     tap(() => this.close()),
+    //     takeUntil(this.destroy$)
+    //   )
+    //   .subscribe()
   }
 
-  get service(): ServiceInterface {
-    return this.context.data.service
+  get product(): ProductInterface {
+    return this.context.data.product
   }
 
   onClose() {
@@ -81,7 +75,9 @@ export class OrderServiceComponent {
     }
 
     const order = {...stepOne, ...stepTwo}
-    const {service, setDetails, client, note} = order
+    const {product, setDetails, client, note} = order
+
+    console.log('order', order)
 
     const details = order.details
       ? {
@@ -92,25 +88,25 @@ export class OrderServiceComponent {
         }
       : null
 
-    this.store.dispatch(
-      sendOrderAction({
-        order: {
-          service,
-          setDetails,
-          details,
-          client,
-          note,
-        },
-      })
-    )
+    // this.store.dispatch(
+    //   sendOrderAction({
+    //     order: {
+    //       product,
+    //       setDetails,
+    //       details,
+    //       client,
+    //       note,
+    //     },
+    //   })
+    // )
   }
 
   setStep(number: number) {
     this.currentStep = number
   }
 
-  getReportData(service: ServiceInterface, stepOne, stepTwo) {
-    return {data: service, form: {...stepOne, ...stepTwo}}
+  getReportData(product: ProductInterface, stepOne, stepTwo) {
+    return {data: product, form: {...stepOne, ...stepTwo}}
   }
 
   close() {
