@@ -32,7 +32,7 @@ export class StepOneComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
     service: '',
-    showDetails: false,
+    setDetails: false,
     details: [{value: null, disabled: true}],
   })
 
@@ -40,8 +40,8 @@ export class StepOneComponent implements OnInit {
     return this.form.get('service') as FormControl
   }
 
-  get showDetails() {
-    return this.form.get('showDetails') as FormControl
+  get setDetails() {
+    return this.form.get('setDetails') as FormControl
   }
 
   get details() {
@@ -56,10 +56,10 @@ export class StepOneComponent implements OnInit {
   ngOnInit(): void {
     this.service.setValue(this.serviceProps.attributes.title)
 
-    this.showDetails.valueChanges
+    this.setDetails.valueChanges
       .pipe(
-        tap((showDetails) => {
-          if (showDetails) {
+        tap((setDetails) => {
+          if (setDetails) {
             this.details.enable()
           } else {
             this.details.disable()
