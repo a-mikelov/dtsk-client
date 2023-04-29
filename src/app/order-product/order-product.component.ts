@@ -13,6 +13,12 @@ import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
 import {filter, Observable, takeUntil, tap} from 'rxjs'
 import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
 import {ProductInterface} from '../products/types/product.interface'
+import {
+  backendErrorsSelector,
+  isSubmittingSelector,
+  responseSelector,
+} from './store/selectors'
+import {sendOrderAction} from './store/actions/send-product.action'
 
 @Component({
   selector: 'app-order-product',
@@ -48,17 +54,16 @@ export class OrderProductComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log('ok')
-    // this.isSubmitting$ = this.store.select(isSubmittingSelector)
-    // this.backendErrors$ = this.store.select(backendErrorsSelector)
-    // this.store
-    //   .select(dataSelector)
-    //   .pipe(
-    //     filter(Boolean),
-    //     tap(() => this.close()),
-    //     takeUntil(this.destroy$)
-    //   )
-    //   .subscribe()
+    this.isSubmitting$ = this.store.select(isSubmittingSelector)
+    this.backendErrors$ = this.store.select(backendErrorsSelector)
+    this.store
+      .select(responseSelector)
+      .pipe(
+        filter(Boolean),
+        tap(() => this.close()),
+        takeUntil(this.destroy$)
+      )
+      .subscribe()
   }
 
   get product(): ProductInterface {
@@ -75,9 +80,7 @@ export class OrderProductComponent {
     }
 
     const order = {...stepOne, ...stepTwo}
-    const {name, setDetails, client, note} = order
-
-    console.log('order', order)
+    const {name, count, setDetails, client, note} = order
 
     const details = order.details
       ? {
@@ -88,17 +91,18 @@ export class OrderProductComponent {
         }
       : null
 
-    // this.store.dispatch(
-    //   sendOrderAction({
-    //     order: {
-    //       name,
-    //       setDetails,
-    //       details,
-    //       client,
-    //       note,
-    //     },
-    //   })
-    // )
+    this.store.dispatch(
+      sendOrderAction({
+        order: {
+          name,
+          count,
+          setDetails,
+          details,
+          client,
+          note,
+        },
+      })
+    )
   }
 
   setStep(number: number) {

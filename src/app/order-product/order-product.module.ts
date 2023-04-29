@@ -20,6 +20,12 @@ import {
 } from '@taiga-ui/core'
 import {ClientModule} from '../shared/components/client/client.module'
 import {OrderReportModule} from '../shared/components/order-report/order-report.module'
+import {ProductsService} from '../shared/services/products.service'
+import {StoreModule} from '@ngrx/store'
+import {ORDER_PRODUCT_FEATURE} from './store/state'
+import {reducers} from './store/reducers'
+import {EffectsModule} from '@ngrx/effects'
+import {SendOrderEffect} from './store/effects/send-order.effect'
 
 @NgModule({
   declarations: [
@@ -42,6 +48,9 @@ import {OrderReportModule} from '../shared/components/order-report/order-report.
     TuiTextAreaModule,
     OrderReportModule,
     TuiButtonModule,
+    StoreModule.forFeature(ORDER_PRODUCT_FEATURE, reducers),
+    EffectsModule.forFeature([SendOrderEffect]),
   ],
+  providers: [ProductsService],
 })
 export class OrderProductModule {}

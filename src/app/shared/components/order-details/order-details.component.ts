@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, Inject, Self} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  Self,
+} from '@angular/core'
 import {TUI_VALIDATION_ERRORS, tuiCreateTimePeriods} from '@taiga-ui/kit'
 import {
   FormBuilder,
@@ -38,6 +44,8 @@ import {takeUntil} from 'rxjs'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderDetailsComponent {
+  @Input('type') typeProps: string
+
   onTouched = () => {}
 
   minTimePeriod = tuiCreateTimePeriods()

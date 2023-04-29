@@ -11,4 +11,8 @@ export class ProductsService {
   getProducts() {
     return this.http.get(this.url)
   }
+
+  sendOrder(order) {
+    return this.http.post(`${environment.apiUrl}/product-orders`, {data: order})
+  }
 }

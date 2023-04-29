@@ -1,7 +1,7 @@
 <div [formGroup]="form" class="form__group">
   <label class="form__field">
         <span class="form__label">
-          Дата начала работ
+          {{typeProps === 'service' ? 'Дата начала работы' : 'Дата доставки'}}
           <sup *ngIf="date.errors && date.hasError('required')"
           >*</sup
           >
@@ -21,7 +21,7 @@
   </label>
   <div class="form__row">
        <span class="form__label">
-          Время начала работ
+         {{typeProps === 'service' ? 'Время начала работы' : 'Период доставки'}}
           <sup *ngIf="minTime.errors && minTime.hasError('required')
            || maxTime.errors && maxTime.hasError('required')"
           >*</sup
@@ -58,7 +58,7 @@
   </div>
   <label class="form__field">
     <span class="form__label">
-      Адрес проведения работы
+      {{typeProps === 'service' ? 'Адрес проведения работы' : 'Адрес доставки'}}
       <sup *ngIf="address.errors && address.hasError('required')"
       >*</sup>
     </span>
