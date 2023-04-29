@@ -1,1 +1,26 @@
-<p>mobile-nav works!</p>
+<div class="mobile-nav">
+  <button
+    tuiIconButton
+    type="button"
+    appearance="icon"
+    icon="icons::close"
+    size="xs"
+    class="mobile-nav__close"
+    (click)="close()"
+  ></button>
+
+  <ul class="mobile-nav__list">
+    <li class="mobile-nav__item">
+      <a href="#services" tuiLink class="link">Услуги</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#products" tuiLink class="link">Нефтепродукты</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#support" tuiLink class="link">Обратная связь</a>
+    </li>
+    <li class="mobile-nav__item">
+      <a href="#contacts" tuiLink class="link">Контакты</a>
+    </li>
+  </ul>
+</div>
