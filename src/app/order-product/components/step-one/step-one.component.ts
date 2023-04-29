@@ -6,10 +6,13 @@ import {
   Self,
 } from '@angular/core'
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
-import {TuiDestroyService} from '@taiga-ui/cdk'
+import {TuiDestroyService, TuiStringHandler} from '@taiga-ui/cdk'
 import {takeUntil, tap} from 'rxjs'
-import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
+import {TUI_VALIDATION_ERRORS, tuiItemsHandlersProvider} from '@taiga-ui/kit'
 import {ProductInterface} from '../../../products/types/product.interface'
+
+const STRINGIFY_PRODUCTS: TuiStringHandler<any> = (item: any) =>
+  item ? `${item.name}` : ``
 
 @Component({
   selector: 'app-step-one',
@@ -23,21 +26,24 @@ import {ProductInterface} from '../../../products/types/product.interface'
       },
     },
     TuiDestroyService,
+    tuiItemsHandlersProvider({stringify: STRINGIFY_PRODUCTS}),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepOneComponent {
   @Input('product') productProps: ProductInterface
 
+  products = []
+
   form: FormGroup = this.fb.group({
-    name: '',
+    item: '',
     count: '',
     setDetails: false,
     details: [{value: null, disabled: true}],
   })
 
-  get name() {
-    return this.form.get('name') as FormControl
+  get item() {
+    return this.form.get('item') as FormControl
   }
 
   get count() {
@@ -58,7 +64,13 @@ export class StepOneComponent {
   ) {}
 
   ngOnInit(): void {
-    this.name.setValue(this.productProps.attributes.name)
+    if (Array.isArray(this.productProps.attributes)) {
+      this.products = this.productProps.attributes
+    } else {
+      this.products = [this.productProps.attributes]
+    }
+
+    this.item.setValue(this.products[0])
 
     this.setDetails.valueChanges
       .pipe(

@@ -80,7 +80,7 @@ export class OrderProductComponent {
     }
 
     const order = {...stepOne, ...stepTwo}
-    const {name, count, setDetails, client, note} = order
+    const {item, count, setDetails, client, note} = order
 
     const details = order.details
       ? {
@@ -94,7 +94,7 @@ export class OrderProductComponent {
     this.store.dispatch(
       sendOrderAction({
         order: {
-          name,
+          name: item.name,
           count,
           setDetails,
           details,
@@ -109,8 +109,8 @@ export class OrderProductComponent {
     this.currentStep = number
   }
 
-  getReportData(product: ProductInterface, stepOne, stepTwo) {
-    return {data: product, form: {...stepOne, ...stepTwo}}
+  getReportData(stepOne, stepTwo) {
+    return {...stepOne, ...stepTwo}
   }
 
   close() {

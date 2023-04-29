@@ -7,10 +7,13 @@ import {
   Self,
 } from '@angular/core'
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
-import {TUI_VALIDATION_ERRORS} from '@taiga-ui/kit'
-import {TuiDestroyService} from '@taiga-ui/cdk'
+import {TUI_VALIDATION_ERRORS, tuiItemsHandlersProvider} from '@taiga-ui/kit'
+import {TuiDestroyService, TuiStringHandler} from '@taiga-ui/cdk'
 import {takeUntil, tap} from 'rxjs'
 import {ServiceInterface} from '../../../shared/services/service.interface'
+
+const STRINGIFY_SERVICES: TuiStringHandler<any> = (item: any) =>
+  item ? `${item.name}` : ``
 
 @Component({
   selector: 'app-step-one',
@@ -24,20 +27,23 @@ import {ServiceInterface} from '../../../shared/services/service.interface'
       },
     },
     TuiDestroyService,
+    tuiItemsHandlersProvider({stringify: STRINGIFY_SERVICES}),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepOneComponent implements OnInit {
   @Input('service') serviceProps: ServiceInterface
 
+  services = []
+
   form: FormGroup = this.fb.group({
-    name: '',
+    item: '',
     setDetails: false,
     details: [{value: null, disabled: true}],
   })
 
-  get name() {
-    return this.form.get('name') as FormControl
+  get item() {
+    return this.form.get('item') as FormControl
   }
 
   get setDetails() {
@@ -54,7 +60,13 @@ export class StepOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.name.setValue(this.serviceProps.attributes.name)
+    if (Array.isArray(this.serviceProps.attributes)) {
+      this.services = this.serviceProps.attributes
+    } else {
+      this.services = [this.serviceProps.attributes]
+    }
+
+    this.item.setValue(this.services[0])
 
     this.setDetails.valueChanges
       .pipe(

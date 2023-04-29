@@ -1,22 +1,25 @@
 <form [formGroup]="form" class="form">
   <label class="form__field">
     <span class="form__label">
-      Название товара
-      <sup *ngIf="name.errors && name.hasError('required')"
+      Товар
+      <sup *ngIf="item.errors && item.hasError('required')"
       >*</sup
       >
     </span>
-    <tui-input
+    <tui-combo-box
       tuiTextfieldSize="m"
-      [readOnly]="true"
-      [formControl]="name"
+      [formControl]="item"
       [tuiTextfieldLabelOutside]="true"
-      [pseudoInvalid]="!!(name.invalid && form.touched)"
+      [tuiTextfieldCleaner]="true"
+      [readOnly]="products.length < 2"
     >
-      <input tuiTextfield type="text" />
-    </tui-input>
+      <tui-data-list-wrapper
+        *tuiDataList
+        [items]="products"
+      ></tui-data-list-wrapper>
+    </tui-combo-box>
     <tui-error
-      [formControl]="name"
+      [formControl]="item"
       [error]="[] | tuiFieldError | async"
     ></tui-error>
   </label>

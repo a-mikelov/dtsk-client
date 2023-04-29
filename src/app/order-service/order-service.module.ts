@@ -8,6 +8,8 @@ import {
 } from '@taiga-ui/core'
 import {
   TuiCheckboxLabeledModule,
+  TuiComboBoxModule,
+  TuiDataListWrapperModule,
   TuiFieldErrorPipeModule,
   TuiInputModule,
   TuiInputPasswordModule,
@@ -50,6 +52,8 @@ import {OrderReportModule} from '../shared/components/order-report/order-report.
     StoreModule.forFeature(ORDER_SERVICE_FEATURE, reducers),
     EffectsModule.forFeature([SendOrderEffect]),
     OrderReportModule,
+    TuiComboBoxModule,
+    TuiDataListWrapperModule,
   ],
   providers: [ServicesService],
 })

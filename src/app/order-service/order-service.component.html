@@ -17,7 +17,7 @@
   </div>
   <div class="form__step" [class.form__step--active]="currentStep === 3">
     <app-step-three *ngIf="stepOne.form.valid && stepTwo.form.valid"
-                    [data]="getReportData(service, stepOne.form.value, stepTwo.form.value)"></app-step-three>
+                    [data]="getReportData(stepOne.form.value, stepTwo.form.value)"></app-step-three>
   </div>
   <div class="form__actions">
     <button *ngIf="currentStep > 1" type="button" size="m" tuiButton appearance="secondary" (click)=setStep(currentStep-1)>Назад</button>

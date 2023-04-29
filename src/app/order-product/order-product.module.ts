@@ -6,6 +6,8 @@ import {StepTwoComponent} from './components/step-two/step-two.component'
 import {StepThreeComponent} from './components/step-three/step-three.component'
 import {
   TuiCheckboxLabeledModule,
+  TuiComboBoxModule,
+  TuiDataListWrapperModule,
   TuiFieldErrorPipeModule,
   TuiInputCountModule,
   TuiInputModule,
@@ -50,6 +52,8 @@ import {SendOrderEffect} from './store/effects/send-order.effect'
     TuiButtonModule,
     StoreModule.forFeature(ORDER_PRODUCT_FEATURE, reducers),
     EffectsModule.forFeature([SendOrderEffect]),
+    TuiDataListWrapperModule,
+    TuiComboBoxModule,
   ],
   providers: [ProductsService],
 })
