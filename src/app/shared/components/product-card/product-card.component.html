@@ -6,13 +6,13 @@
   </div>
 
   <ng-container *ngIf="!product.attributes.length; else list">
-    <h3 class="product-card__title">{{product.attributes.title}}</h3>
+    <h3 class="product-card__title">{{product.attributes.name}}</h3>
     <b class="product-card__price"> {{ product.attributes.price }} {{ 'RUB' | tuiCurrency }}</b>
   </ng-container>
   <ng-template #list>
     <dl class="product-card__list">
       <ng-container *ngFor="let product of product.attributes">
-        <dt>{{ product.title }}</dt>
+        <dt>{{ product.name }}</dt>
         <dd>
           <b>{{ product.price }} {{ 'RUB' | tuiCurrency }}</b>
         </dd>

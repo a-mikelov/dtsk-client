@@ -11,7 +11,7 @@
           <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
         </div>
         <div class="hero__content container">
-          <h2>{{service.attributes.title}}</h2>
+          <h2>{{service.attributes.name}}</h2>
           <p>{{service.attributes.description}}</p>
           <div class="hero__button">
             <button type="button" tuiButton appearance="primary" (click)="order(service)">Оформить заявку</button>

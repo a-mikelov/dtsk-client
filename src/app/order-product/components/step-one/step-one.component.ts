@@ -58,7 +58,7 @@ export class StepOneComponent {
   ) {}
 
   ngOnInit(): void {
-    this.name.setValue(this.productProps.attributes.title)
+    this.name.setValue(this.productProps.attributes.name)
 
     this.setDetails.valueChanges
       .pipe(

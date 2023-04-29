@@ -1,5 +1,5 @@
 interface AttributesInterface {
-  title: string
+  name: string
   description: string
   price: string
   type: string

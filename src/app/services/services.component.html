@@ -11,7 +11,7 @@
           :key="service"
           (click)="setContent(service)"
         >
-          <span>{{ service.attributes.title }}</span>
+          <span>{{ service.attributes.name }}</span>
         </li>
       </ul>
       <small>* Безналичный расчет с НДС, без НДС</small>
@@ -24,7 +24,7 @@
       </button>
       <div *ngFor="let service of services$ | async" class="services__content">
         <div v-if="service.id === state.currentContentId">
-          <h4 class="title title--lvl-4">{{ service.attributes.title }}</h4>
+          <h4 class="title title--lvl-4">{{ service.attributes.name }}</h4>
           <div v-html="service.description"></div>
         </div>
       </div>

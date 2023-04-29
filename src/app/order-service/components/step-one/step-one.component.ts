@@ -54,7 +54,7 @@ export class StepOneComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.name.setValue(this.serviceProps.attributes.title)
+    this.name.setValue(this.serviceProps.attributes.name)
 
     this.setDetails.valueChanges
       .pipe(
