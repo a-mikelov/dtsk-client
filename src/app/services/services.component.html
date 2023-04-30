@@ -17,15 +17,14 @@
       <small>* Безналичный расчет с НДС, без НДС</small>
     </div>
     <div class="services__main" [class.active]="currentService">
-      <button type="button" class="services__back">
-        <!--      <BaseIcon name="arrow-left" width="48px" height="38px" />-->
+      <button type="button" class="services__back" (click)="setContent(null)">
         <tui-svg src="icons::arrow-left"></tui-svg>
         <span>Назад</span>
       </button>
       <div *ngFor="let service of services$ | async" class="services__content">
-        <div v-if="service.id === state.currentContentId">
+        <div *ngIf="service === currentService">
           <h4 class="title title--lvl-4">{{ service.attributes.name }}</h4>
-          <div v-html="service.description"></div>
+          <div>{{service.attributes.description}}</div>
         </div>
       </div>
       <div class="services__button">
