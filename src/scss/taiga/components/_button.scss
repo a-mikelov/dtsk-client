@@ -5,3 +5,9 @@ button {
     max-width: 15rem;
   }
 }
+
+.btn {
+  &--width-full {
+    width: 100%;
+  }
+}

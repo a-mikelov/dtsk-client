@@ -16,6 +16,7 @@
   }
 
   &__title {
+    margin-bottom: 20px;
     font-size: 20px;
     line-height: 30px;
     text-align: center;
@@ -27,14 +28,37 @@
   }
 
   &__list {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    font-size: 20px;
-    line-height: 30px;
+    width: 100%;
+    max-width: 250px;
+
+    li {
+      margin-bottom: 15px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas: 'key line value';
+      font-size: 16px;
+      line-height: 20px;
+
+      &::before {
+        content: '';
+        grid-area: line;
+        border-bottom: 1px dotted black;
+      }
+    }
+
+    span {
+      grid-area: key;
+    }
+
+    b {
+      grid-area: value;
+      font-weight: 700;
+    }
   }
 
   &__button {
     margin-top: auto;
+    padding-top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;

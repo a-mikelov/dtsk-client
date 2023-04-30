@@ -10,17 +10,16 @@
     <b class="product-card__price"> {{ product.attributes.price }} {{ 'RUB' | tuiCurrency }}</b>
   </ng-container>
   <ng-template #list>
-    <dl class="product-card__list">
-      <ng-container *ngFor="let product of product.attributes">
-        <dt>{{ product.name }}</dt>
-        <dd>
-          <b>{{ product.price }} {{ 'RUB' | tuiCurrency }}</b>
-        </dd>
-      </ng-container>
-    </dl>
+    <ul class="product-card__list">
+      <li *ngFor="let product of product.attributes">
+        <span>{{ product.name }}</span>
+        <b>{{ product.price }} {{ 'RUB' | tuiCurrency }}</b>
+      </li>
+    </ul>
 
   </ng-template>
   <div class="product-card__button">
-    <button type="button" tuiButton appearance="primary" (click)="order(product)">Оформить заказ</button>
+    <button type="button" tuiButton appearance="primary"
+        (click)="order(product)" class="btn btn--width-full">Оформить заказ</button>
   </div>
 </article>
