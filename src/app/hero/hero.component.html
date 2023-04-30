@@ -1,11 +1,13 @@
 <tui-loader [showLoader]="isLoading$ | async">
-  <swiper-container
-    #swiperRef
-    init="false"
+  <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="0"
+    [navigation]="true"
+    [pagination]="{ clickable: true }"
     class="hero"
     [class.hero--loaded]="services$ | async"
   >
-    <swiper-slide *ngFor="let service of services$ | async">
+    <ng-template swiperSlide *ngFor="let service of services$ | async">
       <div class="hero__wrapper">
         <div class="hero__image">
           <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
@@ -20,6 +22,6 @@
           </div>
         </div>
       </div>
-    </swiper-slide>
-  </swiper-container>
+    </ng-template>
+  </swiper>
 </tui-loader>

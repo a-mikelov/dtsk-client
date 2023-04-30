@@ -9,6 +9,7 @@ import {GetProductsEffect} from './store/effects/get-products.effect'
 import {ProductsService} from '../shared/services/products.service'
 import {TuiLoaderModule, TuiSvgModule} from '@taiga-ui/core'
 import {ProductCardModule} from '../shared/components/product-card/product-card.module'
+import {SwiperModule} from 'swiper/angular'
 
 @NgModule({
   declarations: [ProductsComponent],
@@ -19,6 +20,7 @@ import {ProductCardModule} from '../shared/components/product-card/product-card.
     TuiLoaderModule,
     TuiSvgModule,
     ProductCardModule,
+    SwiperModule,
   ],
   exports: [ProductsComponent],
   providers: [ProductsService],

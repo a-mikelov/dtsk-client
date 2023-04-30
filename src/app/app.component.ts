@@ -1,5 +1,4 @@
 import {Component, HostListener, OnInit} from '@angular/core'
-import {register} from 'swiper/element/bundle'
 import {changeScreenSizeAction} from './store/global/actions/change-screen-size.action'
 import {Store} from '@ngrx/store'
 
@@ -11,9 +10,7 @@ import {Store} from '@ngrx/store'
 export class AppComponent implements OnInit {
   title = 'dtsk-client'
 
-  constructor(private store: Store) {
-    register()
-  }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.changeScreenSize()

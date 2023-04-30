@@ -8,6 +8,7 @@ import {EffectsModule} from '@ngrx/effects'
 import {GetServicesEffect} from '../store/services/effects/get-services.effect'
 import {reducers} from '../store/services/reducers'
 import {TuiButtonModule, TuiLoaderModule, TuiSvgModule} from '@taiga-ui/core'
+import {SwiperModule} from 'swiper/angular'
 
 @NgModule({
   declarations: [HeroComponent],
@@ -18,6 +19,7 @@ import {TuiButtonModule, TuiLoaderModule, TuiSvgModule} from '@taiga-ui/core'
     TuiLoaderModule,
     TuiButtonModule,
     TuiSvgModule,
+    SwiperModule,
   ],
   exports: [HeroComponent],
   providers: [ServicesService],

@@ -17,6 +17,9 @@ import {
   isLoadingSelector,
   productsSelector,
 } from './store/selectors'
+import SwiperCore, {Navigation, Pagination} from 'swiper'
+
+SwiperCore.use([Navigation, Pagination])
 
 @Component({
   selector: 'app-products',
@@ -25,13 +28,27 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit {
-  @ViewChild('swiperRef', {read: ElementRef, static: false})
-  protected _swiperRef: ElementRef | undefined
-  swiper?: Swiper
-
   isLoading$: Observable<boolean>
   products$: Observable<ProductInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
+
+  config: SwiperOptions = {
+    breakpoints: {
+      360: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      600: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      920: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+    },
+    pagination: {clickable: true},
+  }
 
   constructor(private store: Store) {}
 
@@ -65,50 +82,9 @@ export class ProductsComponent implements OnInit {
           }
           return acc
         }, [])
-      }),
-      tap((arr) => {
-        console.log('data', arr)
-
-        this._initSwiper()
       })
     )
 
     this.store.dispatch(getProductsAction())
-  }
-
-  private _initSwiper() {
-    const options: SwiperOptions = {
-      pagination: {clickable: true},
-      slidesPerView: 1,
-      breakpoints: {
-        360: {
-          slidesPerView: 1,
-          spaceBetween: 50,
-        },
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 40,
-        },
-        1160: {
-          slidesPerView: 3,
-          spaceBetween: 40,
-        },
-      },
-    }
-
-    const swiperEl = this._swiperRef.nativeElement
-    Object.assign(swiperEl, options)
-
-    swiperEl.initialize()
-
-    if (this.swiper) this.swiper.currentBreakpoint = false // Breakpoint fixes
-    this.swiper = this._swiperRef.nativeElement.swiper
-
-    this.swiper.off('slideChange') // Avoid multiple subscription, in case you wish to call the `_initSwiper()` multiple time
-
-    this.swiper.on('slideChange', () => {
-      // Any change subscription you wish
-      // this.infinitLoad?.triggerOnScroll()
-    })
   }
 }

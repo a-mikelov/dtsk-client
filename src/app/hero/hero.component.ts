@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -10,7 +9,6 @@ import {
 } from '@angular/core'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import Swiper, {SwiperOptions} from 'swiper'
-import {ServicesService} from '../shared/services/services.service'
 import {
   concatAll,
   delay,
@@ -35,6 +33,9 @@ import {ServiceInterface} from '../shared/services/service.interface'
 import {environment} from '../../environments/environment'
 import {OrderServiceComponent} from '../order-service/order-service.component'
 import {TuiDialogService} from '@taiga-ui/core'
+import SwiperCore, {Navigation, Pagination} from 'swiper'
+
+SwiperCore.use([Navigation, Pagination])
 
 @Component({
   selector: 'app-hero',
@@ -43,10 +44,6 @@ import {TuiDialogService} from '@taiga-ui/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements OnInit {
-  @ViewChild('swiperRef', {read: ElementRef, static: false})
-  protected _swiperRef: ElementRef | undefined
-  swiper?: Swiper
-
   isLoading$: Observable<boolean>
   services$: Observable<ServiceInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
@@ -74,36 +71,10 @@ export class HeroComponent implements OnInit {
           }),
           toArray()
         )
-      }),
-      tap((services) => {
-        console.log('services', services)
-        this._initSwiper()
       })
     )
 
     this.store.dispatch(getServicesAction())
-  }
-
-  private _initSwiper() {
-    const options: SwiperOptions = {
-      pagination: {clickable: true},
-      slidesPerView: 1,
-    }
-
-    const swiperEl = this._swiperRef.nativeElement
-    Object.assign(swiperEl, options)
-
-    swiperEl.initialize()
-
-    if (this.swiper) this.swiper.currentBreakpoint = false // Breakpoint fixes
-    this.swiper = this._swiperRef.nativeElement.swiper
-
-    this.swiper.off('slideChange') // Avoid multiple subscription, in case you wish to call the `_initSwiper()` multiple time
-
-    this.swiper.on('slideChange', () => {
-      // Any change subscription you wish
-      // this.infinitLoad?.triggerOnScroll()
-    })
   }
 
   setImageUrl(src) {
