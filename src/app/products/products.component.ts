@@ -34,7 +34,7 @@ export class ProductsComponent implements OnInit {
 
   config: SwiperOptions = {
     breakpoints: {
-      360: {
+      320: {
         slidesPerView: 1,
         spaceBetween: 30,
       },
