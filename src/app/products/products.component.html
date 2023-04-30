@@ -1,6 +1,7 @@
 <tui-loader [showLoader]="isLoading$ | async">
   <swiper
     [config]="config"
+    class="swiper"
   >
     <ng-template swiperSlide *ngFor="let product of products$ | async">
       <app-product-card [product]="product"></app-product-card>

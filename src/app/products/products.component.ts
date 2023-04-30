@@ -36,11 +36,11 @@ export class ProductsComponent implements OnInit {
     breakpoints: {
       360: {
         slidesPerView: 1,
-        spaceBetween: 20,
+        spaceBetween: 30,
       },
       600: {
         slidesPerView: 2,
-        spaceBetween: 20,
+        spaceBetween: 30,
       },
       920: {
         slidesPerView: 3,
