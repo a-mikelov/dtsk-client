@@ -42,7 +42,7 @@ export class SendOrderEffect {
               new PolymorpheusComponent(AlertComponent, this.injector),
               {
                 data: {
-                  heading: 'Заказ сформирован',
+                  heading: 'Ваш заказ получен!',
                   success: true,
                 },
                 dismissible: true,
@@ -67,7 +67,7 @@ export class SendOrderEffect {
               new PolymorpheusComponent(AlertComponent, this.injector),
               {
                 data: {
-                  heading: 'Заказ не сформирован',
+                  heading: 'Ой, что-то не так...',
                   failure: true,
                 },
                 dismissible: true,

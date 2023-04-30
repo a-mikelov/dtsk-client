@@ -17,7 +17,7 @@
   }
 
   &__title {
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     font-family: var(--font-family);
     font-size: 22px;
     line-height: 26px;
@@ -27,5 +27,18 @@
 
   &__logo {
     margin: 8px 0 12px 0;
+
+    tui-svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    &--success {
+      color: var(--color-text-success);
+    }
+
+    &--failure {
+      color: var(--color-text-invalid);
+    }
   }
 }
