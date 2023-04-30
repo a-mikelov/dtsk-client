@@ -1,6 +1,6 @@
 <tui-loader [showLoader]="isLoading$ | async">
   <div class="services" [class.services--loaded]="services$ | async">
-    <div class="services__nav">
+    <div class="services__nav" [class.services__nav--hidden]="currentService">
       <h3 class="title title--lvl-3">Наши <span>услуги</span></h3>
       <ul class="services__list">
         <li

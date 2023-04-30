@@ -57,6 +57,15 @@ export class ServicesComponent implements OnInit {
       map(({data}: GetServicesResponseInterface) => {
         return data
       }),
+      switchMap((services: ServiceInterface[]) => {
+        return of(services).pipe(
+          concatAll(),
+          filter((service: ServiceInterface) => {
+            return !service.attributes.banner
+          }),
+          toArray()
+        )
+      }),
       tap((services: ServiceInterface[]) => {
         this.currentService = services[0]
       })
