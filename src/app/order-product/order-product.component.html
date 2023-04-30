@@ -27,7 +27,7 @@
         || (stepTwo.form.invalid && currentStep === 2)" (click)=setStep(currentStep+1) style="margin-left: auto">Вперед</button>
     <ng-template #order>
       <button type="button" size="m" tuiButton appearance="primary" [disabled]="stepOne.form.invalid || stepTwo.form.invalid"
-              (click)="submit(stepOne.form.value, stepTwo.form.value)" [showLoader]="isSubmitting$ | async">Оформить заказ</button>
+              (click)="submit(stepOne.form.value, stepTwo.form.value)" [showLoader]="isSubmitting$ | async">Оформить заявку</button>
     </ng-template>
   </div>
 </div>
