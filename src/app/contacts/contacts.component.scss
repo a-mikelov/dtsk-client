@@ -19,6 +19,10 @@
       column-gap: 25px;
     }
 
+    //@include mq(lg) {
+    //  padding-left: 74px;
+    //}
+
     @include mq(xl) {
       padding-top: 0;
       padding-bottom: 0;
