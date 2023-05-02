@@ -13,7 +13,10 @@
           <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
         </div>
         <div class="hero__content container"
-             [class.hero__content--right]="service.attributes.slug === 'optovo-roznichnaya-realizacziiya-nefteproduktov'"
+             [class.hero__content--right]="service.attributes.contentPosition === 'right'"
+             [class.hero__content--justify-items-start]="service.attributes.justifyItems === 'left'"
+             [class.hero__content--justify-items-center]="service.attributes.justifyItems === 'center'"
+             [class.hero__content--justify-items-end]="service.attributes.justifyItems === 'right'"
         >
           <h2 class="hero__title">{{service.attributes.name}}</h2>
           <p class="hero__text">{{service.attributes.description}}</p>

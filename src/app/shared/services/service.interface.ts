@@ -7,6 +7,8 @@ export interface ServicesAttributesInterface {
   banner: boolean
   slug: string
   image: ImageInterface | null
+  contentPosition: string
+  justifyItems: string
 }
 
 export interface ServiceInterface {
