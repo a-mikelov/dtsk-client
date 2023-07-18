@@ -1,1 +1,31 @@
 @use '../abstracts' as *;
+
+.swiper-button-prev,
+.swiper-button-next {
+  --swiper-navigation-size: 60px;
+
+  display: none;
+
+  @include mq(xl) {
+    display: flex;
+  }
+
+  &:after {
+    background-repeat: no-repeat;
+    width: var(--swiper-navigation-size);
+    height: var(--swiper-navigation-size);
+    color: var(--color-bg-primary);
+  }
+}
+
+.swiper-button-prev {
+  &:after {
+    background-image: url("/assets/icons/chevron-left.svg");
+  }
+}
+
+.swiper-button-next {
+  &:after {
+    background-image: url("/assets/icons/chevron-right.svg");
+  }
+}

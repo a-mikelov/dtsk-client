@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
-import Swiper, {SwiperOptions} from 'swiper'
+import Swiper, {Autoplay, SwiperOptions} from 'swiper'
 import {
   concatAll,
   delay,
@@ -35,7 +35,7 @@ import {OrderServiceComponent} from '../order-service/order-service.component'
 import {TuiDialogService} from '@taiga-ui/core'
 import SwiperCore, {Navigation, Pagination} from 'swiper'
 
-SwiperCore.use([Navigation, Pagination])
+SwiperCore.use([Navigation, Pagination, Autoplay])
 
 @Component({
   selector: 'app-hero',
