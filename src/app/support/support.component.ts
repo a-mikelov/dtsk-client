@@ -10,8 +10,8 @@ import {MapPointInterface} from '../shared/types/map-point.interface'
 export class SupportComponent {
   public mapPoints: MapPointInterface[] = [
     {
-      geo_x: 48.508918,
-      geo_y: 135.16977,
+      geo_x: 48.4191884,
+      geo_y: 135.1052368,
     },
   ]
 }
