@@ -85,8 +85,10 @@ export class OrderProductComponent {
     const details = order.details
       ? {
           date: order.details.date,
-          minTime: order.details.minTime,
-          maxTime: order.details.maxTime,
+          workTime: {
+            minTime: order.details.minTime.toString(),
+            maxTime: order.details.maxTime.toString(),
+          },
           address: order.details.address,
         }
       : null
