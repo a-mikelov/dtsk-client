@@ -1,31 +1,35 @@
-<tui-loader [showLoader]="isLoading$ | async">
-  <swiper
-    [slidesPerView]="1"
-    [spaceBetween]="0"
-    [autoplay]="{delay: 2500}"
-    [navigation]="true"
-    [pagination]="{ clickable: true }"
-    class="hero"
-    [class.hero--loaded]="services$ | async"
-  >
-    <ng-template swiperSlide *ngFor="let service of services$ | async">
-      <div class="hero__wrapper">
-        <div class="hero__image">
-          <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
-        </div>
-        <div class="hero__content container"
-             [class.hero__content--right]="service.attributes.contentPosition === 'Right'"
-             [class.hero__content--justify-items-start]="service.attributes.justifyItems === 'Left'"
-             [class.hero__content--justify-items-center]="service.attributes.justifyItems === 'Center'"
-             [class.hero__content--justify-items-end]="service.attributes.justifyItems === 'Right'"
-        >
-          <h2 class="hero__title">{{service.attributes.name}}</h2>
-          <p class="hero__text">{{service.attributes.description}}</p>
-          <div class="hero__button">
-            <button type="button" tuiButton appearance="primary" (click)="order(service)">Оформить заявку</button>
+<ng-container *tuiLet="services$ | async as services">
+  <tui-loader [showLoader]="isLoading$ | async">
+    <swiper
+      *ngIf="services.length"
+      [slidesPerView]="1"
+      [spaceBetween]="0"
+      [autoplay]="{delay: 2500}"
+      [navigation]="true"
+      [pagination]="{ clickable: true }"
+      [loop]="true"
+      class="hero"
+      [class.hero--loaded]="services$ | async"
+    >
+      <ng-template swiperSlide *ngFor="let service of services">
+        <div class="hero__wrapper">
+          <div class="hero__image">
+            <img *ngIf="service.attributes.image.data as image" [src]="setImageUrl(image.attributes.formats['large'].url)" alt="" />
+          </div>
+          <div class="hero__content container"
+               [class.hero__content--right]="service.attributes.contentPosition === 'Right'"
+               [class.hero__content--justify-items-start]="service.attributes.justifyItems === 'Left'"
+               [class.hero__content--justify-items-center]="service.attributes.justifyItems === 'Center'"
+               [class.hero__content--justify-items-end]="service.attributes.justifyItems === 'Right'"
+          >
+            <h2 class="hero__title">{{service.attributes.name}}</h2>
+            <p class="hero__text">{{service.attributes.description}}</p>
+            <div class="hero__button">
+              <button type="button" tuiButton appearance="primary" (click)="order(service)">Оформить заявку</button>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-template>
-  </swiper>
-</tui-loader>
+      </ng-template>
+    </swiper>
+  </tui-loader>
+</ng-container>
