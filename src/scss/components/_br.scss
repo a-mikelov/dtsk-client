@@ -1,0 +1,77 @@
+@use '../abstracts' as *;
+
+.br {
+  display: none;
+
+  &--show-xs {
+    @include mq(xs) {
+      display: block;
+    }
+  }
+
+  //&--show-xxs {
+  //  @media (min-width: 414px) {
+  //    display: block;
+  //  }
+  //}
+
+  &--show-sm {
+    @include mq(sm) {
+      display: block;
+    }
+  }
+
+  &--hide-sm {
+    @include mq(sm) {
+      display: none;
+    }
+  }
+
+  &--show-md {
+    @include mq(md) {
+      display: block;
+    }
+  }
+
+  &--hide-md {
+    @include mq(md) {
+      display: none;
+    }
+  }
+
+  &--show-lg {
+    @include mq(lg) {
+      display: block;
+    }
+  }
+
+  &--hide-lg {
+    @include mq(lg) {
+      display: none;
+    }
+  }
+
+  &--show-xl {
+    @include mq(xl) {
+      display: block;
+    }
+  }
+
+  &--hide-xl {
+    @include mq(xl) {
+      display: none;
+    }
+  }
+
+  &--show-xxl {
+    @include mq(xxl) {
+      display: block;
+    }
+  }
+
+  &--hide-xxl {
+    @include mq(xxl) {
+      display: none;
+    }
+  }
+}
