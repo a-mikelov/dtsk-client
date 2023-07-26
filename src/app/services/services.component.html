@@ -24,7 +24,7 @@
       <div *ngFor="let service of services$ | async" class="services__content">
         <div *ngIf="service === currentService">
           <h4 class="title title--lvl-4">{{ service.attributes.name }}</h4>
-          <div [innerHTML]="service.attributes.description"></div>
+          <div [innerHTML]="service.attributes.description" class="admin-text"></div>
         </div>
       </div>
       <div class="services__button">
