@@ -36,6 +36,7 @@ import {reducers} from './store/reducers'
 import {OrderServiceModule} from './order-service/order-service.module'
 import {AlertModule} from './shared/components/alert/alert.module'
 import {OrderProductModule} from './order-product/order-product.module'
+import {AdvantagesModule} from './advantages/advantages.module'
 
 const mapConfig: YaConfig = {
   apikey: 'be640658-9c20-46d8-ab54-555efd7fc3ee',
@@ -75,6 +76,7 @@ registerLocaleData(ruLocale, 'ru')
     PageFooterModule,
     PageHeaderModule,
     TuiButtonModule,
+    AdvantagesModule,
   ],
   providers: [
     {

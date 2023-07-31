@@ -1,0 +1,43 @@
+@use '../../scss/abstracts' as *;
+
+.advantages {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+
+  @include mq(sm) {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  @include mq(md) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @include mq(xl) {
+    grid-template-columns: repeat(4, auto);
+    //justify-content: center;
+  }
+
+  &__item {
+    text-align: center;
+
+    tui-svg {
+      margin-bottom: 16px;
+      width: 40px;
+      color: var(--color-bg-accent);
+
+      &[src="icons::delivery"] {
+        width: 60px;
+      }
+    }
+
+    p {
+      margin-top: 8px;
+      font-family: var(--font-family);
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
