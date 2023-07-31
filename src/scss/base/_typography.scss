@@ -183,8 +183,12 @@
 //}
 
 .admin-text {
+  font-family: var(--font-family);
+
   h4 {
     margin: 1.5rem 0;
+    font-size: 20px;
+    line-height: 24px;
   }
 
   p {

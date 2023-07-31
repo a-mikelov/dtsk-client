@@ -66,6 +66,11 @@ export class ServicesComponent implements OnInit {
           toArray()
         )
       }),
+      map((offices: ServiceInterface[]) => {
+        return offices.sort((a: ServiceInterface, b: ServiceInterface) => {
+          return a.attributes.order - b.attributes.order
+        })
+      }),
       tap((services: ServiceInterface[]) => {
         this.currentService = services[0]
       })

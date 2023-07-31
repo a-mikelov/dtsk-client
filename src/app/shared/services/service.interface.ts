@@ -9,6 +9,7 @@ export interface ServicesAttributesInterface {
   image: ImageInterface | null
   contentPosition: string
   justifyItems: string
+  order: number
 }
 
 export interface ServiceInterface {

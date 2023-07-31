@@ -118,9 +118,9 @@
   }
 
   &__main {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    //position: absolute;
+    //top: 0;
+    //bottom: 0;
     width: 100%;
     transform: translate3d(110%, 0, 0);
     z-index: 2;
@@ -133,7 +133,7 @@
     transition: all 0.25s ease-in;
 
     @include mq(lg) {
-      position: static;
+      //position: static;
       transform: translate3d(0, 0, 0);
       padding: 50px;
     }
