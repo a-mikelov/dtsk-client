@@ -17,6 +17,7 @@ import {
   Observable,
   of,
   switchMap,
+  take,
   tap,
   toArray,
 } from 'rxjs'
@@ -32,7 +33,7 @@ import {getServicesAction} from '../store/services/actions/get-services.action'
 import {ServiceInterface} from '../shared/services/service.interface'
 import {environment} from '../../environments/environment'
 import {OrderServiceComponent} from '../order-service/order-service.component'
-import {TuiDialogService} from '@taiga-ui/core'
+import {TuiDialogService, tuiLoaderOptionsProvider} from '@taiga-ui/core'
 import SwiperCore, {Navigation, Pagination} from 'swiper'
 
 SwiperCore.use([Navigation, Pagination, Autoplay])
@@ -41,12 +42,19 @@ SwiperCore.use([Navigation, Pagination, Autoplay])
   selector: 'app-hero',
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.scss'],
+  providers: [
+    tuiLoaderOptionsProvider({
+      size: 'l',
+    }),
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements OnInit {
   isLoading$: Observable<boolean>
   services$: Observable<ServiceInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
+
+  private loadedImages = 0
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
@@ -60,7 +68,9 @@ export class HeroComponent implements OnInit {
 
     this.services$ = this.store.select(servicesSelector).pipe(
       filter(Boolean),
+      // take(1),
       map(({data}: GetServicesResponseInterface) => {
+        console.log('services', data)
         return data
       }),
       switchMap((services: ServiceInterface[]) => {
@@ -73,7 +83,6 @@ export class HeroComponent implements OnInit {
         )
       })
     )
-
     this.store.dispatch(getServicesAction())
   }
 
@@ -95,5 +104,13 @@ export class HeroComponent implements OnInit {
         }
       )
       .subscribe()
+  }
+
+  onImageLoad() {
+    this.loadedImages++
+  }
+
+  get loadedImagesCount() {
+    return this.loadedImages
   }
 }

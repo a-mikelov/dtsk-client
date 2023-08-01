@@ -1,17 +1,21 @@
 @use '../../scss/abstracts' as *;
 
 .hero {
-  opacity: 0;
+  background-color: #eeeeee;
+  height: 700px;
 
-  &--loaded {
-    opacity: 1;
+  &__main {
+    opacity: 0;
+
+    .hero--loaded & {
+      opacity: 1;
+    }
   }
 
   &__wrapper {
     position: relative;
     display: flex;
     height: 700px;
-    background-color: #cccccc;
   }
 
   &__image {
