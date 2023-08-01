@@ -1,7 +1,7 @@
 :root {
-  --tui-heading-font: 'Montserrat', -apple-system, 'BlinkMacSystemFont',
+  --tui-heading-font: Montserrat, -apple-system, 'BlinkMacSystemFont',
     system-ui, 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
-  --tui-text-font: 'Montserrat', -apple-system, 'BlinkMacSystemFont', system-ui,
+  --tui-text-font: Montserrat, -apple-system, 'BlinkMacSystemFont', system-ui,
     'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
   --tui-font-heading: var(--tui-heading-font);
   --tui-font-heading-1: bold 3.125rem/3.5rem var(--tui-font-heading);
