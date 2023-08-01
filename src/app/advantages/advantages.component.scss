@@ -7,25 +7,36 @@
   grid-template-columns: 1fr;
   gap: 40px;
 
-  @include mq(sm) {
+
+  @include mq(md) {
     grid-template-columns: repeat(2, auto);
   }
 
-  @include mq(md) {
+  @include mq(lg) {
     grid-template-columns: repeat(3, auto);
   }
 
-  @include mq(xl) {
-    grid-template-columns: repeat(4, auto);
-    //justify-content: center;
-  }
-
   &__item {
-    text-align: center;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    align-items: start;
+    grid-template-areas:
+      "icon title"
+      "icon text";
+    align-content: start;
+    text-align: left;
+    column-gap: 20px;
+    row-gap: 12px;
+
+    &--idea {
+      @include mq(lg) {
+        grid-column: 2 / span 2;
+      }
+    }
 
     tui-svg {
-      margin-bottom: 16px;
-      width: 40px;
+      width: 48px;
+      height: 48px;
       color: var(--color-bg-accent);
 
       &[src='icons::delivery'] {
@@ -33,11 +44,24 @@
       }
     }
 
-    p {
-      margin-top: 8px;
+    b {
+      grid-area: title;
       font-family: var(--font-family);
       font-size: 14px;
+      font-weight: 700;
       line-height: 20px;
     }
+
+    p {
+      max-width: 500px;
+      grid-area: text;
+      font-family: var(--font-family);
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &__icon {
+    grid-area: icon;
   }
 }
