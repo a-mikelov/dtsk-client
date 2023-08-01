@@ -29,4 +29,8 @@ export class PageHeaderComponent {
       })
       .subscribe()
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0)
+  }
 }
