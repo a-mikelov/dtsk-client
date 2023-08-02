@@ -61,7 +61,11 @@
     transition: all 0.25s ease-in;
 
     &:active {
-      padding-left: 20px;
+      padding-left: 40px;
+
+      @include mq(lg) {
+        padding-left: 20px;
+      }
     }
 
     &:last-child {
@@ -86,6 +90,7 @@
     }
 
     &:active::before {
+      opacity: 1;
       left: 20px;
     }
 
