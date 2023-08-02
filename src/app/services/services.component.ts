@@ -11,6 +11,7 @@ import {
   servicesSelector,
 } from '../store/services/selectors'
 import {
+  combineLatest,
   concatAll,
   filter,
   map,
@@ -28,6 +29,7 @@ import {Store} from '@ngrx/store'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import {OrderServiceComponent} from '../order-service/order-service.component'
 import {TuiDialogService} from '@taiga-ui/core'
+import {isPhoneScreenSelector} from '../store/global/selectors'
 
 @Component({
   selector: 'app-services',
@@ -39,6 +41,7 @@ export class ServicesComponent implements OnInit {
   isLoading$: Observable<boolean>
   services$: Observable<ServiceInterface[]>
   backendErrors$: Observable<BackendErrorsInterface>
+  isPhone$: Observable<boolean>
 
   currentService: ServiceInterface
 
@@ -51,28 +54,42 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading$ = this.store.select(isLoadingSelector)
     this.backendErrors$ = this.store.select(backendErrorsSelector)
+    // this.isPhone$ = this.store.select(isPhoneScreenSelector)
 
-    this.services$ = this.store.select(servicesSelector).pipe(
-      filter(Boolean),
-      map(({data}: GetServicesResponseInterface) => {
-        return data
-      }),
-      switchMap((services: ServiceInterface[]) => {
-        return of(services).pipe(
-          concatAll(),
-          filter((service: ServiceInterface) => {
-            return !service.attributes.banner
-          }),
-          toArray()
-        )
-      }),
-      map((offices: ServiceInterface[]) => {
-        return offices.sort((a: ServiceInterface, b: ServiceInterface) => {
-          return a.attributes.order - b.attributes.order
+    this.services$ = combineLatest([
+      this.store.select(servicesSelector).pipe(
+        filter(Boolean),
+        map(({data}: GetServicesResponseInterface) => {
+          return data
+        }),
+        switchMap((services: ServiceInterface[]) => {
+          return of(services).pipe(
+            concatAll(),
+            filter((service: ServiceInterface) => {
+              return !service.attributes.banner
+            }),
+            toArray()
+          )
+        }),
+        map((offices: ServiceInterface[]) => {
+          return offices.sort((a: ServiceInterface, b: ServiceInterface) => {
+            return a.attributes.order - b.attributes.order
+          })
+        }),
+        tap((services: ServiceInterface[]) => {
+          this.currentService = services[0]
         })
-      }),
-      tap((services: ServiceInterface[]) => {
-        this.currentService = services[0]
+      ),
+      this.store.select(isPhoneScreenSelector),
+    ]).pipe(
+      map(([services, isMobile]) => {
+        if (isMobile) {
+          this.currentService = null
+        } else {
+          this.currentService = services[0]
+        }
+
+        return services
       })
     )
 
