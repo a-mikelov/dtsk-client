@@ -1,21 +1,29 @@
 @use '../scss/abstracts' as *;
 
 .page-section {
-  padding-top: 60px;
 
   @include mq(md) {
     margin-top: 20px;
   }
 
-  //@include mq(lg) {
-  //  margin-top: 60px;
-  //}
+  &--about {
+    padding-top: 60px;
+  }
 
   &--services {
+    padding-top: 60px;
     padding-bottom: 60px;
     overflow: hidden;
-    //background-image: url("~@/assets/images/bg-main-right.jpg");
-    //background-position: no-repeat;
+
+    @include mq(md) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    @include mq(xl) {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
   }
 
   &--products {
@@ -23,10 +31,6 @@
     //margin-top: 20px;
     text-align: center;
     overflow: hidden;
-
-    //@include mq(lg) {
-    //  margin-top: 100px;
-    //}
 
     &::after {
       content: '';
