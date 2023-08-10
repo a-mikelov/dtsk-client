@@ -13,7 +13,7 @@
     <ul class="product-card__list">
       <li *ngFor="let product of product.attributes">
         <span>{{ product.name }}</span>
-        <b>{{ product.price | tuiFormatNumber : {decimalLimit: 4, decimalSeparator: '.'} }} {{ 'RUB' | tuiCurrency }} / литр</b>
+        <b>{{ product.price | tuiFormatNumber : {decimalLimit: 2, decimalSeparator: '.'} }} {{ 'RUB' | tuiCurrency }} / литр</b>
       </li>
     </ul>
 
