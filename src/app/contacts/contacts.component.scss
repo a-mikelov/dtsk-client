@@ -27,7 +27,7 @@
       padding-top: 0;
       padding-bottom: 0;
       display: grid;
-      grid-template-columns: 450px repeat(3, 1fr);
+      grid-template-columns: 530px repeat(2, 1fr);
       column-gap: 0;
     }
   }
@@ -42,8 +42,8 @@
     column-gap: 10px;
     row-gap: 5px;
     align-content: start;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 15.2px;
+    line-height: 20px;
     color: var(--color-text-inverse);
 
     @include mq(xl) {
@@ -72,8 +72,15 @@
   }
 
   &__item span,
-  &__item app-link {
+  &__phones {
     grid-area: text;
+  }
+
+  &__phones {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   &__icon {

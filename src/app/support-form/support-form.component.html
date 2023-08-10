@@ -3,12 +3,6 @@
     <label class="form__field">
       <span class="form__label">
         Имя
-        <sup
-          *ngIf="
-            form.get('name').errors && form.get('name').hasError('required')
-          "
-        >*</sup
-        >
       </span>
       <tui-input
         tuiTextfieldSize="m"
@@ -25,12 +19,6 @@
     <label class="form__field">
       <span class="form__label">
         Телефон
-        <sup
-          *ngIf="
-            form.get('phone').errors && form.get('phone').hasError('required')
-          "
-        >*</sup
-        >
       </span>
       <tui-input-phone
         formControlName="phone"
@@ -47,12 +35,6 @@
     <label class="form__field">
       <span class="form__label">
         Email
-        <sup
-          *ngIf="
-            form.get('email').errors && form.get('email').hasError('required')
-          "
-        >*</sup
-        >
       </span>
       <tui-input
         tuiTextfieldSize="m"
@@ -70,13 +52,6 @@
   <label class="form__field">
       <span class="form__label">
         Ваш вопрос
-        <sup
-          *ngIf="
-            form.get('message').errors &&
-            form.get('message').hasError('required')
-          "
-        >*</sup
-        >
       </span>
     <tui-text-area formControlName="message" [rows]="8" class="form__message"></tui-text-area>
     <tui-error

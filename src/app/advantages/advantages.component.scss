@@ -2,7 +2,6 @@
 
 .advantages {
   margin-top: 80px;
-  margin-bottom: 80px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
@@ -13,6 +12,10 @@
 
   @include mq(lg) {
     grid-template-columns: repeat(3, auto);
+  }
+
+  @include mq(xl) {
+    grid-template-columns: repeat(4, auto);
   }
 
   &__item {
@@ -27,9 +30,23 @@
     column-gap: 20px;
     row-gap: 12px;
 
+    @include mq(xl) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+      'icon'
+      'title'
+      'text';
+      justify-content: center;
+      text-align: center;
+    }
+
     &--idea {
       @include mq(lg) {
         grid-column: 2 / span 2;
+      }
+
+      @include mq(xl) {
+        grid-column: unset;
       }
     }
 

@@ -47,27 +47,12 @@ export class SupportFormComponent implements OnInit {
   backendErrors$: Observable<string>
 
   form = this.fb.group({
-    name: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(Pattern.Text),
-        Validators.minLength(2),
-      ],
-    ],
-    phone: ['', [Validators.required, phoneLengthValidator]],
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.email,
-        Validators.pattern(Pattern.email),
-      ],
-    ],
+    name: ['', [Validators.pattern(Pattern.Text), Validators.minLength(2)]],
+    phone: ['', [phoneLengthValidator]],
+    email: ['', [Validators.email, Validators.pattern(Pattern.email)]],
     message: [
       '',
       [
-        Validators.required,
         Validators.pattern(Pattern.TextWithNumbersAndSymbols),
         Validators.minLength(2),
       ],

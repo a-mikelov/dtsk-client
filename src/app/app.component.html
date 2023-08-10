@@ -1,64 +1,70 @@
 <tui-root>
-  <app-page-header></app-page-header>
-  <app-hero></app-hero>
-  <section class="page-section page-section--about">
-    <div class="page-section__container container">
-      <div class="page-section__row">
-        <div class="page-section__col">
-          <h2 class="title title--lvl-2">
-            <span>Надежность</span> на каждом этапе<br class="br br--show-sm" /> - от нефтебазы до автопарка.
-          </h2>
-          <!--					<small class="text text_level_4">Хабаровский край, ЕАО, Амурская область, Приморский край</small>-->
-        </div>
-        <div class="page-section__col">
-          <p class="text">Хорошая репутация, поставка качественных нефтепродуктов,<br />
-            обширная база надежных поставщиков и клиентов.</p
-          >
+  <ng-container *ngIf="isLoading; else content">
+    <div class="loader">
+      loading...
+    </div>
+  </ng-container>
+  <ng-template #content>
+    <app-page-header></app-page-header>
+    <app-hero></app-hero>
+    <section class="page-section page-section--about">
+      <div class="page-section__container container">
+        <div class="page-section__row">
+          <div class="page-section__col">
+            <h2 class="title title--lvl-2">
+              <span>Надежность</span> на каждом этапе<br class="br br--show-sm" /> - от нефтебазы до автопарка.
+            </h2>
+            <!--					<small class="text text_level_4">Хабаровский край, ЕАО, Амурская область, Приморский край</small>-->
+          </div>
+          <div class="page-section__col">
+            <p class="text">Хорошая репутация, поставка качественных нефтепродуктов,<br class="br br--show-md"/>
+              обширная база надежных поставщиков и клиентов.</p>
+          </div>
         </div>
       </div>
+    </section>
+    <section id="advantages" class="page-section page-section--advantages">
+      <div class="page-section__container container">
+        <h2 class="title title--lvl-2">Наши <span>Преимущества</span></h2>
+        <p class="text">
+          За 26 лет на рынке мы приобрели прочную репутацию благодаря поставкам качественных продуктов
+          от проверенных производителей, нашей обширной базе надежных поставщиков и клиентов, а также профессиональному
+          коллективу, которые всегда готовы помочь в вопросах подбора топливной продукции.
+        </p>
+        <app-advantages></app-advantages>
+      </div>
+    </section>
+    <section id="services" class="page-section page-section--services">
+      <div class="page-section__container container">
+        <app-services></app-services>
+      </div>
+    </section>
+    <section id="products" class="page-section page-section--products">
+      <div class="page-section__container container">
+        <h2 class="title title--lvl-2">Наши <span>товары</span></h2>
+        <p class="text">
+          Вы можете приобрести у нас товары отптом и в розницу. Мы реализуем продукцию на собственных АЗС.<br
+          class="br"
+        />
+          Отпускаем товар по топливным картам и ведомостям.
+        </p>
+        <app-products></app-products>
+      </div>
+    </section>
+    <div
+      class="page-section page-section--promo"
+    >
+      <div class="page-section__container container">
+        <h2 class="title title--lvl-2 title--white">Ищете надежного исполнителя?</h2>
+        <p class="text text--white">
+          Обращайтесь к нам в компанию «ДТСК», если вам нужен надежный партнер в сфере нефтепродуктов.<br class="br br--show-md" />
+          Мы всегда готовы предложить вам лучшие решения для вашего бизнеса.
+        </p>
+        <a href="#contacts" type="button" tuiButton>Свяжитесь с нами</a>
+      </div>
     </div>
-  </section>
-  <section id="services" class="page-section page-section--services">
-    <div class="page-section__container container">
-      <app-services></app-services>
-    </div>
-  </section>
-  <section id="products" class="page-section page-section--products">
-    <div class="page-section__container container">
-      <h2 class="title title--lvl-2">Наши <span>товары</span></h2>
-      <p class="text">
-        Вы можете приобрести у нас товары отптом и в розницу. Мы реализуем продукцию на собственных АЗС.<br
-        class="br br--show-xs"
-      />
-        Отпускаем товар по топливным картам и ведомостям.
-      </p>
-      <app-products></app-products>
-    </div>
-  </section>
-  <section id="advantages" class="page-section page-section--advantages">
-    <div class="page-section__container container">
-      <h2 class="title title--lvl-2">Наши <span>Преимущества</span></h2>
-      <p class="text">
-        За 26 лет на рынке мы приобрели прочную репутацию благодаря поставкам качественных продуктов
-        от проверенных производителей, нашей обширной базе надежных поставщиков и клиентов, а также профессиональному
-        коллективу, которые всегда готовы помочь в вопросах подбора топливной продукции.
-      </p>
-      <app-advantages></app-advantages>
-    </div>
-  </section>
-  <div
-    class="page-section page-section--promo"
-  >
-    <div class="page-section__container container">
-      <h2 class="title title--lvl-2 title--white">Ищете надежного исполнителя?</h2>
-      <p class="text text--white">
-        Обращайтесь к нам в компанию «ДТСК», если вам нужен надежный партнер в сфере нефтепродуктов.<br class="br br--show-md" />
-        Мы всегда готовы предложить вам лучшие решения для вашего бизнеса.
-      </p>
-      <a href="#contacts" type="button" tuiButton>Свяжитесь с нами</a>
-    </div>
-  </div>
-  <app-support></app-support>
-  <app-contacts></app-contacts>
-  <app-page-footer></app-page-footer>
+    <app-support></app-support>
+    <app-contacts></app-contacts>
+    <app-page-footer></app-page-footer>
+  </ng-template>
 </tui-root>
