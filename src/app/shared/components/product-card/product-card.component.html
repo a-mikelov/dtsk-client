@@ -15,8 +15,7 @@
     <ul class="product-card__list">
       <li *ngFor="let product of product.attributes">
         <span>{{ product.name }}</span>
-        <b>
-          <tui-money [value]="product.attributes.price"></tui-money> / литр</b>
+        <b><tui-money [value]="product.price"></tui-money> / литр</b>
       </li>
     </ul>
 
