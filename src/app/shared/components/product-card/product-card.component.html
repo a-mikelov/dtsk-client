@@ -7,13 +7,16 @@
 
   <ng-container *ngIf="!product.attributes.length; else list">
     <h3 class="product-card__title">{{product.attributes.name}}</h3>
-    <b class="product-card__price"> {{ product.attributes.price | tuiFormatNumber : {decimalLimit: 4, decimalSeparator: '.'} }} {{ 'RUB' | tuiCurrency }} / тонна</b>
+    <b class="product-card__price">
+      <tui-money [value]="product.attributes.price"></tui-money> / тонна
+    </b>
   </ng-container>
   <ng-template #list>
     <ul class="product-card__list">
       <li *ngFor="let product of product.attributes">
         <span>{{ product.name }}</span>
-        <b>{{ product.price | tuiFormatNumber : {decimalLimit: 2, decimalSeparator: '.'} }} {{ 'RUB' | tuiCurrency }} / литр</b>
+        <b>
+          <tui-money [value]="product.attributes.price"></tui-money> / литр</b>
       </li>
     </ul>
 

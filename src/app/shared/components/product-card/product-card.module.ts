@@ -6,7 +6,7 @@ import {
   TuiFormatNumberPipeModule,
   TuiSvgModule,
 } from '@taiga-ui/core'
-import {TuiCurrencyPipeModule} from '@taiga-ui/addon-commerce'
+import {TuiCurrencyPipeModule, TuiMoneyModule} from '@taiga-ui/addon-commerce'
 
 @NgModule({
   declarations: [ProductCardComponent],
@@ -16,6 +16,7 @@ import {TuiCurrencyPipeModule} from '@taiga-ui/addon-commerce'
     TuiButtonModule,
     TuiCurrencyPipeModule,
     TuiFormatNumberPipeModule,
+    TuiMoneyModule,
   ],
   exports: [ProductCardComponent],
 })
