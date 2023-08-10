@@ -33,9 +33,9 @@
     @include mq(xl) {
       grid-template-columns: 1fr;
       grid-template-areas:
-      'icon'
-      'title'
-      'text';
+        'icon'
+        'title'
+        'text';
       justify-content: center;
       text-align: center;
     }
