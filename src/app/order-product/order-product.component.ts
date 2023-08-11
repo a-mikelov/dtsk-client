@@ -64,6 +64,8 @@ export class OrderProductComponent {
         takeUntil(this.destroy$)
       )
       .subscribe()
+
+    console.log('product', this.product)
   }
 
   get product(): ProductInterface {

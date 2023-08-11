@@ -34,11 +34,6 @@
       font-size: 26px;
       line-height: 34px;
     }
-
-    @include mq(xl) {
-      font-size: 34px;
-      line-height: 44px;
-    }
   }
 
   &__list {
