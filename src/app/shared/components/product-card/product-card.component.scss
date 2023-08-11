@@ -27,13 +27,13 @@
   &__price {
     margin-top: 8px;
     display: block;
-    font-size: 34px;
-    line-height: 44px;
+    font-size: 26px;
+    line-height: 34px;
 
-    @include mq(lg) {
-      font-size: 26px;
-      line-height: 34px;
-    }
+    //@include mq(lg) {
+    //  font-size: 26px;
+    //  line-height: 34px;
+    //}
   }
 
   &__list {
