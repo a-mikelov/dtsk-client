@@ -44,8 +44,12 @@ export class ProductsComponent implements OnInit {
       },
       920: {
         slidesPerView: 3,
-        spaceBetween: 20,
+        spaceBetween: 30,
       },
+      // 1280: {
+      //   slidesPerView: 4,
+      //   spaceBetween: 30,
+      // },
     },
     pagination: {clickable: true},
   }

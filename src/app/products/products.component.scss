@@ -1,7 +1,7 @@
 @use '../../scss/abstracts' as *;
 
 .swiper {
-  padding-top: 60px;
-  padding-bottom: 60px;
-  overflow: visible;
+  margin-bottom: 60px;
+  padding: 60px 1.5rem 60px 1.5rem;
+  //overflow: visible;
 }
