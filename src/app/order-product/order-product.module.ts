@@ -28,7 +28,7 @@ import {StoreModule} from '@ngrx/store'
 import {ORDER_PRODUCT_FEATURE} from './store/state'
 import {reducers} from './store/reducers'
 import {EffectsModule} from '@ngrx/effects'
-import {SendOrderEffect} from './store/effects/send-order.effect'
+import {OrderProductEffect} from './store/effects/order-product.effect'
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import {SendOrderEffect} from './store/effects/send-order.effect'
     OrderReportModule,
     TuiButtonModule,
     StoreModule.forFeature(ORDER_PRODUCT_FEATURE, reducers),
-    EffectsModule.forFeature([SendOrderEffect]),
+    EffectsModule.forFeature([OrderProductEffect]),
     TuiDataListWrapperModule,
     TuiComboBoxModule,
     TuiSelectModule,

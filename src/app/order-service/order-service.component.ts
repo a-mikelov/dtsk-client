@@ -61,6 +61,9 @@ export class OrderServiceComponent {
       .select(dataSelector)
       .pipe(
         filter(Boolean),
+        tap((response) => {
+          console.log('response service', response)
+        }),
         tap(() => this.close()),
         takeUntil(this.destroy$)
       )

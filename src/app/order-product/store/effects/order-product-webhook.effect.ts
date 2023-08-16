@@ -1,41 +1,45 @@
-import {ProductsService} from '../../../shared/services/products.service'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
-import {Inject, Injectable, Injector} from '@angular/core'
+import {ProductsService} from '../../../shared/services/products.service'
+import {
+  orderProductWebhookAction,
+  orderProductWebhookFailureAction,
+  orderProductWebhookSuccessAction,
+} from '../actions/order-product-webhook.action'
 import {catchError, map, of, switchMap, take, tap} from 'rxjs'
+import {OrderProductResponseInterface} from '../../types/order-product-response.interface'
+import {HttpErrorResponse} from '@angular/common/http'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import {AlertComponent} from '../../../shared/components/alert/alert.component'
+import {Inject, Injector} from '@angular/core'
 import {TuiDialogService} from '@taiga-ui/core'
-import {HttpErrorResponse} from '@angular/common/http'
-import {
-  sendOrderAction,
-  sendOrderFailureAction,
-  sendOrderSuccessAction,
-} from '../actions/send-product.action'
 
-@Injectable()
-export class SendOrderEffect {
-  sendOrder$ = createEffect(() => {
+export class OrderProductWebhookEffect {
+  sendWebhook$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(sendOrderAction),
-      switchMap(({order}) => {
-        return this.productsService.sendOrder(order).pipe(
-          map((response: any) => {
-            return sendOrderSuccessAction({response})
-          }),
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              sendOrderFailureAction({backendErrors: errorResponse.error.error})
-            )
-          })
-        )
+      ofType(orderProductWebhookAction),
+      switchMap(({response}) => {
+        return this.productsService
+          .orderProductWebhook('Заказ товара', response)
+          .pipe(
+            map((response: OrderProductResponseInterface) => {
+              return orderProductWebhookSuccessAction({response})
+            }),
+            catchError((errorResponse: HttpErrorResponse) => {
+              return of(
+                orderProductWebhookFailureAction({
+                  backendErrors: errorResponse.error.error,
+                })
+              )
+            })
+          )
       })
     )
   })
 
-  successOrder$ = createEffect(
+  successWebhook$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(sendOrderSuccessAction),
+        ofType(orderProductWebhookSuccessAction),
         tap(() => {
           this.dialogService
             .open<any>(
@@ -57,10 +61,10 @@ export class SendOrderEffect {
     {dispatch: false}
   )
 
-  failureOrder$ = createEffect(
+  failureWebhook$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(sendOrderFailureAction),
+        ofType(orderProductWebhookFailureAction),
         tap(() => {
           this.dialogService
             .open<any>(
@@ -83,9 +87,9 @@ export class SendOrderEffect {
   )
 
   constructor(
-    private actions$: Actions,
-    private productsService: ProductsService,
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
+    @Inject(Injector) private readonly injector: Injector,
+    private actions$: Actions,
+    private productsService: ProductsService
   ) {}
 }

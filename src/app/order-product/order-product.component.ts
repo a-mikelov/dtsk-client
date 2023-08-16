@@ -18,7 +18,7 @@ import {
   isSubmittingSelector,
   responseSelector,
 } from './store/selectors'
-import {sendOrderAction} from './store/actions/send-product.action'
+import {orderProductAction} from './store/actions/order-product.action'
 
 @Component({
   selector: 'app-order-product',
@@ -60,6 +60,9 @@ export class OrderProductComponent {
       .select(responseSelector)
       .pipe(
         filter(Boolean),
+        tap((response) => {
+          console.log('response', response)
+        }),
         tap(() => this.close()),
         takeUntil(this.destroy$)
       )
@@ -96,8 +99,8 @@ export class OrderProductComponent {
       : null
 
     this.store.dispatch(
-      sendOrderAction({
-        order: {
+      orderProductAction({
+        payload: {
           name: item.name,
           count,
           setDetails,

@@ -11,9 +11,9 @@ import {TuiDialogService} from '@taiga-ui/core'
 import {HttpErrorResponse} from '@angular/common/http'
 import {SupportService} from '../../services/support.service'
 import {
-  sendOrderFailureAction,
-  sendOrderSuccessAction,
-} from '../../../order-product/store/actions/send-product.action'
+  orderProductFailureAction,
+  orderProductSuccessAction,
+} from '../../../order-product/store/actions/order-product.action'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import {AlertComponent} from '../../../shared/components/alert/alert.component'
 
