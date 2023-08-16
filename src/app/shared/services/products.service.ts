@@ -14,6 +14,10 @@ export class ProductsService {
     return this.http.get(this.url)
   }
 
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.url}/${id}`)
+  }
+
   orderProduct(payload): Observable<any> {
     return this.http.post(
       `${environment.apiUrl}/product-orders?populate=deep`,

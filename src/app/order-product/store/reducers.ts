@@ -21,10 +21,9 @@ export const orderReducer = createReducer(
     })
   ),
   on(
-    orderProductWebhookSuccessAction,
+    orderProductSuccessAction,
     (state, {response}): OrderProductStateInterface => ({
       ...state,
-      isSubmitting: false,
       response,
     })
   ),
@@ -34,6 +33,13 @@ export const orderReducer = createReducer(
       ...state,
       isSubmitting: false,
       backendErrors,
+    })
+  ),
+  on(
+    orderProductWebhookSuccessAction,
+    (state): OrderProductStateInterface => ({
+      ...state,
+      isSubmitting: false,
     })
   ),
   on(

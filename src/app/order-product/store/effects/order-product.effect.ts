@@ -9,6 +9,7 @@ import {HttpErrorResponse} from '@angular/common/http'
 import {
   orderProductAction,
   orderProductFailureAction,
+  orderProductSuccessAction,
 } from '../actions/order-product.action'
 import {orderProductWebhookAction} from '../actions/order-product-webhook.action'
 import {OrderProductResponseInterface} from '../../types/order-product-response.interface'
@@ -21,8 +22,7 @@ export class OrderProductEffect {
       switchMap(({payload}) => {
         return this.productsService.orderProduct(payload).pipe(
           map((response: OrderProductResponseInterface) => {
-            console.log('nekki', response)
-            return orderProductWebhookAction({response})
+            return orderProductSuccessAction({response})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
             return of(

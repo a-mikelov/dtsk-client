@@ -9,8 +9,7 @@ export const orderProductWebhookAction = createAction(
 )
 
 export const orderProductWebhookSuccessAction = createAction(
-  ActionTypes.ORDER_PRODUCT_WEBHOOK_SUCCESS,
-  props<{response: OrderProductResponseInterface}>()
+  ActionTypes.ORDER_PRODUCT_WEBHOOK_SUCCESS
 )
 
 export const orderProductWebhookFailureAction = createAction(
