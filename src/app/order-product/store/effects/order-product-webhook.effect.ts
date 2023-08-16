@@ -32,6 +32,7 @@ export class OrderProductWebhookEffect {
           .orderProductWebhook('Заказ продукта', response)
           .pipe(
             map(() => {
+              console.log('success webhook')
               this.dialogService
                 .open<any>(
                   new PolymorpheusComponent(AlertComponent, this.injector),
