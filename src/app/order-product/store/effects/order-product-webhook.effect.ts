@@ -10,9 +10,10 @@ import {OrderProductResponseInterface} from '../../types/order-product-response.
 import {HttpErrorResponse} from '@angular/common/http'
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import {AlertComponent} from '../../../shared/components/alert/alert.component'
-import {Inject, Injector} from '@angular/core'
+import {Inject, Injectable, Injector} from '@angular/core'
 import {TuiDialogService} from '@taiga-ui/core'
 
+@Injectable()
 export class OrderProductWebhookEffect {
   sendWebhook$ = createEffect(() => {
     return this.actions$.pipe(

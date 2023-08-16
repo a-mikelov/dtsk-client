@@ -21,24 +21,28 @@ export class ProductsService {
     )
   }
 
-  orderProductWebhook(formName, payload) {
-    console.log('payload', payload)
+  orderProductWebhook(
+    formName: string,
+    payload: OrderProductResponseInterface
+  ) {
+    const data = payload.data.attributes
+
     const params = new HttpParams({
       fromObject: {
         'fields[TITLE]': formName,
-        'fields[NAME]': payload.name,
+        'fields[NAME]': data.name,
         'fields[PHONE][0][VALUE_TYPE]': 'WORK',
-        'fields[PHONE][0][VALUE]': payload.phone,
+        'fields[PHONE][0][VALUE]': data.client.phone,
         'fields[EMAIL][0][VALUE_TYPE]': 'WORK',
-        'fields[EMAIL][0][VALUE]': payload.email,
-        'fields[SOURCE_ID]': 'UC_90HLMC',
-        'fields[COMMENTS]': payload.message,
-        'fields[TRACE]': payload.trace,
+        'fields[EMAIL][0][VALUE]': data.client.email,
+        'fields[SOURCE_ID]': 'UC_AILEWA',
+        'fields[SOURCE_DESCRIPTION]': data.note,
+        // 'fields[TRACE]': payload.trace,
       },
     })
 
     return this.http.get(
-      `https://bitrix.busbox.guru/rest/1/xk0350plspumy30m/crm.lead.add`,
+      `https://crm.dtsk.ru/rest/1/10hq9esm6cjopki7/crm.lead.add`,
       {params}
     )
   }

@@ -11,6 +11,7 @@ import {
   orderProductFailureAction,
 } from '../actions/order-product.action'
 import {orderProductWebhookAction} from '../actions/order-product-webhook.action'
+import {OrderProductResponseInterface} from '../../types/order-product-response.interface'
 
 @Injectable()
 export class OrderProductEffect {
@@ -19,7 +20,8 @@ export class OrderProductEffect {
       ofType(orderProductAction),
       switchMap(({payload}) => {
         return this.productsService.orderProduct(payload).pipe(
-          map((response: any) => {
+          map((response: OrderProductResponseInterface) => {
+            console.log('nekki', response)
             return orderProductWebhookAction({response})
           }),
           catchError((errorResponse: HttpErrorResponse) => {

@@ -19,7 +19,8 @@ export class StepTwoComponent implements OnInit {
     const _window: WindowInterface = window
 
     if (_window.b24Tracker) {
-      this.form.get('trace').setValue(_window.b24Tracker.guest.getTrace())
+      // this.form.get('trace').setValue(_window.b24Tracker.guest.getTrace())
+      this.form.get('trace').setValue('trace')
     }
   }
 
