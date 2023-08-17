@@ -60,15 +60,10 @@ export class OrderProductComponent {
       .select(responseSelector)
       .pipe(
         filter(Boolean),
-        tap((response) => {
-          console.log('response', response)
-        }),
         tap(() => this.close()),
         takeUntil(this.destroy$)
       )
       .subscribe()
-
-    console.log('product', this.product)
   }
 
   get product(): ProductInterface {

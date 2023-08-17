@@ -14,8 +14,9 @@ export class ProductsService {
     return this.http.get(this.url)
   }
 
-  deleteProduct(id: string) {
-    return this.http.delete(`${this.url}/${id}`)
+  deleteProduct(id: number) {
+    console.log('deleteProduct', id)
+    return this.http.delete(`${environment.apiUrl}/product-orders/${id}`)
   }
 
   orderProduct(payload): Observable<any> {

@@ -67,7 +67,7 @@ export class SendOrderEffect {
               new PolymorpheusComponent(AlertComponent, this.injector),
               {
                 data: {
-                  heading: 'Ой, что-то не так...',
+                  heading: 'Ошибка отправки данных',
                   failure: true,
                 },
                 dismissible: true,

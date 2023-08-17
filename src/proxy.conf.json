@@ -1,9 +1,9 @@
 {
   "/api/": {
-    "target": "https://api.busbox.guru",
+    "target": "https://crm.dtsk.ru/rest/1/10hq9esm6cjopki7/crm.lead.add",
     "secure": true,
     "pathRewrite": {
-      "^/api": "https://api.busbox.guru/v1/"
+      "^/api": "https://crm.dtsk.ru/rest/1/10hq9esm6cjopki7/crm.lead.add"
     },
     "changeOrigin": true,
     "logLevel": "debug"
