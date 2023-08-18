@@ -10,12 +10,7 @@ import {
 import {TuiDialogService} from '@taiga-ui/core'
 import {HttpErrorResponse} from '@angular/common/http'
 import {SupportService} from '../../services/support.service'
-import {
-  orderProductFailureAction,
-  orderProductSuccessAction,
-} from '../../../order-product/store/actions/order-product.action'
-import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
-import {AlertComponent} from '../../../shared/components/alert/alert.component'
+import {SupportFormResponseInterface} from '../../types/support-form-response.interface'
 
 @Injectable()
 export class SendMessageEffect {
@@ -32,7 +27,7 @@ export class SendMessageEffect {
       delay(1000),
       switchMap(({payload}) =>
         this.supportService.sendMessage(payload).pipe(
-          map((response: ResponseInterface) => {
+          map((response: SupportFormResponseInterface) => {
             return sendMessageSuccessAction({response})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
@@ -45,55 +40,5 @@ export class SendMessageEffect {
         )
       )
     )
-  )
-
-  successMessage$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(sendMessageSuccessAction),
-        tap(() => {
-          this.dialogService
-            .open<any>(
-              new PolymorpheusComponent(AlertComponent, this.injector),
-              {
-                data: {
-                  heading: 'Ваше сообщение отправлено',
-                  success: true,
-                },
-                dismissible: true,
-                closeable: false,
-                size: 's',
-              }
-            )
-            .pipe(take(1))
-            .subscribe()
-        })
-      ),
-    {dispatch: false}
-  )
-
-  failureMessage$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(sendMessageFailureAction),
-        tap(() => {
-          this.dialogService
-            .open<any>(
-              new PolymorpheusComponent(AlertComponent, this.injector),
-              {
-                data: {
-                  heading: 'Не удалось отправить сообщение',
-                  failure: true,
-                },
-                dismissible: true,
-                closeable: false,
-                size: 's',
-              }
-            )
-            .pipe(take(1))
-            .subscribe()
-        })
-      ),
-    {dispatch: false}
   )
 }
