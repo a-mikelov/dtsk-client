@@ -43,8 +43,20 @@ export class SendMessageWebhookEffect {
   success$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(orderServiceWebhookSuccessAction),
-        tap(() => {
+        ofType(sendMessageWebhookSuccessAction),
+        switchMap(() => {
+          return this.store.pipe(select(responseSelector)).pipe(
+            switchMap((response: SupportFormResponseInterface) => {
+              return this.supportService.updateMessage(response.data.id, {
+                name: response.data.attributes.name,
+                email: response.data.attributes.email,
+                phone: response.data.attributes.phone,
+                message: response.data.attributes.message,
+              })
+            })
+          )
+        }),
+        tap((data) => {
           this.dialogService
             .open<any>(
               new PolymorpheusComponent(AlertComponent, this.injector),

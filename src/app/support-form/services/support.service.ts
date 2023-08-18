@@ -1,16 +1,30 @@
 import {Injectable} from '@angular/core'
 import {HttpClient, HttpParams} from '@angular/common/http'
 import {environment} from '../../../environments/environment'
-import {OrderServiceResponseInterface} from '../../order-service/types/order-service-response.interface'
 import {SupportFormInterface} from '../types/support-form.interface'
 import {SupportFormResponseInterface} from '../types/support-form-response.interface'
+import {tap} from 'rxjs'
 
 @Injectable()
 export class SupportService {
   constructor(private http: HttpClient) {}
 
-  sendMessage(payload) {
-    return this.http.post(`${environment.apiUrl}/feedbacks`, {data: payload})
+  sendMessage(payload: SupportFormInterface) {
+    return this.http.post(`${environment.apiUrl}/feedbacks`, {
+      data: {
+        ...payload,
+        publishedAt: null,
+      },
+    })
+  }
+
+  updateMessage(id: number, payload: any) {
+    return this.http.put(`${environment.apiUrl}/feedbacks/${id}`, {
+      data: {
+        ...payload,
+        publishedAt: new Date(),
+      },
+    })
   }
 
   deleteMessage(id: number) {

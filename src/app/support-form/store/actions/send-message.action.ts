@@ -7,7 +7,7 @@ import {SupportFormResponseInterface} from '../../types/support-form-response.in
 
 export const sendMessageAction = createAction(
   ActionTypes.SEND_MESSAGE,
-  props<{payload: any}>()
+  props<{payload: SupportFormInterface}>()
 )
 
 export const sendMessageSuccessAction = createAction(

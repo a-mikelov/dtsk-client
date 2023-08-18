@@ -15,6 +15,7 @@ import {Observable, takeUntil, tap} from 'rxjs'
 import {Pattern} from '../shared/pattern/pattern'
 import {phoneLengthValidator} from '../shared/validators/phone-length.validator'
 import {isSubmittingSelector, responseSelector} from './store/selectors'
+import {SupportFormInterface} from './types/support-form.interface'
 
 @Component({
   selector: 'app-support-form',
@@ -95,7 +96,12 @@ export class SupportFormComponent implements OnInit {
       return
     }
 
-    const payload = this.form.value
-    this.store.dispatch(sendMessageAction({payload}))
+    const {name, email, message, phone} = this.form.value
+
+    this.store.dispatch(
+      sendMessageAction({
+        payload: {name, email, phone, message},
+      })
+    )
   }
 }
