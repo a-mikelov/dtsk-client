@@ -5,7 +5,7 @@ export function phoneLengthValidator(
 ): ValidationErrors | null {
   const text = control.value
   const length = text && text.length
-  if (length < 12) {
+  if (length > 0 && length < 12) {
     return {phoneLength: true}
   } else {
     return null
