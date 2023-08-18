@@ -10,9 +10,9 @@ export const isSubmittingSelector = createSelector(
   (state: OrderServiceStateInterface) => state.isSubmitting
 )
 
-export const dataSelector = createSelector(
+export const responseSelector = createSelector(
   orderServiceFeatureSelector,
-  (state: OrderServiceStateInterface) => state.data
+  (state: OrderServiceStateInterface) => state.response
 )
 
 export const backendErrorsSelector = createSelector(

@@ -1,4 +1,4 @@
-export interface OrderProductResponseInterface {
+export interface OrderServiceResponseInterface {
   data: {
     id: number
     attributes: {
@@ -7,7 +7,6 @@ export interface OrderProductResponseInterface {
       publishedAt: string
       name: string
       setDetails: boolean
-      count: number
       client: {
         name: string
         company: string

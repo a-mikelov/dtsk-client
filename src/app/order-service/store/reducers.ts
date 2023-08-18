@@ -1,31 +1,50 @@
 import {Action, createReducer, on} from '@ngrx/store'
 import {initialState} from './state'
 import {
-  sendOrderAction,
-  sendOrderFailureAction,
-  sendOrderSuccessAction,
-} from './actions/send-order.action'
+  orderServiceAction,
+  orderServiceFailureAction,
+  orderServiceSuccessAction,
+} from './actions/order-service.action'
 import {OrderServiceStateInterface} from '../types/order-service-state.interface'
+import {
+  orderServiceWebhookFailureAction,
+  orderServiceWebhookSuccessAction,
+} from './actions/order-service-webhook.action'
 
 export const orderReducer = createReducer(
   initialState,
   on(
-    sendOrderAction,
+    orderServiceAction,
     (state): OrderServiceStateInterface => ({
       ...state,
       isSubmitting: true,
     })
   ),
   on(
-    sendOrderSuccessAction,
+    orderServiceSuccessAction,
     (state, {response}): OrderServiceStateInterface => ({
       ...state,
       isSubmitting: false,
-      data: response,
+      response,
     })
   ),
   on(
-    sendOrderFailureAction,
+    orderServiceFailureAction,
+    (state, {backendErrors}): OrderServiceStateInterface => ({
+      ...state,
+      isSubmitting: false,
+      backendErrors,
+    })
+  ),
+  on(
+    orderServiceWebhookSuccessAction,
+    (state): OrderServiceStateInterface => ({
+      ...state,
+      isSubmitting: false,
+    })
+  ),
+  on(
+    orderServiceWebhookFailureAction,
     (state, {backendErrors}): OrderServiceStateInterface => ({
       ...state,
       isSubmitting: false,

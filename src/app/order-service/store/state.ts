@@ -4,6 +4,6 @@ export const ORDER_SERVICE_FEATURE = 'orderService'
 
 export const initialState: OrderServiceStateInterface = {
   isSubmitting: false,
-  data: null,
+  response: null,
   backendErrors: null,
 }

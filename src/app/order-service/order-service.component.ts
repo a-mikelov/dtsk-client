@@ -15,10 +15,10 @@ import {BackendErrorsInterface} from '../shared/types/backend-errors.interface'
 import {ServiceInterface} from '../shared/services/service.interface'
 import {
   backendErrorsSelector,
-  dataSelector,
+  responseSelector,
   isSubmittingSelector,
 } from './store/selectors'
-import {sendOrderAction} from './store/actions/send-order.action'
+import {orderServiceAction} from './store/actions/order-service.action'
 
 @Component({
   selector: 'app-order-service',
@@ -58,7 +58,7 @@ export class OrderServiceComponent {
     // this.backendErrors$ = this.store.select(backendErrorsSelector)
 
     this.store
-      .select(dataSelector)
+      .select(responseSelector)
       .pipe(
         filter(Boolean),
         tap((response) => {
@@ -98,8 +98,8 @@ export class OrderServiceComponent {
       : null
 
     this.store.dispatch(
-      sendOrderAction({
-        order: {
+      orderServiceAction({
+        payload: {
           name: item.name,
           setDetails,
           details,

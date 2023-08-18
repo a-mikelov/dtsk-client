@@ -15,7 +15,6 @@ export class ProductsService {
   }
 
   deleteProduct(id: number) {
-    console.log('deleteProduct', id)
     return this.http.delete(`${environment.apiUrl}/product-orders/${id}`)
   }
 

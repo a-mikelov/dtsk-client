@@ -2,6 +2,6 @@ import {BackendErrorsInterface} from '../../shared/types/backend-errors.interfac
 
 export interface OrderServiceStateInterface {
   isSubmitting: boolean
-  data: any
+  response: any
   backendErrors: BackendErrorsInterface | null
 }
