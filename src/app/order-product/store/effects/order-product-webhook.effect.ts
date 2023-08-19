@@ -31,6 +31,7 @@ import {
 } from '../actions/order-product.action'
 import {productsSelector} from '../../../products/store/selectors'
 import {responseSelector} from '../selectors'
+import {SupportFormResponseInterface} from '../../../support-form/types/support-form-response.interface'
 
 @Injectable()
 export class OrderProductWebhookEffect {
@@ -62,6 +63,20 @@ export class OrderProductWebhookEffect {
     () => {
       return this.actions$.pipe(
         ofType(orderProductWebhookSuccessAction),
+        switchMap(() => {
+          return this.store.pipe(select(responseSelector)).pipe(
+            switchMap((response: OrderProductResponseInterface) => {
+              return this.productsService.updateMessage(response.data.id, {
+                name: response.data.attributes.name,
+                count: response.data.attributes.count,
+                setDetails: response.data.attributes.setDetails,
+                details: response.data.attributes.details,
+                client: response.data.attributes.client,
+                message: response.data.attributes.note,
+              })
+            })
+          )
+        }),
         tap(() => {
           this.dialogService
             .open<any>(
@@ -84,38 +99,38 @@ export class OrderProductWebhookEffect {
     {dispatch: false}
   )
 
-  failure$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(orderProductWebhookFailureAction),
-        concatMap(() => {
-          return this.store.pipe(select(responseSelector)).pipe(
-            switchMap((response: OrderProductResponseInterface) => {
-              return this.productsService.deleteProduct(response.data.id)
-            }),
-            tap(() => {
-              this.dialogService
-                .open<any>(
-                  new PolymorpheusComponent(AlertComponent, this.injector),
-                  {
-                    data: {
-                      heading: 'Ой, что-то не так...',
-                      failure: true,
-                    },
-                    dismissible: true,
-                    closeable: false,
-                    size: 's',
-                  }
-                )
-                .pipe(take(1))
-                .subscribe()
-            })
-          )
-        })
-      )
-    },
-    {dispatch: false}
-  )
+  // failure$ = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(orderProductWebhookFailureAction),
+  //       concatMap(() => {
+  //         return this.store.pipe(select(responseSelector)).pipe(
+  //           switchMap((response: OrderProductResponseInterface) => {
+  //             return this.productsService.deleteProduct(response.data.id)
+  //           }),
+  //           tap(() => {
+  //             this.dialogService
+  //               .open<any>(
+  //                 new PolymorpheusComponent(AlertComponent, this.injector),
+  //                 {
+  //                   data: {
+  //                     heading: 'Ой, что-то не так...',
+  //                     failure: true,
+  //                   },
+  //                   dismissible: true,
+  //                   closeable: false,
+  //                   size: 's',
+  //                 }
+  //               )
+  //               .pipe(take(1))
+  //               .subscribe()
+  //           })
+  //         )
+  //       })
+  //     )
+  //   },
+  //   {dispatch: false}
+  // )
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,

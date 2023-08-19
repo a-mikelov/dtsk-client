@@ -21,8 +21,22 @@ export class ProductsService {
   orderProduct(payload): Observable<any> {
     return this.http.post(
       `${environment.apiUrl}/product-orders?populate=deep`,
-      {data: payload}
+      {
+        data: {
+          ...payload,
+          publishedAt: null,
+        },
+      }
     )
+  }
+
+  updateMessage(id: number, payload: any) {
+    return this.http.put(`${environment.apiUrl}/product-orders/${id}`, {
+      data: {
+        ...payload,
+        publishedAt: new Date(),
+      },
+    })
   }
 
   orderProductWebhook(
