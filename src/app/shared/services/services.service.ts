@@ -18,12 +18,26 @@ export class ServicesService {
   orderService(payload): Observable<OrderProductResponseInterface> {
     return this.http.post<OrderProductResponseInterface>(
       `${environment.apiUrl}/service-orders?populate=deep`,
-      {data: payload}
+      {
+        data: {
+          ...payload,
+          publishedAt: null,
+        },
+      }
     )
   }
 
   deleteProduct(id: number) {
     return this.http.delete(`${environment.apiUrl}/service-orders/${id}`)
+  }
+
+  updateService(id: number, payload: any) {
+    return this.http.put(`${environment.apiUrl}/service-orders/${id}`, {
+      data: {
+        ...payload,
+        publishedAt: new Date(),
+      },
+    })
   }
 
   orderServiceWebhook(

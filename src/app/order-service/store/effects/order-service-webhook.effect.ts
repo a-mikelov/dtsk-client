@@ -14,6 +14,7 @@ import {
 } from '../actions/order-service-webhook.action'
 import {ServicesService} from '../../../shared/services/services.service'
 import {OrderServiceResponseInterface} from '../../types/order-service-response.interface'
+import {OrderProductResponseInterface} from '../../../order-product/types/order-product-response.interface'
 
 @Injectable()
 export class OrderServiceWebhookEffect {
@@ -43,6 +44,20 @@ export class OrderServiceWebhookEffect {
     () => {
       return this.actions$.pipe(
         ofType(orderServiceWebhookSuccessAction),
+        switchMap(() => {
+          return this.store.pipe(select(responseSelector)).pipe(
+            switchMap((response: OrderProductResponseInterface) => {
+              return this.servicesService.updateService(response.data.id, {
+                name: response.data.attributes.name,
+                count: response.data.attributes.count,
+                setDetails: response.data.attributes.setDetails,
+                details: response.data.attributes.details,
+                client: response.data.attributes.client,
+                message: response.data.attributes.note,
+              })
+            })
+          )
+        }),
         tap(() => {
           this.dialogService
             .open<any>(
