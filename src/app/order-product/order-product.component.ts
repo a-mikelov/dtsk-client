@@ -80,6 +80,7 @@ export class OrderProductComponent {
     }
 
     const order = {...stepOne, ...stepTwo}
+
     const {item, count, setDetails, client, note} = order
 
     const details = order.details
@@ -101,6 +102,7 @@ export class OrderProductComponent {
           setDetails,
           details,
           client,
+          sum: count * item.price,
           note,
         },
       })

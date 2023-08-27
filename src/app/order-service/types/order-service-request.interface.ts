@@ -15,5 +15,6 @@ export interface OrderServiceRequestInterface {
     }
     address: string
   }
+  sum: number
   note: string
 }

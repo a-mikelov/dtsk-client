@@ -6,10 +6,6 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core'
   styleUrls: ['./order-report.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderReportComponent implements OnInit {
+export class OrderReportComponent {
   @Input('data') dataProps
-
-  ngOnInit(): void {
-    console.log('dataProps', this.dataProps)
-  }
 }

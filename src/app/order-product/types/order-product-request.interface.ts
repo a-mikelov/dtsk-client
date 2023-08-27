@@ -16,5 +16,6 @@ export interface OrderProductRequestInterface {
     }
     address: string
   }
+  sum: number
   note: string
 }

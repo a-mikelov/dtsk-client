@@ -104,6 +104,7 @@ export class OrderServiceComponent {
           setDetails,
           details,
           client,
+          sum: item.price,
           note,
         },
       })

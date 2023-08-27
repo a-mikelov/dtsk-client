@@ -78,38 +78,38 @@ export class SendMessageWebhookEffect {
     {dispatch: false}
   )
 
-  failure$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(sendMessageWebhookFailureAction),
-        concatMap(() => {
-          return this.store.pipe(select(responseSelector)).pipe(
-            switchMap((response: SupportFormResponseInterface) => {
-              return this.supportService.deleteMessage(response.data.id)
-            }),
-            tap(() => {
-              this.dialogService
-                .open<any>(
-                  new PolymorpheusComponent(AlertComponent, this.injector),
-                  {
-                    data: {
-                      heading: 'Не удалось отправить сообщение',
-                      failure: true,
-                    },
-                    dismissible: true,
-                    closeable: false,
-                    size: 's',
-                  }
-                )
-                .pipe(take(1))
-                .subscribe()
-            })
-          )
-        })
-      )
-    },
-    {dispatch: false}
-  )
+  // failure$ = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(sendMessageWebhookFailureAction),
+  //       concatMap(() => {
+  //         return this.store.pipe(select(responseSelector)).pipe(
+  //           switchMap((response: SupportFormResponseInterface) => {
+  //             return this.supportService.deleteMessage(response.data.id)
+  //           }),
+  //           tap(() => {
+  //             this.dialogService
+  //               .open<any>(
+  //                 new PolymorpheusComponent(AlertComponent, this.injector),
+  //                 {
+  //                   data: {
+  //                     heading: 'Не удалось отправить сообщение',
+  //                     failure: true,
+  //                   },
+  //                   dismissible: true,
+  //                   closeable: false,
+  //                   size: 's',
+  //                 }
+  //               )
+  //               .pipe(take(1))
+  //               .subscribe()
+  //           })
+  //         )
+  //       })
+  //     )
+  //   },
+  //   {dispatch: false}
+  // )
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
