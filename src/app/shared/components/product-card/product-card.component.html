@@ -1,18 +1,19 @@
 <article class="product-card">
   <div class="product-card__icon">
-    <img
-      width="120" height="120"
-      [src]="(product.attributes.length ? '/assets/icons/' + product.type : '/assets/icons/' + product.attributes.type) + '.svg'" alt="">
+    <img width="120" height="120"
+      [src]="(product.attributes.length ? '/assets/icons/' + product.type : '/assets/icons/' + product.attributes.type) + '.svg'"
+      alt="">
   </div>
 
   <ng-container *ngIf="!product.attributes.length; else list">
     <h3 class="product-card__title">{{product.attributes.name}}</h3>
     <b class="product-card__price">
-      <tui-money [value]="product.attributes.price"></tui-money> / тонна
+      <tui-money [value]="product.attributes.price"></tui-money>
+      <span>за тонну</span>
     </b>
   </ng-container>
   <ng-template #list>
-<!--    <h3 class="product-card__title">Бензин</h3>-->
+    <h3 class="product-card__title">Бензин</h3>
     <ul class="product-card__list">
       <li *ngFor="let product of product.attributes">
         <span>{{ product.name }}</span>
@@ -22,7 +23,7 @@
 
   </ng-template>
   <div class="product-card__button">
-    <button type="button" tuiButton appearance="primary"
-        (click)="order(product)" class="btn btn--width-full">Оформить заявку</button>
+    <button type="button" tuiButton appearance="primary" (click)="order(product)" class="btn btn--width-full">Оформить
+      заявку</button>
   </div>
 </article>

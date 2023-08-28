@@ -26,17 +26,27 @@
 
   &__price {
     margin-top: 8px;
+    margin-bottom: 8px;
     display: block;
-    font-size: 26px;
+    font-size: 20px;
     line-height: 34px;
-
+    color: #c4c4c4;
+    text-align: center;
     //@include mq(lg) {
     //  font-size: 26px;
     //  line-height: 34px;
     //}
+
+    tui-money {
+      display: block;
+      font-size: 54px;
+      line-height: 64px;
+      color: #000000;
+    }
   }
 
   &__list {
+    margin-top: 12px;
     width: 100%;
     max-width: 250px;
 
