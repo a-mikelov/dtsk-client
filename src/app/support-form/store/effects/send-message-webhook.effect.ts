@@ -8,7 +8,6 @@ import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
 import {AlertComponent} from '../../../shared/components/alert/alert.component'
 import {TuiDialogService} from '@taiga-ui/core'
 import {SupportFormResponseInterface} from '../../types/support-form-response.interface'
-import {orderServiceWebhookSuccessAction} from '../../../order-service/store/actions/order-service-webhook.action'
 import {
   sendMessageWebhookFailureAction,
   sendMessageWebhookSuccessAction,

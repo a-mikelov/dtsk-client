@@ -29,7 +29,6 @@ import {OrderServiceEffect} from './store/effects/order-service.effect'
 import {ServicesService} from '../shared/services/services.service'
 import {StepThreeComponent} from './components/step-three/step-three.component'
 import {OrderReportModule} from '../shared/components/order-report/order-report.module'
-import {OrderServiceWebhookEffect} from './store/effects/order-service-webhook.effect'
 
 @NgModule({
   declarations: [
@@ -52,7 +51,7 @@ import {OrderServiceWebhookEffect} from './store/effects/order-service-webhook.e
     TuiButtonModule,
     TuiTextAreaModule,
     StoreModule.forFeature(ORDER_SERVICE_FEATURE, reducers),
-    EffectsModule.forFeature([OrderServiceEffect, OrderServiceWebhookEffect]),
+    EffectsModule.forFeature([OrderServiceEffect]),
     OrderReportModule,
     TuiComboBoxModule,
     TuiDataListWrapperModule,
