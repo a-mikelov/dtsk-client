@@ -29,7 +29,6 @@ import {ORDER_PRODUCT_FEATURE} from './store/state'
 import {reducers} from './store/reducers'
 import {EffectsModule} from '@ngrx/effects'
 import {OrderProductEffect} from './store/effects/order-product.effect'
-import {OrderProductWebhookEffect} from './store/effects/order-product-webhook.effect'
 
 @NgModule({
   declarations: [
@@ -53,7 +52,7 @@ import {OrderProductWebhookEffect} from './store/effects/order-product-webhook.e
     OrderReportModule,
     TuiButtonModule,
     StoreModule.forFeature(ORDER_PRODUCT_FEATURE, reducers),
-    EffectsModule.forFeature([OrderProductEffect, OrderProductWebhookEffect]),
+    EffectsModule.forFeature([OrderProductEffect]),
     TuiDataListWrapperModule,
     TuiComboBoxModule,
     TuiSelectModule,

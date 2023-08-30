@@ -6,10 +6,6 @@ import {
   orderProductFailureAction,
   orderProductSuccessAction,
 } from './actions/order-product.action'
-import {
-  orderProductWebhookFailureAction,
-  orderProductWebhookSuccessAction,
-} from './actions/order-product-webhook.action'
 
 export const orderReducer = createReducer(
   initialState,
@@ -24,26 +20,12 @@ export const orderReducer = createReducer(
     orderProductSuccessAction,
     (state, {response}): OrderProductStateInterface => ({
       ...state,
+      isSubmitting: false,
       response,
     })
   ),
   on(
     orderProductFailureAction,
-    (state, {backendErrors}): OrderProductStateInterface => ({
-      ...state,
-      isSubmitting: false,
-      backendErrors,
-    })
-  ),
-  on(
-    orderProductWebhookSuccessAction,
-    (state): OrderProductStateInterface => ({
-      ...state,
-      isSubmitting: false,
-    })
-  ),
-  on(
-    orderProductWebhookFailureAction,
     (state, {backendErrors}): OrderProductStateInterface => ({
       ...state,
       isSubmitting: false,

@@ -14,54 +14,10 @@ export class ProductsService {
     return this.http.get(this.url)
   }
 
-  deleteProduct(id: number) {
-    return this.http.delete(`${environment.apiUrl}/product-orders/${id}`)
-  }
-
-  orderProduct(payload): Observable<any> {
+  orderProduct(data): Observable<any> {
     return this.http.post(
       `${environment.apiUrl}/product-orders?populate=deep`,
-      {
-        data: {
-          ...payload,
-          publishedAt: null,
-        },
-      }
-    )
-  }
-
-  updateMessage(id: number, payload: any) {
-    return this.http.put(`${environment.apiUrl}/product-orders/${id}`, {
-      data: {
-        ...payload,
-        publishedAt: new Date(),
-      },
-    })
-  }
-
-  orderProductWebhook(
-    formName: string,
-    payload: OrderProductResponseInterface
-  ) {
-    const data = payload.data.attributes
-
-    const params = new HttpParams({
-      fromObject: {
-        'fields[TITLE]': formName,
-        'fields[NAME]': data.name,
-        'fields[PHONE][0][VALUE_TYPE]': 'WORK',
-        'fields[PHONE][0][VALUE]': data.client.phone,
-        'fields[EMAIL][0][VALUE_TYPE]': 'WORK',
-        'fields[EMAIL][0][VALUE]': data.client.email,
-        'fields[SOURCE_ID]': 'UC_AILEWA',
-        'fields[SOURCE_DESCRIPTION]': data.note,
-        // 'fields[TRACE]': payload.trace,
-      },
-    })
-
-    return this.http.get(
-      `https://crm.dtsk.ru/rest/1/10hq9esm6cjopki7/crm.lead.add`,
-      {params}
+      {data}
     )
   }
 }
