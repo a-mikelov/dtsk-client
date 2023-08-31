@@ -8,7 +8,7 @@ import {
 import {HeroStateInterface} from '../../hero/types/hero-state.interface'
 import {ServicesStateInterface} from '../../shared/types/services-state.interface'
 
-export const heroReducer = createReducer(
+export const reducers = createReducer(
   initialState,
   on(
     getServicesAction,
@@ -35,6 +35,6 @@ export const heroReducer = createReducer(
   )
 )
 
-export function reducers(state: HeroStateInterface, action: Action) {
-  return heroReducer(state, action)
+export function servicesReducer(state: HeroStateInterface, action: Action) {
+  return reducers(state, action)
 }

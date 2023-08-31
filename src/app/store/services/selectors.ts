@@ -1,10 +1,10 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store'
-import {HERO_FEATURE} from './state'
 import {HeroStateInterface} from '../../hero/types/hero-state.interface'
 import {ServicesStateInterface} from '../../shared/types/services-state.interface'
+import {SERVICES_FEATURE} from './state'
 
 export const servicesFeatureSelector =
-  createFeatureSelector<HeroStateInterface>(HERO_FEATURE)
+  createFeatureSelector<HeroStateInterface>(SERVICES_FEATURE)
 
 export const isLoadingSelector = createSelector(
   servicesFeatureSelector,

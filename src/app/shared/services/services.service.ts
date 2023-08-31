@@ -7,12 +7,12 @@ import {OrderServiceResponseInterface} from '../../order-service/types/order-ser
 
 @Injectable()
 export class ServicesService {
-  private url = `${environment.apiUrl}/services?populate=*`
+  private url = `${environment.apiUrl}/services`
 
   constructor(private http: HttpClient) {}
 
   getServices() {
-    return this.http.get(this.url).pipe(shareReplay(1))
+    return this.http.get(`${this.url}?populate=deep`)
   }
 
   orderService(data): Observable<OrderProductResponseInterface> {
@@ -20,9 +20,5 @@ export class ServicesService {
       `${environment.apiUrl}/service-orders?populate=deep`,
       {data}
     )
-  }
-
-  deleteProduct(id: number) {
-    return this.http.delete(`${environment.apiUrl}/service-orders/${id}`)
   }
 }
