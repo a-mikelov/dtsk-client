@@ -11,16 +11,11 @@ import {TuiDialogService} from '@taiga-ui/core'
 import {HttpErrorResponse} from '@angular/common/http'
 import {SupportService} from '../../services/support.service'
 import {SupportFormResponseInterface} from '../../types/support-form-response.interface'
+import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus'
+import {AlertComponent} from '../../../shared/components/alert/alert.component'
 
 @Injectable()
 export class SendMessageEffect {
-  constructor(
-    private actions$: Actions,
-    private supportService: SupportService,
-    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
-  ) {}
-
   sendMessage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(sendMessageAction),
@@ -41,4 +36,63 @@ export class SendMessageEffect {
       )
     )
   )
+
+  success$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(sendMessageSuccessAction),
+        tap(() => {
+          this.dialogService
+            .open<any>(
+              new PolymorpheusComponent(AlertComponent, this.injector),
+              {
+                data: {
+                  heading: 'Ваше сообщение отправлено',
+                  success: true,
+                },
+                dismissible: true,
+                closeable: false,
+                size: 's',
+              }
+            )
+            .pipe(take(1))
+            .subscribe()
+        })
+      )
+    },
+    {dispatch: false}
+  )
+
+  failure$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(sendMessageFailureAction),
+        tap(() => {
+          this.dialogService
+            .open<any>(
+              new PolymorpheusComponent(AlertComponent, this.injector),
+              {
+                data: {
+                  heading: 'Не удалось отправить сообщение',
+                  failure: true,
+                },
+                dismissible: true,
+                closeable: false,
+                size: 's',
+              }
+            )
+            .pipe(take(1))
+            .subscribe()
+        })
+      )
+    },
+    {dispatch: false}
+  )
+
+  constructor(
+    private actions$: Actions,
+    private supportService: SupportService,
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector
+  ) {}
 }

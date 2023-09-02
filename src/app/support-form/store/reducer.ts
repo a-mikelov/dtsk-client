@@ -7,10 +7,6 @@ import {
 } from './actions/send-message.action'
 import {SupportFormStateInterface} from '../types/support-form-state.interface'
 import {initialState} from './state'
-import {
-  sendMessageWebhookFailureAction,
-  sendMessageWebhookSuccessAction,
-} from './actions/send-message-webhook.action'
 
 const sendMessageReducer = createReducer(
   initialState,
@@ -32,21 +28,6 @@ const sendMessageReducer = createReducer(
   ),
   on(
     sendMessageFailureAction,
-    (state, {backendErrors}): SupportFormStateInterface => ({
-      ...state,
-      isSubmitting: false,
-      backendErrors,
-    })
-  ),
-  on(
-    sendMessageWebhookSuccessAction,
-    (state): SupportFormStateInterface => ({
-      ...state,
-      isSubmitting: false,
-    })
-  ),
-  on(
-    sendMessageWebhookFailureAction,
     (state, {backendErrors}): SupportFormStateInterface => ({
       ...state,
       isSubmitting: false,

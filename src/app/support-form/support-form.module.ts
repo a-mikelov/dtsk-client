@@ -20,7 +20,6 @@ import {reducer} from './store/reducer'
 import {SendMessageEffect} from './store/effects/send-message.effect'
 import {ReactiveFormsModule} from '@angular/forms'
 import {SupportService} from './services/support.service'
-import {SendMessageWebhookEffect} from './store/effects/send-message-webhook.effect'
 
 @NgModule({
   declarations: [SupportFormComponent],
@@ -29,7 +28,7 @@ import {SendMessageWebhookEffect} from './store/effects/send-message-webhook.eff
     CommonModule,
     ReactiveFormsModule,
     StoreModule.forFeature(SUPPORT_FORM_FEATURE, reducer),
-    EffectsModule.forFeature([SendMessageEffect, SendMessageWebhookEffect]),
+    EffectsModule.forFeature([SendMessageEffect]),
     TuiInputModule,
     TuiTextfieldControllerModule,
     TuiErrorModule,
