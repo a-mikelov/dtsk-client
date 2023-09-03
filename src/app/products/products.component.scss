@@ -9,3 +9,7 @@
   //  overflow: hidden;
   //}
 }
+
+::ng-deep .swiper-slide {
+  display: flex;
+}
