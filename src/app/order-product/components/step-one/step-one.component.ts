@@ -5,7 +5,7 @@ import {
   Input,
   Self,
 } from '@angular/core'
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {TuiDestroyService, TuiStringHandler} from '@taiga-ui/cdk'
 import {takeUntil, tap} from 'rxjs'
 import {TUI_VALIDATION_ERRORS, tuiItemsHandlersProvider} from '@taiga-ui/kit'
@@ -41,7 +41,7 @@ export class StepOneComponent {
 
   form: FormGroup = this.fb.group({
     item: '',
-    count: '',
+    count: [1, [Validators.required]],
     setDetails: false,
     details: [{value: null, disabled: true}],
   })

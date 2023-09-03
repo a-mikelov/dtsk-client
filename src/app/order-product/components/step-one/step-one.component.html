@@ -2,50 +2,28 @@
   <label class="form__field">
     <span class="form__label">
       Товар
-      <sup *ngIf="item.errors && item.hasError('required')"
-      >*</sup
-      >
+      <sup *ngIf="item.errors && item.hasError('required')">*</sup>
     </span>
-    <tui-select
-      tuiTextfieldSize="m"
-      [formControl]="item"
-      [tuiTextfieldLabelOutside]="true"
-      [readOnly]="products.length < 2"
-    >
-      <tui-data-list-wrapper
-        *tuiDataList
-        [items]="products"
-      ></tui-data-list-wrapper>
+    <tui-select tuiTextfieldSize="m" [formControl]="item" [tuiTextfieldLabelOutside]="true"
+      [readOnly]="products.length < 2">
+      <tui-data-list-wrapper *tuiDataList [items]="products"></tui-data-list-wrapper>
     </tui-select>
-    <tui-error
-      [formControl]="item"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
+    <tui-error [formControl]="item" [error]="[] | tuiFieldError | async"></tui-error>
   </label>
   <div class="form__row">
     <label [formGroup]="form" class="form__field">
-      <span class="form__label">Сколько {{this.form.get('item').value.type === 'gasoline' ? 'литров' : 'тонн'}}?</span>
-      <tui-input-count
-        [formControl]="count"
-        [tuiTextfieldLabelOutside]="true"
-        tuiTextfieldSize="m"
-        [min]="1"
-        [max]="20"
-        [pseudoInvalid]="!!(form.touched && form.errors && form.errors['min'])"
-        class="w-36"
-      >
+      <span class="form__label">
+        Сколько {{count.value.type === 'gasoline' ? 'литров' : 'тонн'}}?
+        <sup *ngIf="count.errors && count.hasError('required')">*</sup>
+      </span>
+      <tui-input-count [formControl]="count" [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m" [min]="1" [max]="20"
+        [pseudoInvalid]="!!(form.touched && form.errors && form.errors['min'])" class="w-36">
         <input tuiTextfield />
       </tui-input-count>
-      <tui-error
-        [formControl]="count"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error [formControl]="count" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
     <div class="form__field form__field--end">
-      <tui-checkbox-labeled
-        formControlName="setDetails"
-        appearance="accent"
-      >
+      <tui-checkbox-labeled formControlName="setDetails" appearance="accent">
         <b>Указать детали по доствке</b>
       </tui-checkbox-labeled>
     </div>
