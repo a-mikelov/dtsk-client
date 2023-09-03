@@ -1,71 +1,41 @@
 <div [formGroup]="form" class="form__group">
   <label class="form__field">
-        <span class="form__label">
-          {{typeProps === 'service' ? 'Дата начала работы' : 'Дата доставки'}}
-          <sup *ngIf="date.errors && date.hasError('required')"
-          >*</sup
-          >
-        </span>
-    <tui-input-date
-      tuiUnfinishedValidator="Выберите дату"
-      [tuiTextfieldLabelOutside]="true"
-      tuiTextfieldSize="m"
-      [min]="getMinDate()"
-      [formControl]="date"
-    >
+    <span class="form__label">
+      {{typeProps === 'service' ? 'Дата начала работы' : 'Дата доставки'}}
+      <sup *ngIf="date.errors && date.hasError('required')">*</sup>
+    </span>
+    <tui-input-date tuiUnfinishedValidator="Выберите дату" [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m"
+      [min]="getMinDate()" [formControl]="date">
     </tui-input-date>
-    <tui-error
-      [formControl]="date"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
+    <tui-error [formControl]="date" [error]="[] | tuiFieldError | async"></tui-error>
   </label>
   <div class="form__row">
-       <span class="form__label">
-         {{typeProps === 'service' ? 'Время начала работы' : 'Период доставки'}}
-          <sup *ngIf="minTime.errors && minTime.hasError('required')
-           || maxTime.errors && maxTime.hasError('required')"
-          >*</sup
-          >
-        </span>
+    <span class="form__label">
+      {{typeProps === 'service' ? 'Время начала работы' : 'Период доставки'}}
+      <sup *ngIf="minTime.errors && minTime.hasError('required')
+           || maxTime.errors && maxTime.hasError('required')">*</sup>
+    </span>
     <label class="form__field">
-      <tui-input-time
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-        formControlName="minTime"
-        [items]="minTimePeriod"
-      >
+      <tui-input-time tuiTextfieldSize="m" [tuiTextfieldLabelOutside]="true" formControlName="minTime"
+        [items]="minTimePeriod">
         Мин. время
       </tui-input-time>
-      <tui-error
-        [formControl]="minTime"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error [formControl]="minTime" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
     <label class="form__field">
-      <tui-input-time
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-        formControlName="maxTime"
-        [items]="maxTimePeriod"
-      >
+      <tui-input-time tuiTextfieldSize="m" [tuiTextfieldLabelOutside]="true" formControlName="maxTime"
+        [items]="maxTimePeriod">
         Макс. время
       </tui-input-time>
-      <tui-error
-        [formControl]="maxTime"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error [formControl]="maxTime" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
   </div>
   <label class="form__field">
     <span class="form__label">
       {{typeProps === 'service' ? 'Адрес проведения работы' : 'Адрес доставки'}}
-      <sup *ngIf="address.errors && address.hasError('required')"
-      >*</sup>
+      <sup *ngIf="address.errors && address.hasError('required')">*</sup>
     </span>
-    <tui-text-area formControlName="address"></tui-text-area>
-    <tui-error
-      formControlName="address"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
+    <tui-text-area tuiTextfieldSize="m" formControlName="address"></tui-text-area>
+    <tui-error formControlName="address" [error]="[] | tuiFieldError | async"></tui-error>
   </label>
 </div>

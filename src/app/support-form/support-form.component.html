@@ -4,81 +4,52 @@
       <span class="form__label">
         Имя
       </span>
-      <tui-input
-        tuiTextfieldSize="m"
-        formControlName="name"
-        [tuiTextfieldLabelOutside]="true"
-      >
+      <tui-input tuiTextfieldSize="m" formControlName="name" [tuiTextfieldLabelOutside]="true">
         <input tuiTextfield type="text" />
       </tui-input>
-      <tui-error
-        formControlName="name"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error formControlName="name" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
     <label class="form__field">
       <span class="form__label">
         Телефон
       </span>
-      <tui-input-phone
-        formControlName="phone"
-        tuiTextfieldSize="m"
-        [tuiTextfieldLabelOutside]="true"
-      >
+      <tui-input-phone formControlName="phone" tuiTextfieldSize="m" [tuiTextfieldLabelOutside]="true">
         <input tuiTextfield autocomplete="tel" />
       </tui-input-phone>
-      <tui-error
-        formControlName="phone"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error formControlName="phone" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
     <label class="form__field">
       <span class="form__label">
         Email
       </span>
-      <tui-input
-        tuiTextfieldSize="m"
-        formControlName="email"
-        [tuiTextfieldLabelOutside]="true"
-      >
+      <tui-input tuiTextfieldSize="m" formControlName="email" [tuiTextfieldLabelOutside]="true">
         <input tuiTextfield type="email" />
       </tui-input>
-      <tui-error
-        formControlName="email"
-        [error]="[] | tuiFieldError | async"
-      ></tui-error>
+      <tui-error formControlName="email" [error]="[] | tuiFieldError | async"></tui-error>
     </label>
   </div>
   <label class="form__field">
-      <span class="form__label">
-        Ваш вопрос
-      </span>
-    <tui-text-area formControlName="message" [rows]="8" class="form__message"></tui-text-area>
-    <tui-error
-      formControlName="message"
-      [error]="[] | tuiFieldError | async"
-    ></tui-error>
+    <span class="form__label">
+      Ваш вопрос
+    </span>
+    <tui-text-area tuiTextfieldSize="m" formControlName="message" [rows]="8" class="form__message"></tui-text-area>
+    <tui-error formControlName="message" [error]="[] | tuiFieldError | async"></tui-error>
   </label>
 
   <!--  <tui-checkbox-labeled-->
-<!--    formControlName="agree"-->
-<!--    class="mb-7"-->
-<!--    appearance="accent"-->
-<!--  >-->
-<!--    <span class="text-2xs">-->
-<!--      Нажимая кнопку «Отправить», я даю свое согласие на-->
-<!--      <a class="link-black text-black"-->
-<!--      >обработку моих персональных данных</a-->
-<!--      >-->
-<!--    </span>-->
-<!--  </tui-checkbox-labeled>-->
-  <button
-    type="submit"
-    tuiButton
-    size="m"
-    [showLoader]="isSubmitting$ | async"
-    [disabled]="form.invalid || (isSubmitting$ | async)"
-  >
+  <!--    formControlName="agree"-->
+  <!--    class="mb-7"-->
+  <!--    appearance="accent"-->
+  <!--  >-->
+  <!--    <span class="text-2xs">-->
+  <!--      Нажимая кнопку «Отправить», я даю свое согласие на-->
+  <!--      <a class="text-black link-black"-->
+  <!--      >обработку моих персональных данных</a-->
+  <!--      >-->
+  <!--    </span>-->
+  <!--  </tui-checkbox-labeled>-->
+  <button type="submit" tuiButton size="m" [showLoader]="isSubmitting$ | async"
+    [disabled]="form.invalid || (isSubmitting$ | async)">
     Отправить вопрос
   </button>
 </form>

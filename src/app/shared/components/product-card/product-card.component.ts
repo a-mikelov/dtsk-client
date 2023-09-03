@@ -33,7 +33,7 @@ export class ProductCardComponent {
           data: {
             product,
           },
-          dismissible: true,
+          dismissible: false,
           closeable: false,
           size: 'm',
         }
